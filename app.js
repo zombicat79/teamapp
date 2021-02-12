@@ -1,13 +1,32 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+require('dotenv').config();
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+const createError = require("http-errors");
+const express = require("express");
+const mongoose = require('mongoose');
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
-var app = express();
+const indexRouter = require("./routes/index-router");
+const authRouter = require("./routes/auth-router")
+const userRouter = require("./routes/user-router");
+
+const app = express();
+
+//Connection to the database
+mongoose
+  .connect(`${process.env.MONGODB_URI}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((x) => {
+    console.log("Connected to the DB");
+  })
+  .catch((err) => {
+    console.log("Error connection to db", err);
+  });
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -19,8 +38,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+//SESSION (COOKIES) MIDDLEWARE
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    // cookie: { maxAge: 3600000 * 1 },	// 1 hour
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 60 * 60 * 24 * 7, // Time to live - 7 days (14 days - Default)
+    }),
+  })
+);
+
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/users", userRouter);
+app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -40,4 +74,4 @@ app.use(function (err, req, res, next) {
 
 module.exports = app;
 
-// test
+
