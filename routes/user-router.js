@@ -10,16 +10,61 @@ userRouter.get('/main', function(req, res, next) {
   .then( (allUsers) => {
     res.render('user-views/user-main', {allUsers});
   })
-  .catch( (err) => console.log(err));  
+  .catch( (err) => next(err));  
 });
 
 userRouter.get('/main/:search', function (req, res, next) {
-  const {search} = req.query
-  console.log({search})
+  const {search} = req.query;
 
   User.find({$or: [{location: search}, {username: search}]})
   .then( (matchingUsers) => {
+    if (matchingUsers.length === 0) {
+      res.render('user-views/user-main', {errorMessage: "Nothing was found. Please try again"});
+    }
+    else {
     res.render('user-views/user-main', {matchingUsers});
+    }
+  })
+  .catch( (err) => next(err));
+})
+
+userRouter.get('/detail/:id', function (req, res, next) {
+  const {id} = req.params
+
+  User.findById(id)
+  .then( (selectedUser) => {
+    res.render('user-views/user-detail', {selectedUser});
+  })
+  .catch( (err) => next(err));
+})
+
+userRouter.get('/profile/:id', function (req, res, next){
+  const {id} = req.params
+  
+  User.findById(id)
+  .then( (selectedUser) => {
+    res.render('user-views/profile-view', {selectedUser});
+  })
+  .catch( (err) => next(err));
+})
+
+userRouter.get('/edit/:id', function (req, res, next){
+  const {id} = req.params
+  
+  User.findById(id)
+  .then( (selectedUser) => {
+    res.render('user-views/edit-user', {selectedUser});
+  })
+  .catch( (err) => next(err));
+})
+
+userRouter.post('/edit/:id', function (req, res, next){
+  const {id} = req.params;
+  const {username, email, phone, location} = req.body;
+
+  User.findByIdAndUpdate(id, {username, email, phone, location})
+  .then( (selectedUser) => {
+    res.redirect(`/users/profile/${selectedUser._id}`)
   })
   .catch( (err) => console.log(err));
 })

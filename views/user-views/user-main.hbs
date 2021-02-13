@@ -12,6 +12,7 @@
         <li>{{this.email}}</li>
         <li>{{this.phone}}</li>
     </ul>
+    <button><a href="/users/detail/{{this._id}}">See full details</a></button>
 {{/each}}
 </div>
 <div>
@@ -22,5 +23,7 @@
         <li>{{this.email}}</li>
         <li>{{this.phone}}</li>
     </ul>
+    <button><a href="/users/detail/{{this._id}}">See full details</a></button>
 {{/each}}
 </div>
+<p>{{errorMessage}}</p>
