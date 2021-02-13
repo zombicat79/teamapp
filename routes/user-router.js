@@ -1,9 +1,27 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const userRouter = express.Router();
+const mongoose = require('mongoose');
+const User = require('./../models/user');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+userRouter.get('/main', function(req, res, next) {
+  
+  User.find()
+  .then( (allUsers) => {
+    res.render('user-views/user-main', {allUsers});
+  })
+  .catch( (err) => console.log(err));  
 });
 
-module.exports = router;
+userRouter.get('/main/:search', function (req, res, next) {
+  const {search} = req.query
+  console.log({search})
+
+  User.find({$or: [{location: search}, {username: search}]})
+  .then( (matchingUsers) => {
+    res.render('user-views/user-main', {matchingUsers});
+  })
+  .catch( (err) => console.log(err));
+})
+
+module.exports = userRouter;

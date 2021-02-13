@@ -1,0 +1,26 @@
+<form action='/users/main/:search' method='GET'>
+  <label for=''>Look for amazing collaborators</label>
+  <input type='text' name='search'>
+
+  <button type='submit'>Search</button>
+</form>
+<div>
+{{#each allUsers}}
+    <ul>
+        <li>{{this.username}}</li>
+        <li>{{this.location}}</li>
+        <li>{{this.email}}</li>
+        <li>{{this.phone}}</li>
+    </ul>
+{{/each}}
+</div>
+<div>
+{{#each matchingUsers}}
+    <ul>
+        <li>{{this.username}}</li>
+        <li>{{this.location}}</li>
+        <li>{{this.email}}</li>
+        <li>{{this.phone}}</li>
+    </ul>
+{{/each}}
+</div>
