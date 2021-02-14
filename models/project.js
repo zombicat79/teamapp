@@ -3,12 +3,14 @@ const Schema = mongoose.Schema;
 
 const projectSchema = new Schema ({
     title: String,
-    creator: {type: Schema.Types.ObjectId, ref: 'User'},
-    category: { 
-      type: String, enum: ['Action', 'Adventure', 'RPG', 'Platforms', 'Sports', 'Puzzles', 'Shooter', 'Simulation', 'Strategy', 'Racing']
-    },
+    creator: String,
+    //creator: {type: Schema.Types.ObjectId, ref: 'User'},
+    category: [{ 
+      type: String, enum: ['Action', 'Adventure', 'RPG', 'Platforms', 'Sports', 'Puzzles', 'Shooter', 'Simulation', 'Strategy', 'Racing', 'Multiplayer']
+    }],
     description: String,
-    team: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    team: [String],
+    //team: [{type: Schema.Types.ObjectId, ref: 'User'}],
     wantedSkills: [{type: String, enum: ['2D graphics', '3D graphics', 'Unity', 'Scriptwriting', 'Pixel art', 'Music composition', 'Sound engineering', 'C++', 'JavaScript', 'HTML & CSS', 'Project management', 'Conceptual design', 'Beta testing']}],
     startDate: Date,
     releaseDate: Date,
