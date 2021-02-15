@@ -1,0 +1,13 @@
+<p>made by David</p>
+<h1>Seeing user-project view / ability to see projects and create a new one</h1>
+
+{{#each project}}
+    <div>
+<h2->this is a projet</h2->
+        <h2>{{this.title}}</h2>
+        <h2>{{this.description}}</h2>
+        <a href="/project/edit/{{this.id}}">Edit</a>
+    </div>
+{{/each}}
+
+<h3><a href="/project/create">NEW</a></h3>

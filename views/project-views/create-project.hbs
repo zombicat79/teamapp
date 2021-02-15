@@ -1,0 +1,89 @@
+<h1>My Project</h1>
+<form action='/project/create/' method='POST' class="form">
+
+  <div class="form-entry">
+    <label for='' class="form-title">Title</label>
+    </br>
+    <input type='text' name='title' class="form-field">
+  </div>
+
+  </br>
+
+  <div class="form-entry">
+    <label for='' class="form-title">Description</label>
+    </br>
+    <textarea type='text' name='description' class="form-field" placeholder="Describe your project!"></textarea>
+  <div>
+
+  </br>
+
+  <div class="form-entry">
+    <label for='' class="form-title">Category</label>
+    </br>
+    <select name="category" size="4">
+      <option value="Action">Action</option>
+      <option value="Adventure">Adventure</option>
+      <option value="RPG">RPG</option>
+      <option value="Platforms">Platforms</option>
+      <option value="Sports">Sports</option>
+      <option value="Puzzle">Puzzle</option>
+      <option value="Shooter">Shooter</option>
+      <option value="Simulation">Simulation</option>
+      <option value="Sports">Strategy</option>
+      <option value="Puzzle">Racing</option>   
+</select>
+  </div>
+
+  </br>
+
+  <div class="form-entry">
+    <label for='' class="form-title">Wanted Skills</label>
+    </br>
+    <div class="checkbox-styling">
+      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="2D Graphics"><span>2D Graphics</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="3D Graphics"><span>3D Graphics</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Unity"><span>Unity</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Scriptwriting"><span>Scriptwriting</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Pixel Art"><span>Pixel Art</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Music Composition"><span>Music Composition</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Sound Engineering"><span>Sound Engineering</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="C++"><span>C++</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Javascript"><span>Javascript</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="HTML & CSS"><span>HTML and CSS</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Project Management"><span>Project Management</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Conceptual Design"><span>Conceptual Design</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Beta Testing"><span>Beta Testing</span></div>
+    </div>
+  </div>
+
+  </br>
+
+  <div class="form-entry">
+    <label for='' class="form-title">Start Date</label>
+    </br>
+    <input type='date' name='startDate' class="form-field">
+  </div>
+
+  </br>
+
+  <div class="form-entry">
+    <label for='' class="form-title">Release Date</label>
+    </br>
+    <input type='date' name='releaseDate' class="form-field">
+  </div>
+
+  </br>
+
+  <div class="form-entry">
+    <label for='' class="form-title">Screenshots</label>
+    </br>
+    <input type='text' name='screenshots' class="form-field">
+  </div>
+
+  </br>
+
+  <div class="btn-div">
+    <button type='submit' class="submit-btn">Create !</button>
+  </div>
+
+</form>

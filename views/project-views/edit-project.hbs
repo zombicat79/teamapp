@@ -1,0 +1,26 @@
+<h1>Edit your project</h1>
+<form action='/project/edit/{{this.project.id}}' method='POST'>
+
+  <label for=''>Title</label>
+  <input type='text' name='title' value="{{this.project.title}}">
+
+  <label for=''>Description</label>
+  <input type='text' name='description' value="{{this.project.description}}">  
+
+  <label for=''>Category</label>
+  <input type='text' name='category' value="{{this.project.category}}">
+
+  <label for=''>Wanted Skills</label>
+  <input type='text' name='wantedSkills' value="{{this.project.wantedSkills}}">
+
+  <label for=''>Start Date</label>
+  <input type='text' name='startDate' value="{{this.project.startDate}}">
+
+  <label for=''>Release Date</label>
+  <input type='text' name='releaseDate' value="{{this.project.releaseDate}}">
+
+  <label for=''>Screenshots</label>
+  <input type='text' name='screenshots' value="{{this.project.screenshots}}">
+
+  <button type='submit'>Edit</button>
+</form>

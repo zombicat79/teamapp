@@ -1,0 +1,12 @@
+<h1>This is the project main view</h1>
+<form action='/project/main/' method='GET'>
+  <input type='text' name='search' placeholder="Search for a project" class="search-bar">
+  <button type='submit' class="search-bar-btn">Submit</button>
+</form>
+{{#each project}}
+    <div class="project-card">
+        <h2>{{this.title}}</h2>
+        <h3>{{this.description}}</h3>
+        <button class="see-more-btn"><a href="/project/details/{{this.id}}">See More</a></button>
+    </div>
+{{/each}}

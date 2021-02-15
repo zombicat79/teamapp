@@ -1,0 +1,21 @@
+<div>
+    <h2>Name: {{this.project.title}}</h2>
+    <h2>Description: {{this.project.description}}</h2>
+    <h3>Start Date: {{this.project.startDate}}</h3>
+    <h3>Release Date: {{this.project.releaseDate}}</h3>
+    <p>To work on {{this.project.title}}, the team is looking for talented person working in:</p>
+    <ul>
+        <li>{{this.project.wantedSkills}}</li>
+    </ul>
+    <p>If you feel like you have what it takes to join this project, click here!</p>
+    
+    <form action="/project/add-member/{{this.project.id}}" method="post"><button>Join this project!</button></form>
+
+    <p>The team is based in: {{this.project.location}}</p>
+    <h4>The creator of this project is: {{this.project.creator.username}}</h4>
+    <h5>List of collaborators involved in this project:</h5>
+        <ul class="team-list">
+            <li>{{this.project.team}}</li>
+        </ul>
+</div>
+<button><a href="/project/main">go back to all the projects</a></button>
