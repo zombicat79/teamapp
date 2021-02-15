@@ -2,9 +2,10 @@ const express = require('express');
 const userRouter = express.Router();
 const mongoose = require('mongoose');
 const User = require('./../models/user');
+const isLoggedIn = require("../public/javascripts/middleware");
+const allowedIn = require("../public/javascripts/middleware");
 
-/* GET users listing. */
-userRouter.get('/main', function(req, res, next) {
+userRouter.get('/main', isLoggedIn, function(req, res, next) {
   
   User.find()
   .then( (allUsers) => {
@@ -13,7 +14,7 @@ userRouter.get('/main', function(req, res, next) {
   .catch( (err) => next(err));  
 });
 
-userRouter.get('/main/:search', function (req, res, next) {
+userRouter.get('/main/:search', isLoggedIn, function (req, res, next) {
   const {search} = req.query;
 
   User.find({$or: [{location: search}, {username: search}, {skills: search}, {projects: search}]})
@@ -28,7 +29,7 @@ userRouter.get('/main/:search', function (req, res, next) {
   .catch( (err) => next(err));
 })
 
-userRouter.get('/detail/:id', function (req, res, next) {
+userRouter.get('/detail/:id', isLoggedIn, function (req, res, next) {
   const {id} = req.params
 
   User.findById(id)
@@ -38,7 +39,7 @@ userRouter.get('/detail/:id', function (req, res, next) {
   .catch( (err) => next(err));
 })
 
-userRouter.get('/profile/:id', function (req, res, next){
+userRouter.get('/profile/:id', isLoggedIn, function (req, res, next){
   const {id} = req.params
   
   User.findById(id)
@@ -48,17 +49,24 @@ userRouter.get('/profile/:id', function (req, res, next){
   .catch( (err) => next(err));
 })
 
-userRouter.get('/edit/:id', function (req, res, next){
+userRouter.get('/edit/:id', isLoggedIn, function (req, res, next){
   const {id} = req.params
   
   User.findById(id)
   .then( (selectedUser) => {
-    res.render('user-views/edit-user', {selectedUser});
+    console.log(req.session.currentUser._id)
+    console.log(selectedUser._id);
+    if (req.session.currentUser._id != selectedUser._id) {
+      res.render("user-views/user-main", {errorMessage: "You cannot edit this page"});
+    }
+    else {
+      res.render('user-views/edit-user', {selectedUser});;
+    }
   })
   .catch( (err) => next(err));
 })
 
-userRouter.post('/edit/:id', function (req, res, next){
+userRouter.post('/edit/:id', isLoggedIn, function (req, res, next){
   const {id} = req.params;
   const {username, email, phone, location} = req.body;
 
@@ -69,7 +77,7 @@ userRouter.post('/edit/:id', function (req, res, next){
   .catch( (err) => next(err));
 })
 
-userRouter.get('/projects/:id', function (req, res, next){
+userRouter.get('/projects/:id', isLoggedIn, function (req, res, next){
   const {id} = req.params;
 
   User.findById(id)
@@ -79,7 +87,7 @@ userRouter.get('/projects/:id', function (req, res, next){
   .catch( (err) => next(err));
 })
 
-userRouter.get('/projects/:id/:search', function (req, res, next){ //hbs file needs to be changed and logic reorganized according to the model
+userRouter.get('/projects/:id/:search', isLoggedIn, function (req, res, next){ //hbs file needs to be changed and logic reorganized according to the model
   const {id} = req.params;
   const {search} = req.query;
   

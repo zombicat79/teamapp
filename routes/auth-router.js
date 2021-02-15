@@ -88,13 +88,28 @@ authRouter.post("/signup", (req, res, next) => {
       skills,
       projects,
     })
-      .then((createdUser) => res.redirect("/main"))
-      .catch((err) =>
+      .then((createdUser) => {
+        req.session.currentUser = createdUser;
+        res.redirect("/users/main")
+      })
+      .catch((err) => {
+        console.log(err)
         res.render("index", {
           errorMessage: "Something went wrong. Please try again",
-        })
+        })}
       );
   });
 });
+
+authRouter.get('/logout', (req, res, next) => {
+    req.session.destroy(function (err) {
+        if (err) {
+            next();
+        }
+        else {
+            res.redirect('/');
+        }
+    })
+})
 
 module.exports = authRouter;

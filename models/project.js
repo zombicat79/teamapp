@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const projectSchema = new Schema({
   title: String,
   creator: { type: Schema.Types.ObjectId, ref: "User" },
-  category: {
+  category: [{
     type: String /*enum: ['Action', 'Adventure', 'RPG', 'Platforms', 'Sports', 'Puzzles', 'Shooter', 'Simulation', 'Strategy', 'Racing']*/,
-  },
+  }],
   description: String,
   team: [{ type: Schema.Types.ObjectId, ref: "User" }],
   wantedSkills: [

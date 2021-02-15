@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const app = require("../app");
 const projectRouter = express.Router();
 const Project = require("./../models/project");
-const allTeamMembers = require("./../public/index");
-const jsIndex = require("./../public/index");
+const allTeamMembers = require("../public/javascripts/middleware");
+const isLoggedIn = require("../public/javascripts/middleware");
 
 // create project views
-projectRouter.get("/create", (req, res, next) => {
+projectRouter.get("/create", isLoggedIn, (req, res, next) => {
   res.render("project-views/create-project");
   console.log("req.session.currentUser._id :>> ", req.session.currentUser._id);
 });
@@ -41,7 +41,7 @@ projectRouter.post("/create/", (req, res, next) => {
 });
 
 // Edit project views
-projectRouter.get("/edit/:id", (req, res, next) => {
+projectRouter.get("/edit/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
 
   Project.findById(id)
@@ -80,7 +80,7 @@ projectRouter.post("/edit/:id", (req, res, next) => {
 });
 
 // project / main see all the projects on the platform
-projectRouter.get("/main", (req, res, next) => {
+projectRouter.get("/main", isLoggedIn, (req, res, next) => {
   Project.find()
     .then((project) => {
       const data = { project: project };
@@ -99,7 +99,7 @@ projectRouter.get("/main/:search", (req, res, next) => {
 });
 
 // Project / detailed view
-projectRouter.get("/details/:id", (req, res, next) => {
+projectRouter.get("/details/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
 
   Project.findById(id)
@@ -115,7 +115,7 @@ projectRouter.get("/details/:id", (req, res, next) => {
 });
 
 // Project / add member
-projectRouter.post("/add-member/:id", (req, res, next) => {
+projectRouter.post("/add-member/:id", isLoggedIn, (req, res, next) => {
   const userIdAdd = req.session.currentUser._id;
   const { id } = req.params;
   console.log("getting here");

@@ -2,8 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const userModel = require('./../models/user');
-const projectModel = require('./../models/project')
+const User = require('./../models/user');
+const Project = require('./../models/project')
 
 const users = [
     {
@@ -199,6 +199,127 @@ const projects = [
    }
 ];
 
+
+const usersB = [
+    {
+        username: "Mr. Robot",
+        password: "neverknow",
+        email: "robot@tech.co.uk",
+        phone: "+4414587297",
+        profileImage: "https://pyxis.nymag.com/v1/imgs/04b/3cc/bbdfab84f9276e72f626049f9c2c7d7097-12-mr-robot-where.rsquare.w700.jpg",
+        location: "London",
+        skills: ["2D graphics", "Pixel art"],
+    },
+    {
+        username: "Ultranerd",
+        password: "noprotection",
+        email: "powernerd@boldgames.com",
+        phone: "+4987692345",
+        profileImage: "https://media.thetab.com/blogs.dir/5/files/2014/03/nerd.jpg",
+        location: "Dortmund",
+        skills: ["3D graphics", "C++"],
+    },
+    {
+        username: "Async_await95",
+        password: "12345",
+        email: "dfsolo@gmail.com",
+        phone: "+34678452790",
+        profileImage: "https://cdn.vox-cdn.com/thumbor/o2rDUJI9wVLyux6BDBWDxAR06Lg=/0x0:998x749/1400x1400/filters:focal(0x0:998x749):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/47038870/tech-nerd.0.0.jpg",
+        location: "Barcelona",
+        skills: ["JavaScript", "HTML & CSS"],
+    },
+    {
+        username: "Futuregirl",
+        password: "easytohack21",
+        email: "powergirl@labstudio.com",
+        phone: "+1384756940",
+        profileImage: "https://pbs.twimg.com/profile_images/1084574571318181889/B4juu9g6.jpg",
+        location: "Los Angeles",
+        skills: ["Conceptual design", "2D graphics", "Pixel art"],
+    },
+    {
+        username: "Jeanlux",
+        password: "vivelafrance",
+        email: "jeanlucpetit@yahoo.fr",
+        phone: "+333765928",
+        profileImage: "http://31.media.tumblr.com/5732cd0aad66afc5ebaed85b6eb194c3/tumblr_n0a8zoZySB1subvnlo1_500.jpg",
+        location: "Paris",
+        skills: ["Music composition", "Sound engineering"],
+    },
+    {
+        username: "Gandalf89",
+        password: "hocuspocus",
+        email: "joseportells@hotmail.com",
+        phone: "+346823674",
+        profileImage: "https://penaltiloungebar.es/wp-content/uploads/2016/10/nerd-buff1.jpg",
+        location: "Barcelona",
+        skills: ["3D graphics", "Unity", "Beta testing"],
+    },
+    {
+        username: "Franxxesca",
+        password: "pepperoni",
+        email: "franmaldini@gemail.com",
+        phone: "+3987832094",
+        profileImage: "https://www.wikihow.com/images_en/thumb/b/b5/Dress-Like-a-Nerd-Step-1-Version-2.jpg/v4-460px-Dress-Like-a-Nerd-Step-1-Version-2.jpg",
+        location: "Milan",
+        skills: ["Scriptwriting", "Conceptual design", "Beta testing"],
+    },
+    {
+        username: "MagicJoe",
+        password: "hahahahaha",
+        email: "joethemagician@gmail.com",
+        phone: "+44387462847",
+        profileImage: "https://www.digopaul.com/wp-content/uploads/related_images/2015/09/09/nerd_3.jpg",
+        location: "London",
+        skills: ["C++", "Unity", "JavaScript", "HTML & CSS"],
+    },
+    {
+        username: "TheTerminator",
+        password: "sayonara_baby",
+        email: "freddiengoma@gmail.com",
+        phone: "+13748752092",
+        profileImage: "https://pbs.twimg.com/media/Et_54YWVcAEXDmv.jpg",
+        location: "San Francisco",
+        skills: ["Conceptual design", "Project management", "Beta testing"],
+    },
+    {
+        username: "Akatsuki98",
+        password: "7ywh6",
+        email: "akatsuki@playfulstudio.com",
+        phone: "+817382545",
+        profileImage: "https://soranews24.com/wp-content/uploads/sites/3/2018/06/la-1.png",
+        location: "Tokyo",
+        skills: ["2D graphics", "Music composition", "Pixel art", "Sound engineering"],
+    }
+];
+
+const projectsB = [
+   {
+        title: "Cyber Shadow",
+        creator: "Mr. Robot",
+        category: ["Action", "Platforms"],
+        description: "Authentic 8-bit recreation with handcrafted sprites, detailed pixel aesthetics, and seamless controls, all with the addition of modern touches such as smoother animations, multi-layered parallax backgrounds, and an evolved game design.",
+        team: ["Mr. Robot", "Jeanlux", "Akatsuki98"],
+        wantedSkills: ["Beta testing"],
+        startDate: new Date(2020, 10, 17),
+        releaseDate: new Date(2021, 09, 01),
+        screenshots: ["https://cdn.akamai.steamstatic.com/steam/apps/861250/ss_fecf423e76c45ca9563c0e33439144ee5fd2b6c0.600x338.jpg?t=1611959684", "https://cdn.akamai.steamstatic.com/steam/apps/861250/ss_543c90de51389a1cfa233e8dc8bc0ba750cc232e.600x338.jpg?t=1611959684", "https://cdn.akamai.steamstatic.com/steam/apps/861250/ss_214480c7d27037cea74bc6ca4df63749e7b1e4a2.600x338.jpg?t=1611959684"]
+   },
+   {
+        title: "Instant Farmer",
+        creator: "Ultranerd",
+        category: ["Puzzles", "Strategy"],
+        description: 'A country life, growing a vegetable garden in your own ranch. In this tiny fantasy countryside experience, that is easy to do and very relaxing. Just keep in mind: water brings life. Swap the blocks of earth, stone, water, and others, so that all the arable soil receives the necessary water. Solve the challenge and feel the pleasure of watching the plants instantly grow and bear fruit. As you progress solving the challenges, see your farm expand and evolve with new types of vegetables.',
+        team: ["Ultranerd", "Jeanlux", "Akatsuki98"],
+        wantedSkills: ["Unity", "JavaScript", "Sound engineering"],
+        startDate: new Date(2020, 12, 13),
+        releaseDate: new Date(2021, 06, 05),
+        screenshots: ["https://cdn.akamai.steamstatic.com/steam/apps/1399670/ss_627f84f71800184d5bcc1c88086aeab05d142a23.600x338.jpg?t=1612917778"]
+   },
+   
+];
+
+
 mongoose
   .connect(process.env.MONGODB_URI, {
     useCreateIndex: true,
@@ -211,13 +332,42 @@ mongoose
     return pr;
   })
   .then(() => {
-    const pr = userModel.create(users);
+    const pr = User.create(usersB);
     return pr;
   })
-  .then(() => {
-    const pr = projectModel.create(projects);
+  .then((createdUsers) => {
+
+    const updatedProjects = projectsB.map((projectObj, i) => {
+        const index = i + 1;
+        // Get user id for the creator
+        const creatorIndex = (index * 5) - 5;
+
+        console.log('creatorIndex :>> ', creatorIndex);
+        const creator = createdUsers[creatorIndex];
+        const creatorId = creator._id;
+
+        // Get user ids for the team array
+        const team = createdUsers.slice(index,index * 5);
+        const teamIds = team.map((user)=> user._id);
+
+        // copy the project object and change creator and team properties
+        const updatedProject = { ...projectObj, creator: creatorId, team: teamIds};
+        return updatedProject;
+    });
+
+    const pr = Project.create(updatedProjects);
     return pr;
   })
+  .then((createdProjects)=> {
+      const updatePromises = createdProjects.map((project)=> {
+          const pr = User.findByIdAndUpdate(project.creator, { $push: {projects: project._id }});
+          return pr;
+      });
+
+      const bigPr =  Promise.all(updatePromises);
+      return bigPr;
+  })
+  .then((updatedUsers)=> {})
   .catch( (err) => console.log('Error connecting to mongo', err));
  
   

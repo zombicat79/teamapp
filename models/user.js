@@ -9,10 +9,9 @@ const userSchema = new Schema ({
     profileImage: {type: String, required: false}, //needs correction --- try using Cloudinary
     location: String,
     skills: [{
-      type: String, enum: ['2D graphics', '3D graphics', 'Unity', 'Scriptwriting', 'Pixel art', 'Music composition', 'Sound engineering', 'C++', 'JavaScript', 'HTML & CSS', 'Project management', 'Conceptual design', 'Beta testing']
+      type: String, //enum: ['2D graphics', '3D graphics', 'Unity', 'Scriptwriting', 'Pixel art', 'Music composition', 'Sound engineering', 'C++', 'JavaScript', 'HTML & CSS', 'Project management', 'Conceptual design', 'Beta testing']
   }],
-    projects: [String]
-    //projects: [{type: Schema.Types.ObjectId, ref: 'Project'}]
+    projects: [{type: Schema.Types.ObjectId, ref: 'Project'}]
 });
 
 const User = mongoose.model('User', userSchema);
