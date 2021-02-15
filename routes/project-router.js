@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const app = require("../app");
 const projectRouter = express.Router();
 const Project = require("./../models/project");
-const allTeamMembers = require("../public/javascripts/middleware");
 const isLoggedIn = require("../public/javascripts/middleware");
+const projectAllowedIn = require(".././public/javascripts/middlewareProject");
 
 // create project views
 projectRouter.get("/create", isLoggedIn, (req, res, next) => {
@@ -46,8 +46,7 @@ projectRouter.get("/edit/:id", isLoggedIn, (req, res, next) => {
 
   Project.findById(id)
     .then((project) => {
-      const data = { project: project };
-      res.render("project-views/edit-project", data);
+      projectAllowedIn(req, res, next, project, "project/edit");
     })
     .catch((err) => console.log("there's a problem", err));
 });
@@ -63,6 +62,8 @@ projectRouter.post("/edit/:id", (req, res, next) => {
     screenshots,
   } = req.body;
 
+  console.log(id);
+   
   Project.findByIdAndUpdate(id, {
     title,
     description,
@@ -74,9 +75,9 @@ projectRouter.post("/edit/:id", (req, res, next) => {
   })
     .then((project) => {
       const data = { project: project };
-      res.redirect("/project/user-view");
+      res.redirect(`/project/details/${id}`);
     })
-    .catch((err) => console.log("you are not editing"));
+    .catch((err) => console.log("err"));
 });
 
 // project / main see all the projects on the platform
@@ -88,12 +89,19 @@ projectRouter.get("/main", isLoggedIn, (req, res, next) => {
     })
     .catch((err) => console.log(err));
 });
-projectRouter.get("/main/:search", (req, res, next) => {
-  const { seach } = req.params;
+projectRouter.get("/main/:search", isLoggedIn, function (req, res, next) {
+  const { search } = req.query;
+  console.log(req.query);
 
   Project.find({ $or: [{ title: search }, { description: search }] })
     .then((matchingProjects) => {
-      res.render("project-views/project-main", { matchingProjects });
+      if (matchingProjects.length === 0) {
+        res.render("project-views/project-main", {
+          errorMessage: "Nothing was found. Please try again",
+        });
+      } else {
+        res.render("project-views/project-main", { matchingProjects });
+      }
     })
     .catch((err) => console.log(err));
 });
@@ -107,7 +115,7 @@ projectRouter.get("/details/:id", isLoggedIn, (req, res, next) => {
     .populate("team")
     .then((project) => {
       const data = { project };
-      console.log("project.team :>> ", project.team[0].username);
+      //   console.log("project.team :>> ", project.team[0].username);
       //   allTeamMembers(project); // cannot modify DOM from here?
       res.render("project-views/project-detail", data);
     })
@@ -115,19 +123,19 @@ projectRouter.get("/details/:id", isLoggedIn, (req, res, next) => {
 });
 
 // Project / add member
-projectRouter.post("/add-member/:id", isLoggedIn, (req, res, next) => {
-  const userIdAdd = req.session.currentUser._id;
-  const { id } = req.params;
-  console.log("getting here");
+// projectRouter.post("/add-member/:id", isLoggedIn, (req, res, next) => {
+//   const userIdAdd = req.session.currentUser._id;
+//   const { id } = req.params;
+//   console.log("getting here");
 
-  Project.findByIdAndUpdate(id, { team: userIdAdd }) // expected this to add new user to the team object: team.push(`${userIdAdd}`)
-    .then((data) => {
-      console.log("typeof", typeof name);
+//   Project.findByIdAndUpdate(id, { team: userIdAdd }) // expected this to add new user to the team object: team.push(`${userIdAdd}`)
+//     .then((data) => {
+//       console.log("typeof", typeof name);
 
-      console.log("added to the team!");
-      res.redirect(`/project/details/${id}`);
-    })
-    .catch((err) => console.log(err, "not added to the team"));
-});
+//       console.log("added to the team!");
+//       res.redirect(`/project/details/${id}`);
+//     })
+//     .catch((err) => console.log(err, "not added to the team"));
+// });
 
 module.exports = projectRouter;

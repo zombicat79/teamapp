@@ -29,7 +29,7 @@ authRouter.post("/login", (req, res, next) => {
       const passwordCorrect = bcrypt.compareSync(password, user.password);
       if (passwordCorrect) {
         req.session.currentUser = user;
-        res.redirect(`/main/${user._id}`);
+        res.redirect(`/main/`);
       } else {
         res.redirect("/");
       }
@@ -43,7 +43,7 @@ authRouter.post("/login", (req, res, next) => {
 
 //SIGN UP ROUTE
 authRouter.get("/signup", (req, res, next) => {
-  res.render("user-views/create-user");
+  res.render("user-views/create-user", { title: "Team App", layout: false });
 });
 
 authRouter.post("/signup", (req, res, next) => {
@@ -90,26 +90,25 @@ authRouter.post("/signup", (req, res, next) => {
     })
       .then((createdUser) => {
         req.session.currentUser = createdUser;
-        res.redirect("/users/main")
+        res.redirect("/main");
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         res.render("index", {
           errorMessage: "Something went wrong. Please try again",
-        })}
-      );
+        });
+      });
   });
 });
 
-authRouter.get('/logout', (req, res, next) => {
-    req.session.destroy(function (err) {
-        if (err) {
-            next();
-        }
-        else {
-            res.redirect('/');
-        }
-    })
-})
+authRouter.get("/logout", (req, res, next) => {
+  req.session.destroy(function (err) {
+    if (err) {
+      next();
+    } else {
+      res.redirect("/");
+    }
+  });
+});
 
 module.exports = authRouter;

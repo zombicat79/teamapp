@@ -5,16 +5,16 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-{{!  <nav>
+  <nav>
       <ul>
-        <li>Projects</li>
-        <li>Browse</li>
+        <li><a href="/users/project/{{req.session.currentUser._id}}">Projects</a></li>
+        <li><a href="/main">Browse</a></li>
         <li>Profile</li>
       </ul>
     </nav>
+    <h1>{{req.session}}</h1>
     
-}}
+
     {{{body}}}
-  <script src="./../public/index.js"></script>
   </body>
 </html>

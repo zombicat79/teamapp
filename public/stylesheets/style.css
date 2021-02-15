@@ -1,5 +1,4 @@
 * {
-  background-color: #ffffff;
 }
 
 body {
@@ -66,7 +65,7 @@ ul {
 
 nav {
   margin-left: -60px;
-  margin-top: -110px;
+  margin-top: -50px;
   height: 200px;
   width: 102vw;
   background: rgb(34, 102, 157);

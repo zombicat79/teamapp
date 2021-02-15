@@ -1,26 +1,26 @@
 <h1>Edit your project</h1>
-<form action='/project/edit/{{this.project.id}}' method='POST'>
+<form action='/project/edit/{{projectCreatorToCheck._id}}' method='POST'>
 
   <label for=''>Title</label>
-  <input type='text' name='title' value="{{this.project.title}}">
+  <input type='text' name='title' value="{{projectCreatorToCheck.title}}">
 
   <label for=''>Description</label>
-  <input type='text' name='description' value="{{this.project.description}}">  
+  <input type='text' name='description' value="{{projectCreatorToCheck.description}}">  
 
   <label for=''>Category</label>
-  <input type='text' name='category' value="{{this.project.category}}">
+  <input type='text' name='category' value="{{projectCreatorToCheck.category}}">
 
   <label for=''>Wanted Skills</label>
-  <input type='text' name='wantedSkills' value="{{this.project.wantedSkills}}">
+  <input type='text' name='wantedSkills' value="{{projectCreatorToCheck.wantedSkills}}">
 
   <label for=''>Start Date</label>
-  <input type='text' name='startDate' value="{{this.project.startDate}}">
+  <input type='text' name='startDate' value="{{projectCreatorToCheck.startDate}}">
 
   <label for=''>Release Date</label>
-  <input type='text' name='releaseDate' value="{{this.project.releaseDate}}">
+  <input type='text' name='releaseDate' value="{{projectCreatorToCheck.releaseDate}}">
 
   <label for=''>Screenshots</label>
-  <input type='text' name='screenshots' value="{{this.project.screenshots}}">
+  <input type='text' name='screenshots' value="{{projectCreatorToCheck.screenshots}}">
 
   <button type='submit'>Edit</button>
 </form>

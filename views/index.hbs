@@ -1,4 +1,4 @@
-<h1>MAIN PAGE</h1>
+<h1>Team App</h1>
 <form action='/auth/login' method='POST'>
 
   <label for=''>Username</label>
@@ -9,6 +9,9 @@
 
   <button type='submit'>Log in</button>
 </form>
+
+<a href="/auth/signup">Don't have an account yet? Create one here!</a>
+
 {{#if errorMessage}}
   <div>
     {{errorMessage}}
