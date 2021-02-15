@@ -54,14 +54,7 @@ userRouter.get('/edit/:id', isLoggedIn, function (req, res, next){
   
   User.findById(id)
   .then( (selectedUser) => {
-    console.log(req.session.currentUser._id)
-    console.log(selectedUser._id);
-    if (req.session.currentUser._id != selectedUser._id) {
-      res.render("user-views/user-main", {errorMessage: "You cannot edit this page"});
-    }
-    else {
-      res.render('user-views/edit-user', {selectedUser});;
-    }
+    allowedIn(req, res, next, selectedUser);
   })
   .catch( (err) => next(err));
 })

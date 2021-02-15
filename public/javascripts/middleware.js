@@ -19,14 +19,14 @@ function IsLoggedin(req, res, next) {
     }
 }
 
-/*function allowedIn(req, res, next) {
-    if (req.session.currentUser._id === selectedUser._id) {
-        next();
+function allowedIn(req, res, next, userToCheck) {
+    if (req.session.currentUser._id != userToCheck._id) {
+        res.render("user-views/user-main", {errorMessage: "You cannot access this page"});
     }
     else {
-        res.render("user-views/user-main", {errorMessage: "You cannot edit this page"});
+        res.render('user-views/edit-user', {userToCheck});
     }
-}*/
+}
 
 module.exports = IsLoggedin;
-// module.exports = allowedIn;
+module.exports = allowedIn;
