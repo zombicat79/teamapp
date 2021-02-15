@@ -16,7 +16,7 @@ userRouter.get('/main', function(req, res, next) {
 userRouter.get('/main/:search', function (req, res, next) {
   const {search} = req.query;
 
-  User.find({$or: [{location: search}, {username: search}]})
+  User.find({$or: [{location: search}, {username: search}, {skills: search}, {projects: search}]})
   .then( (matchingUsers) => {
     if (matchingUsers.length === 0) {
       res.render('user-views/user-main', {errorMessage: "Nothing was found. Please try again"});
