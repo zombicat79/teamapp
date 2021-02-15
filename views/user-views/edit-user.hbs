@@ -1,0 +1,23 @@
+<h1>EDIT USER</h1>
+<form action='/users/edit/{{selectedUser._id}}' method='POST'>
+
+  <label for=''>Username</label>
+  <input type='text' value="{{selectedUser.username}}" name='username'>
+
+  <label for=''>Email</label>
+  <input type='email' value="{{selectedUser.email}}" name='email'>
+
+  <label for=''>Phone</label>
+  <input type='text' value="{{selectedUser.phone}}" name='phone'>
+
+  <label for=''>Image</label>
+  <input type='file' name='image'>
+
+  <label for=''>Location</label>
+  <input type='text' value="{{selectedUser.location}}" name='location'>
+
+  <label for=''>Skills</label>
+  <input type='checkbox' name='skills'>
+
+  <button type='submit'>Change</button>
+</form>

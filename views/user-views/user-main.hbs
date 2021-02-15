@@ -1,0 +1,32 @@
+<form action='/users/main/:search' method='GET'>
+  <label for=''>Look for amazing collaborators</label>
+  <input type='text' name='search'>
+
+  <button type='submit'>Search</button>
+  <button type="button"><a href="/users/main">Go back</a></button>
+</form>
+<div>
+{{#each allUsers}}
+    <img src="{{this.profileImage}}" width="80" height="80">
+    <ul>
+        <li>{{this.username}}</li>
+        <li>{{this.location}}</li>
+        <li>SKILLS: {{this.skills}}</li>
+        <li>PROJECTS: {{this.projects}}</li>
+    </ul>
+    <button><a href="/users/detail/{{this._id}}">See full details</a></button>
+{{/each}}
+</div>
+<div>
+{{#each matchingUsers}}
+    <img src="{{this.profileImage}}" width="80" height="80">
+    <ul>
+        <li>{{this.username}}</li>
+        <li>{{this.location}}</li>
+        <li>SKILLS: {{ this.skills}}</li>
+        <li>PROJECTS: {{this.projects}}</li>
+    </ul>
+    <button><a href="/users/detail/{{this._id}}">See full details</a></button>
+{{/each}}
+</div>
+<p>{{errorMessage}}</p>
