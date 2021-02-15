@@ -316,7 +316,6 @@ const projectsB = [
         releaseDate: new Date(2021, 06, 05),
         screenshots: ["https://cdn.akamai.steamstatic.com/steam/apps/1399670/ss_627f84f71800184d5bcc1c88086aeab05d142a23.600x338.jpg?t=1612917778"]
    },
-   
 ];
 
 

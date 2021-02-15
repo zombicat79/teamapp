@@ -1,0 +1,48 @@
+@media screen and (max-width: 650px) { 
+
+    body {
+        background-image: url("./../images/landing_background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #title {
+        position: fixed;
+        left: 10vw;
+        top: 10vw;
+    }
+
+    form {
+        position: fixed;
+        top: 30vw;
+        left: 35vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    form label {
+        color: white;
+    }
+
+    #ch {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        left: 30vw;
+        top: 70vw;
+    }
+
+    #ch img {
+        width: 50%;
+    }
+
+    #ch a {
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        margin-right: 190px;
+    }
+
+}

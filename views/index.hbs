@@ -1,19 +1,26 @@
-<h1>Team App</h1>
-<form action='/auth/login' method='POST'>
+<link rel="stylesheet" href='/stylesheets/landing_style.css'>
 
-  <label for=''>Username</label>
-  <input type='text' name='username'>
 
-  <label for=''>Password</label>
-  <input type='text' name='password'>
+<body>
+  <img id="title" src="/images/arcadefont.png">
+  <form action='/auth/login' method='POST'>
 
-  <button type='submit'>Log in</button>
-</form>
+    <label for=''>Username</label>
+    <input type='text' name='username'>
 
-<a href="/auth/signup">Don't have an account yet? Create one here!</a>
+    <label for=''>Password</label>
+    <input type='text' name='password'>
 
-{{#if errorMessage}}
-  <div>
-    {{errorMessage}}
+    <button type='submit'>Log in</button>
+  </form>
+
+  <div id="ch">
+    <img src="/images/gamer_icon.png">
+    <a href="/auth/signup">Don't have an account yet? Create one here!</a>
   </div>
-{{/if}}
+  {{#if errorMessage}}
+    <div>
+      {{errorMessage}}
+    </div>
+  {{/if}}
+</body>
