@@ -40,7 +40,21 @@
         text-align: center;
     }
 
-    #ch {
+    form input {
+        border-radius: 20px;
+        background-color: rgb(169, 169, 169, 0.5);
+        border: 1px solid purple;
+    }
+
+    button {
+        color: white;
+        background-color: red;
+        font-family: 'Jura', sans-serif;
+        border: 5px solid purple;
+        margin-top: 5px;
+    }
+
+    #icon-block {
         position: fixed;
         display: flex;
         flex-direction: column;
@@ -49,17 +63,17 @@
         top: 100vw;
     }
 
-    #ch img {
+    #icon-block img {
         width: 80%;
     }
 
-    #ch a {
+    #icon-block a {
         color: white;
         text-decoration: none;
         text-align: center;
         margin-right: 60px;
         font-family: 'Jura', sans-serif;
-        background-color: grey;
+        background-color: rgb(169, 169, 169, 0.3);
     }
 
 }

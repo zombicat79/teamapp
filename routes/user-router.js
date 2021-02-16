@@ -2,13 +2,16 @@ const express = require("express");
 const userRouter = express.Router();
 const mongoose = require("mongoose");
 const User = require("./../models/user");
-const {isLoggedIn, isCurrentUser, } = require("../public/javascripts/middleware");
+const {isLoggedIn, isCurrentUser, } = require("./../middleware");
+
+const bcrypt = require("bcrypt");
 
 
 userRouter.get("/main", isLoggedIn, function (req, res, next) {
   User.find()
+    .populate('projects')
     .then((allUsers) => {
-      res.render("user-views/user-main", { allUsers });
+      res.render("user-views/user-main", { allUsers: allUsers});
     })
     .catch((err) => next(err));
 });
@@ -52,7 +55,7 @@ userRouter.get("/profile/:id", isLoggedIn, isCurrentUser, function (req, res, ne
 
   User.findById(id)
     .then((selectedUser) => {
-      res.render("user-views/profile-view", { userToCheck: selectedUser });
+      res.render("user-views/profile-view", { userToCheck: selectedUser, isUsersProfile: true });
     })
     .catch((err) => next(err));
 });
@@ -69,13 +72,34 @@ userRouter.get("/edit/:id", isLoggedIn, isCurrentUser, function (req, res, next)
 
 userRouter.post("/edit/:id", isLoggedIn, function (req, res, next) {
   const { id } = req.params;
-  const { username, email, phone, location } = req.body;
+  const { username, email, phone, profileImage, password, newPassword, confirmPassword, location, skills } = req.body;
 
-  User.findByIdAndUpdate(id, { username, email, phone, location })
+  User.findById(id)
+  .then( (userToCheck) => {
+    let oldPassword = userToCheck.oldPassword;
+    console.log(oldPassword)
+    if (password === "" || newPassword.length === "" || confirmPassword === "") {
+      res.render("user-views/edit-user", {errorMessage: "Something went wrong. Please try again.", userToCheck})
+      return;
+    }
+    else if (password !== oldPassword) {
+      res.render("user-views/edit-user", {errorMessage: "Something went wrong. Please try again.", userToCheck})
+      return;
+    }
+    else if (newPassword !== confirmPassword) {
+      res.render("user-views/edit-user", {errorMessage: "Something went wrong. Please try again.", userToCheck})
+      return;
+    } /* else {
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(newPassword, salt);
+  } */
+
+  User.findByIdAndUpdate(id, { username, email, phone, profileImage, password, newPassword, confirmPassword, oldPassword: newPassword, location, skills } )
     .then((selectedUser) => {
       res.redirect(`/users/profile/${selectedUser._id}`);
     })
     .catch((err) => next(err));
+  });
 });
 
 userRouter.get("/projects/:id", isLoggedIn, function (req, res, next) {

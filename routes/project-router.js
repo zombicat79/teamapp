@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const app = require("../app");
 const projectRouter = express.Router();
 const Project = require("./../models/project");
-const {projectAllowedIn, isLoggedIn} = require("../public/javascripts/middleware");
+const {projectAllowedIn, isLoggedIn} = require("./../middleware");
 
 
 // create project views

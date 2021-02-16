@@ -1,4 +1,4 @@
-const Project = require('./../../models/project');
+const Project = require('./models/project');
 
 // console.log("JS FILE WORKING MOFO");
 
@@ -25,9 +25,6 @@ function isLoggedIn(req, res, next) {
 function isCurrentUser(req, res, next) {
     const { id } = req.params;
   
-    console.log('req.path :>> ', req.path);
-  
-  
     if (req.session.currentUser._id !== id) {
       res.render("user-views/user-main", {
         errorMessage: "You cannot access this page",
@@ -44,12 +41,6 @@ function projectAllowedIn(req, res, next) {
 
   Project.findById(projectId)
     .then((project) => {
-        console.log('userId :>> ', userId);
-  console.log('project.creator :>> ', project.creator);
-  console.log('userId :>> ', typeof userId);
-  console.log('project.creator :>> ', typeof project.creator);
-
-  console.log('typeof userId === typeof project.creator :>> \n', typeof userId === typeof project.creator);
       if (userId !== String(project.creator)) {
         res.render("user-views/user-main", { 
           errorMessage: "You cannot access this page",
@@ -59,7 +50,7 @@ function projectAllowedIn(req, res, next) {
           next();
       }
     })
-    .catch((err) => console.log("there's a problem", err));
+    .catch((err) => next(err));
 }
 
 module.exports = {isLoggedIn, isCurrentUser, projectAllowedIn }; 
