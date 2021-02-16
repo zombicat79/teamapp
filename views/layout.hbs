@@ -8,18 +8,40 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-  <nav>
-      <ul>
-        <li><a href="/users/project/{{req.session.currentUser._id}}">Projects</a></li>
-        <li><a href="/main">Browse</a></li>
-        <li>Profile</li>
-      </ul>
-    </nav>
-    <h1>{{req.session}}</h1>
+    <header>
+      <nav>
+        <img id="header1" src="/images/gamer_icon.png">
+        <img id="header2" src="/images/arcadefont.png">
+      </nav>
+    </header>
+    <main>
     
 
-    {{{body}}}
-  
-  
+      <h1>{{req.session}}</h1>
+      
+
+      {{{body}}}
+    
+    
+    </main>
+    <footer>
+      <ul>
+          <li><a href="/users/project/{{req.session.currentUser._id}}">Projects</a></li>
+          <li><a href="/main">Browse</a></li>
+          <li>Profile</li>
+      </ul>
+    </footer>
   </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
 </html>

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap');
 
-@media screen and (max-width: 400px) { 
+@media screen and (max-width: 450px) { 
 
     body {
         background-image: url("./../images/landing_background.jpg");
@@ -16,22 +16,30 @@
     }
 
     h1 {
-        position: fixed;
-        top: 20vw;
-        text-align: center;
-        margin-right: 10px;
         color: white;
         font-size: 15px;
         font-family: 'Jura', sans-serif;
     }
 
+    #motto {
+        position: fixed;
+        top: 20vw;
+        text-align: center;
+        margin-right: 10px; 
+    }
+
     form {
         position: fixed;
-        top: 50vw;
-        left: 35vw;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        right: 17vw;
+        left: 17vw;
+    }
+
+    #login-form {
+        position: fixed;
+        top: 50vw;
     }
 
     form label {
@@ -44,6 +52,7 @@
         border-radius: 20px;
         background-color: rgb(169, 169, 169, 0.5);
         border: 1px solid purple;
+        height: 50px;
     }
 
     button {
@@ -52,6 +61,7 @@
         font-family: 'Jura', sans-serif;
         border: 5px solid purple;
         margin-top: 5px;
+        height: 50px;
     }
 
     #icon-block {
@@ -60,11 +70,19 @@
         flex-direction: column;
         justify-content: center;
         left: 20vw;
-        top: 100vw;
+        top: 110vw;
+    }
+
+    @keyframes opening {
+        0% {height: 0px;}
+        50% {height: 180px;}
+        100% {height: 150px;}
     }
 
     #icon-block img {
         width: 80%;
+        animation-name: opening;
+        animation-duration: 2s;
     }
 
     #icon-block a {
@@ -76,4 +94,10 @@
         background-color: rgb(169, 169, 169, 0.3);
     }
 
+    /* --- --- */
+
+    #checkbox-styling {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }

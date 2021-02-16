@@ -77,24 +77,25 @@ userRouter.post("/edit/:id", isLoggedIn, function (req, res, next) {
   User.findById(id)
   .then( (userToCheck) => {
     let oldPassword = userToCheck.oldPassword;
-    console.log(oldPassword)
     if (password === "" || newPassword.length === "" || confirmPassword === "") {
       res.render("user-views/edit-user", {errorMessage: "Something went wrong. Please try again.", userToCheck})
       return;
     }
-    else if (password !== oldPassword) {
+    
+    if (password !== oldPassword) {
       res.render("user-views/edit-user", {errorMessage: "Something went wrong. Please try again.", userToCheck})
       return;
     }
-    else if (newPassword !== confirmPassword) {
+    
+    if (newPassword !== confirmPassword) {
       res.render("user-views/edit-user", {errorMessage: "Something went wrong. Please try again.", userToCheck})
       return;
-    } /* else {
+    }
+    
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(newPassword, salt);
-  } */
-
-  User.findByIdAndUpdate(id, { username, email, phone, profileImage, password, newPassword, confirmPassword, oldPassword: newPassword, location, skills } )
+    
+  User.findByIdAndUpdate(id, { username, email, phone, profileImage, password: hashedPassword, newPassword: "x", confirmPassword, oldPassword: newPassword, location, skills } )
     .then((selectedUser) => {
       res.redirect(`/users/profile/${selectedUser._id}`);
     })
