@@ -3,53 +3,77 @@ const mongoose = require("mongoose");
 const app = require("../app");
 const projectRouter = express.Router();
 const Project = require("./../models/project");
-const {projectAllowedIn, isLoggedIn} = require("../public/javascripts/middleware");
-
+const {
+  projectAllowedIn,
+  isLoggedIn,
+  allowedToDelete,
+} = require("../public/javascripts/middleware");
+const fileUploader = require("./../configs/cloudinary");
 
 // create project views
 projectRouter.get("/create", isLoggedIn, (req, res, next) => {
   res.render("project-views/create-project");
   console.log("req.session.currentUser._id :>> ", req.session.currentUser._id);
 });
-projectRouter.post("/create/", (req, res, next) => {
-  // in order to retrieve the userId from url, we need to send it in the first place.
-  const {
-    // the form to create a project should redirect to /create/:userID
-    title, // in order to do so, I must send the users' data into this form & update its action.
-    description,
-    category,
-    wantedSkills,
-    startDate,
-    releaseDate,
-    screenshots,
-  } = req.body;
+projectRouter.post(
+  "/create/",
+  fileUploader.single("screenshots"),
+  (req, res, next) => {
+    const {
+      title,
+      description,
+      category,
+      wantedSkills,
+      startDate,
+      releaseDate,
+      location,
+    } = req.body;
 
-  const userIdModel = req.session.currentUser._id;
+    const userIdModel = req.session.currentUser._id;
 
-  Project.create({
-    title,
-    creator: userIdModel,
-    description,
-    category,
-    wantedSkills,
-    startDate,
-    releaseDate,
-    screenshots,
-  })
-    .then((data) => res.redirect("/project/main"))
-    .catch((err) => console.log(err));
-});
+    let projectImageUrl;
+    if (req.file) {
+      projectImageUrl = req.file.path;
+    } else {
+      projectImageUrl = "";
+    }
+
+    Project.create({
+      title,
+      creator: userIdModel,
+      description,
+      category,
+      wantedSkills,
+      startDate,
+      releaseDate,
+      screenshots: projectImageUrl,
+      location,
+    })
+      .then((data) => {
+        res.redirect("/project/main");
+        console.log(startDate, startDateUpdated);
+      })
+      .catch((err) => console.log(err));
+  }
+);
 
 // Edit project views
-projectRouter.get("/edit/:id", isLoggedIn, projectAllowedIn, (req, res, next) => {
-  const { id } = req.params;
+projectRouter.get(
+  "/edit/:id",
+  isLoggedIn,
+  projectAllowedIn,
+  (req, res, next) => {
+    const { id } = req.params;
 
-  Project.findById(id)
-    .then((project) => {
-      res.render("project-views/edit-project", { projectCreatorToCheck: project });
-    })
-    .catch((err) => console.log("there's a problem", err));
-});
+    Project.findById(id)
+      .then((project) => {
+        res.render("project-views/edit-project", {
+          projectCreatorToCheck: project,
+        });
+      })
+      .catch((err) => console.log("there's a problem", err));
+  }
+);
 
 projectRouter.post("/edit/:id", (req, res, next) => {
   const { id } = req.params;
@@ -64,7 +88,7 @@ projectRouter.post("/edit/:id", (req, res, next) => {
   } = req.body;
 
   console.log(id);
-   
+
   Project.findByIdAndUpdate(id, {
     title,
     description,
@@ -123,7 +147,49 @@ projectRouter.get("/details/:id", isLoggedIn, (req, res, next) => {
     .catch((err) => console.log(err));
 });
 
-// Project / add member
+// Logged in user's projects view
+projectRouter.get("/users/details", isLoggedIn, (req, res, next) => {
+  const userId = req.session.currentUser._id;
+  Project.find({ $or: [{ team: userId }, { creator: userId }] })
+    .then((usersProject) => {
+    //   const showDelete = usersProject.creator === userId;
+    //   usersProject.push(showDelete);
+
+    //   console.log("usersproject", usersProject);
+
+      const data = { usersProject: usersProject };
+      //   console.log(showDelete);
+
+      res.render("project-views/user-project-view", data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("project-views/user-project-view", {
+        errorMessage: "There is a problem",
+      });
+    });
+});
+
+// Delete a project
+projectRouter.get(
+  "/delete/:id",
+  isLoggedIn,
+  allowedToDelete,
+  (req, res, next) => {
+    const { id } = req.params;
+
+    Project.findByIdAndDelete(id)
+      .then((data) => {
+        res.redirect("/project/users/details");
+      })
+      .catch((err) => {
+        console.log(err);
+        res.redirect("/project/users/details");
+      });
+  }
+);
+
+// Project / add member to a team
 // projectRouter.post("/add-member/:id", isLoggedIn, (req, res, next) => {
 //   const userIdAdd = req.session.currentUser._id;
 //   const { id } = req.params;

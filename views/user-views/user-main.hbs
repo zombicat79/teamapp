@@ -3,7 +3,6 @@
   <input type='text' name='search'>
 
   <button type='submit'>Search</button>
-  <button type="button"><a href="/users/main">Go back</a></button>
 </form>
 <div>
 {{#each allUsers}}
@@ -19,6 +18,7 @@
 </div>
 <div>
 {{#each matchingUsers}}
+  <button type="button"><a href="/users/main">Go back</a></button>
     <img src="{{this.profileImage}}" width="80" height="80">
     <ul>
         <li>{{this.username}}</li>

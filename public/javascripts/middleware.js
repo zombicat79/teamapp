@@ -1,4 +1,4 @@
-const Project = require('./../../models/project');
+const Project = require("./../../models/project");
 
 // console.log("JS FILE WORKING MOFO");
 
@@ -23,43 +23,55 @@ function isLoggedIn(req, res, next) {
 }
 
 function isCurrentUser(req, res, next) {
-    const { id } = req.params;
-  
-    console.log('req.path :>> ', req.path);
-  
-  
-    if (req.session.currentUser._id !== id) {
-      res.render("user-views/user-main", {
-        errorMessage: "You cannot access this page",
-      });
-    } else {
-       next()
-    }
+  const { id } = req.params;
+
+  console.log("req.path :>> ", req.path);
+
+  if (req.session.currentUser._id !== id) {
+    res.render("user-views/user-main", {
+      errorMessage: "You cannot access this page - MW",
+    });
+  } else {
+    next();
+  }
 }
 
 function projectAllowedIn(req, res, next) {
   const projectId = req.params.id;
   const userId = req.session.currentUser._id;
 
-
   Project.findById(projectId)
     .then((project) => {
-        console.log('userId :>> ', userId);
-  console.log('project.creator :>> ', project.creator);
-  console.log('userId :>> ', typeof userId);
-  console.log('project.creator :>> ', typeof project.creator);
-
-  console.log('typeof userId === typeof project.creator :>> \n', typeof userId === typeof project.creator);
       if (userId !== String(project.creator)) {
-        res.render("user-views/user-main", { 
+        res.render("user-views/user-main", {
           errorMessage: "You cannot access this page",
         });
-
       } else {
-          next();
+        next();
       }
     })
     .catch((err) => console.log("there's a problem", err));
 }
 
-module.exports = {isLoggedIn, isCurrentUser, projectAllowedIn }; 
+function allowedToDelete(req, res, next) {
+  const projectToDelete = req.params.id;
+
+  Project.findById(projectToDelete)
+    .then((project) => {
+      if (String(project.creator) === req.session.currentUser._id) {
+        next();
+      } else {
+        res.render("project-views/user-project-view", {
+          errorMessage: "You cannot delete what is not yours",
+        });
+      }
+    })
+    .catch((err) => console.log(err));
+}
+
+module.exports = {
+  isLoggedIn,
+  isCurrentUser,
+  projectAllowedIn,
+  allowedToDelete,
+};

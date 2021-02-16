@@ -70,7 +70,7 @@ authRouter.post("/signup", fileUploader.single('image'), (req, res, next) => {
   });
   User.findOne({ username }).then((user) => {
     if (user !== null) {
-      res.render("/", {
+      res.render("index", {
         errorMessage: "Something went wrong. Please try again",
       });
       return;

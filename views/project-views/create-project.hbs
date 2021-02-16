@@ -1,5 +1,5 @@
 <h1>My Project</h1>
-<form action='/project/create/' method='POST' class="form">
+<form action='/project/create/' method='POST' enctype="multipart/form-data" class="form">
 
   <div class="form-entry">
     <label for='' class="form-title">Title</label>
@@ -37,8 +37,7 @@
   </br>
 
   <div class="form-entry">
-    <label for='' class="form-title">Wanted Skills</label>
-    </br>
+    <label for='' class="form-title">Wanted Skills</label></br>
     <div class="checkbox-styling">
       <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="2D Graphics"><span>2D Graphics</span></div>
       <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="3D Graphics"><span>3D Graphics</span></div>
@@ -67,17 +66,20 @@
   </br>
 
   <div class="form-entry">
-    <label for='' class="form-title">Release Date</label>
-    </br>
+    <label for='' class="form-title">Release Date</label></br>
     <input type='date' name='releaseDate' class="form-field">
   </div>
 
   </br>
 
   <div class="form-entry">
-    <label for='' class="form-title">Screenshots</label>
-    </br>
-    <input type='text' name='screenshots' class="form-field">
+    <label for='' class="form-title">Location</label></br>
+    <input type='text' name='location' class="form-field">
+  </div>
+
+  <div class="form-entry">
+    <label for='' class="form-title">Screenshots</label></br>
+    <input type='file' name='screenshots' class="form-field">
   </div>
 
   </br>

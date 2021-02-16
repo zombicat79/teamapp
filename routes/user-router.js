@@ -2,8 +2,10 @@ const express = require("express");
 const userRouter = express.Router();
 const mongoose = require("mongoose");
 const User = require("./../models/user");
-const {isLoggedIn, isCurrentUser, } = require("../public/javascripts/middleware");
-
+const {
+  isLoggedIn,
+  isCurrentUser,
+} = require("../public/javascripts/middleware");
 
 userRouter.get("/main", isLoggedIn, function (req, res, next) {
   User.find()
@@ -47,8 +49,8 @@ userRouter.get("/detail/:id", isLoggedIn, function (req, res, next) {
     .catch((err) => next(err));
 });
 
-userRouter.get("/profile/:id", isLoggedIn, isCurrentUser, function (req, res, next) {
-  const { id } = req.params;
+userRouter.get("/profile", isLoggedIn, function (req, res, next) {
+  const { id } = req.session.currentUser._id;
 
   User.findById(id)
     .then((selectedUser) => {
@@ -57,15 +59,20 @@ userRouter.get("/profile/:id", isLoggedIn, isCurrentUser, function (req, res, ne
     .catch((err) => next(err));
 });
 
-userRouter.get("/edit/:id", isLoggedIn, isCurrentUser, function (req, res, next) {
-  const { id } = req.params;
+userRouter.get(
+  "/edit/:id",
+  isLoggedIn,
+  isCurrentUser,
+  function (req, res, next) {
+    const { id } = req.params;
 
-  User.findById(id)
-    .then((selectedUser) => {
-      res.render("user-views/edit-user", { userToCheck: selectedUser });
-    })
-    .catch((err) => next(err));
-});
+    User.findById(id)
+      .then((selectedUser) => {
+        res.render("user-views/edit-user", { userToCheck: selectedUser });
+      })
+      .catch((err) => next(err));
+  }
+);
 
 userRouter.post("/edit/:id", isLoggedIn, function (req, res, next) {
   const { id } = req.params;
@@ -95,18 +102,18 @@ userRouter.get("/projects/:id/:search", isLoggedIn, function (req, res, next) {
 
   User.findById(id)
     .then((selectedUser) => {
-      User.find({ $and: [{ _id: id }, { projects: search }] }).then(
-        (matchingProjects) => {
-          if (matchingProjects.length === 0) {
-            res.render("user-views/temp-user-project-view", {
-              selectedUser,
-              errorMessage: "Nothing was found. Please try again",
-            });
-          } else {
-            res.render("user-views/temp-user-project-view", {
-              selectedUser,
-              matchingProjects,
-            });
+      User.find({ $and: [{ _id: id }, { projects: search }] })
+    .then((matchingProjects) => {
+      if (matchingProjects.length === 0) {
+        res.render("user-views/temp-user-project-view", {
+          selectedUser,
+          errorMessage: "Nothing was found. Please try again",
+          });
+      } else {
+          res.render("user-views/temp-user-project-view", {
+            selectedUser,
+            matchingProjects,
+          });
           }
         }
       );

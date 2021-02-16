@@ -1,8 +1,8 @@
 <div>
-    <h2>Name: {{this.project.title}}</h2>
-    <h2>Description: {{this.project.description}}</h2>
-    <h3>Start Date: {{this.project.startDate}}</h3>
-    <h3>Release Date: {{this.project.releaseDate}}</h3>
+    <h2>{{this.project.title}}</h2>
+    <img src="{{this.project.screenshots}}" >
+    <p>{{this.project.description}}</p>
+    <p>To start on: {{this.project.startDate}} and released on: {{this.project.releaseDate}}</p>
     <p>To work on {{this.project.title}}, the team is looking for talented person working in:</p>
     <ul>
         <li>{{this.project.wantedSkills}}</li>
@@ -14,8 +14,10 @@
     <p>The team is based in: {{this.project.location}}</p>
     <h4>The creator of this project is: {{this.project.creator.username}}</h4>
     <h5>List of collaborators involved in this project:</h5>
-        <ul class="team-list">
-            <li>{{this.project.team}}</li>
-        </ul>
+        <div class="team-members">
+            {{#each this.project.team}}
+            <a href="/users/detail/{{this._id}}"><p><img src="{{this.profileImage}}" alt="" width="150" height="150">{{this.username}}</p></a>
+            {{/each}}
+        </div>
 </div>
 <button><a href="/project/main">go back to all the projects</a></button>
