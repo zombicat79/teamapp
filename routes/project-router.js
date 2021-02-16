@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const app = require("../app");
 const projectRouter = express.Router();
 const Project = require("./../models/project");
-const isLoggedIn = require("../public/javascripts/middleware");
-const projectAllowedIn = require(".././public/javascripts/middlewareProject");
+const {projectAllowedIn, isLoggedIn} = require("../public/javascripts/middleware");
+
 
 // create project views
 projectRouter.get("/create", isLoggedIn, (req, res, next) => {
@@ -41,15 +41,16 @@ projectRouter.post("/create/", (req, res, next) => {
 });
 
 // Edit project views
-projectRouter.get("/edit/:id", isLoggedIn, (req, res, next) => {
+projectRouter.get("/edit/:id", isLoggedIn, projectAllowedIn, (req, res, next) => {
   const { id } = req.params;
 
   Project.findById(id)
     .then((project) => {
-      projectAllowedIn(req, res, next, project, "project/edit");
+      res.render("project-views/edit-project", { projectCreatorToCheck: project });
     })
     .catch((err) => console.log("there's a problem", err));
 });
+
 projectRouter.post("/edit/:id", (req, res, next) => {
   const { id } = req.params;
   const {

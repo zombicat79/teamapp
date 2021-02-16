@@ -2,8 +2,8 @@ const express = require("express");
 const userRouter = express.Router();
 const mongoose = require("mongoose");
 const User = require("./../models/user");
-const isLoggedIn = require("../public/javascripts/middleware");
-const allowedIn = require("../public/javascripts/middlewareUser");
+const {isLoggedIn, isCurrentUser, } = require("../public/javascripts/middleware");
+
 
 userRouter.get("/main", isLoggedIn, function (req, res, next) {
   User.find()
@@ -47,24 +47,22 @@ userRouter.get("/detail/:id", isLoggedIn, function (req, res, next) {
     .catch((err) => next(err));
 });
 
-userRouter.get("/profile/:id", isLoggedIn, function (req, res, next) {
+userRouter.get("/profile/:id", isLoggedIn, isCurrentUser, function (req, res, next) {
   const { id } = req.params;
 
   User.findById(id)
     .then((selectedUser) => {
-      console.log("we are here", selectedUser._id);
-      allowedIn(req, res, next, selectedUser, "users/profile");
+      res.render("user-views/profile-view", { userToCheck: selectedUser });
     })
     .catch((err) => next(err));
 });
 
-userRouter.get("/edit/:id", isLoggedIn, function (req, res, next) {
+userRouter.get("/edit/:id", isLoggedIn, isCurrentUser, function (req, res, next) {
   const { id } = req.params;
 
   User.findById(id)
     .then((selectedUser) => {
-      console.log(selectedUser);
-      allowedIn(req, res, next, selectedUser, "users/edit");
+      res.render("user-views/edit-user", { userToCheck: selectedUser });
     })
     .catch((err) => next(err));
 });

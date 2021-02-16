@@ -1,4 +1,6 @@
-@media screen and (max-width: 650px) { 
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap');
+
+@media screen and (max-width: 400px) { 
 
     body {
         background-image: url("./../images/landing_background.jpg");
@@ -8,13 +10,24 @@
 
     #title {
         position: fixed;
+        width: 80%;
         left: 10vw;
         top: 10vw;
     }
 
+    h1 {
+        position: fixed;
+        top: 20vw;
+        text-align: center;
+        margin-right: 10px;
+        color: white;
+        font-size: 15px;
+        font-family: 'Jura', sans-serif;
+    }
+
     form {
         position: fixed;
-        top: 30vw;
+        top: 50vw;
         left: 35vw;
         display: flex;
         flex-direction: column;
@@ -23,6 +36,8 @@
 
     form label {
         color: white;
+        font-family: 'Jura', sans-serif;
+        text-align: center;
     }
 
     #ch {
@@ -30,19 +45,21 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        left: 30vw;
-        top: 70vw;
+        left: 20vw;
+        top: 100vw;
     }
 
     #ch img {
-        width: 50%;
+        width: 80%;
     }
 
     #ch a {
         color: white;
         text-decoration: none;
         text-align: center;
-        margin-right: 190px;
+        margin-right: 60px;
+        font-family: 'Jura', sans-serif;
+        background-color: grey;
     }
 
 }

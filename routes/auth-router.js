@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const app = require("../app");
 const authRouter = express.Router();
 const User = require("./../models/user");
+const fileUploader = require("./../configs/cloudinary")
 
 const bcrypt = require("bcrypt");
 //const saltRounds = 10;
@@ -46,7 +47,7 @@ authRouter.get("/signup", (req, res, next) => {
   res.render("user-views/create-user", { title: "Team App", layout: false });
 });
 
-authRouter.post("/signup", (req, res, next) => {
+authRouter.post("/signup", fileUploader.single('image'), (req, res, next) => {
   const {
     username,
     password,
@@ -78,12 +79,19 @@ authRouter.post("/signup", (req, res, next) => {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
 
+    let imageUrl;
+      if (req.file) {
+        imageUrl = req.file.path;
+      } else {
+        imageUrl = "";
+      }
+
     User.create({
       username,
       password: hashedPassword,
       email,
       phone,
-      profileImage,
+      profileImage: imageUrl,
       location,
       skills,
       projects,
