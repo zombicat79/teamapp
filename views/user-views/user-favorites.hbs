@@ -1,0 +1,15 @@
+<div>
+  <h1>FAVORITE CREATORS</h1>
+  <button type="button"><a href="/users/main">Go back</a></button>
+    {{#each currentUser.favoriteCreators}}
+      <img src="{{this.profileImage}}" width="80" height="80">
+      <ul>
+          <li>{{this.username}}</li>
+          <li>{{this.location}}</li>
+          <li>SKILLS: {{ this.skills}}</li>
+          <li>PROJECTS: {{this.projects}}</li>
+      </ul>
+      <button><a href="/users/detail/{{this._id}}">See full details</a></button>
+      <button><a href="/users/detail/{{this._id}}">Remove</a></button>
+    {{/each}}
+</div>

@@ -1,0 +1,16 @@
+
+<h1>FAVORITE PROJECTS</h1>
+<div class="search-bar-box">
+  <input type='text' name='search' placeholder="Search for a project" class="search-bar">
+  <button type='submit' class="search-bar-btn">Submit</button>
+</div>
+</form>
+<div class="project-card-box">
+    {{#each currentUser.favoriteProjects}}
+        <div class="project-card">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <button class="see-more-btn"><a href="/project/details/{{this.id}}">See More</a></button>
+        </div>
+    {{/each}}
+</div>

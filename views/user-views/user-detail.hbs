@@ -8,4 +8,6 @@
 <p>{{selectedUser.email}}</p>
 <p>{{selectedUser.phone}}</p>
 
-<button id="edit-button"><a href="/users/edit/{{selectedUser._id}}">Edit</a></button>
+<form action='/users/detail/{{selectedUser._id}}' method='POST'>
+  <button id="favorite-button" type='submit'>Add to favorites</button>
+</form>

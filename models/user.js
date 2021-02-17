@@ -14,7 +14,9 @@ const userSchema = new Schema ({
     skills: [{
       type: String, //enum: ['2D graphics', '3D graphics', 'Unity', 'Scriptwriting', 'Pixel art', 'Music composition', 'Sound engineering', 'C++', 'JavaScript', 'HTML & CSS', 'Project management', 'Conceptual design', 'Beta testing']
   }],
-    projects: [{type: Schema.Types.ObjectId, ref: 'Project'}]
+    projects: [{type: Schema.Types.ObjectId, ref: 'Project'}],
+    favoriteCreators: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    favoriteProjects: [{type: Schema.Types.ObjectId, ref: 'Project'}]
 });
 
 const User = mongoose.model('User', userSchema);

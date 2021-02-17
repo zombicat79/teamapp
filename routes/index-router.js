@@ -14,7 +14,13 @@ indexRouter.get("/", function (req, res, next) {
 
 //MAIN ROUTE - links to project main & user main
 indexRouter.get("/main/", (req, res, next) => {
-  res.render("main");
-});
+  const id = req.session.currentUser._id;
+
+  User.findById(id)
+  .then((currentUser) => {
+    res.render("main", {currentUser} )
+  })
+  .catch( (err) => next(err))
+})
 
 module.exports = indexRouter;

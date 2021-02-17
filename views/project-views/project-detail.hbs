@@ -12,6 +12,7 @@
     <p>If you feel like you have what it takes to join this project, click here!</p>
     
     <form action="/project/add-member/{{this.project.id}}" method="post"><button>Join this project!</button></form>
+    <form action="/project/details/{{this.project.id}}" method="post"><button>Add to favorites!</button></form>
 
     <p>The team is based in: {{this.project.location}}</p>
     <h4>The creator of this project is: {{this.project.creator.username}}</h4>

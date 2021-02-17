@@ -3,11 +3,12 @@ const mongoose = require("mongoose");
 const app = require("../app");
 const projectRouter = express.Router();
 const Project = require("./../models/project");
+const User = require("./../models/user");
 const {
   projectAllowedIn,
   isLoggedIn,
   allowedToDelete,
-} = require("../public/javascripts/middleware");
+} = require("./../middleware");
 const fileUploader = require("./../configs/cloudinary");
 
 // create project views
@@ -147,6 +148,20 @@ projectRouter.get("/details/:id", isLoggedIn, (req, res, next) => {
     .catch((err) => console.log(err));
 });
 
+projectRouter.post("/details/:id", isLoggedIn, (req, res, next) => {
+  const { id } = req.params;
+  const currentUser = req.session.currentUser._id;
+  console.log(id)
+  console.log(currentUser)
+
+  User.findByIdAndUpdate(currentUser, {$push: {favoriteProjects: id }})
+  .then((updatedUser) => {
+    res.redirect(`/project/details/${id}`)
+  })
+  .catch( (err) => console.log(err));
+
+});
+
 // Logged in user's projects view
 projectRouter.get("/users/details", isLoggedIn, (req, res, next) => {
   const userId = req.session.currentUser._id;
@@ -183,6 +198,17 @@ projectRouter.get("/users/details", isLoggedIn, (req, res, next) => {
       });
     });
 });
+
+projectRouter.get("/favorites/:id", isLoggedIn, function (req, res, next) {
+  const { id } = req.params;
+
+  User.findById(id)
+  .populate('favoriteProjects')
+  .then((currentUser) => {
+    res.render("project-views/project-favorites", {currentUser} )
+  })
+  .catch( (err) => next(err))
+})
 
 // Delete a project
 projectRouter.get(
