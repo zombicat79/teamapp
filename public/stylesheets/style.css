@@ -1,13 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap");
 
 body {
   padding: 50px;
   font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: rgb(77, 71, 71);
-}
-
-a {
-  color: #00b7ff;
 }
 
 .form {
@@ -62,11 +58,11 @@ ul {
   margin-top: 100px;
 }
 
-nav {
+header {
   margin-left: -60px;
   margin-top: -50px;
-  height: 200px;
-  width: 102vw;
+  height: 75px;
+  width: 100vw;
   background: rgb(34, 102, 157);
   background: linear-gradient(
     166deg,
@@ -74,6 +70,24 @@ nav {
     rgba(6, 54, 95, 1) 71%
   );
   color: white;
+}
+
+.header-img {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.header1 {
+  max-height: 65px;
+  width: auto;
+  margin: 0px 0px 0px 40px;
+}
+
+.header2 {
+  max-height: 55px;
+  width: auto;
+  margin: 10px 130px 10px 0px;
 }
 
 footer {
@@ -87,10 +101,11 @@ footer {
 }
 
 .project-card {
-  border: solid rgb(134, 212, 17) 10px;
+  border: solid #9129d5 10px;
   margin: 25px;
   padding: 25px;
   max-width: 300px;
+  border-radius: 20px;
 }
 
 .project-card-box {
@@ -112,18 +127,6 @@ h2 {
 
 h3 {
   font-size: 3rem;
-}
-
-.see-more-btn,
-button {
-  font-size: 3em;
-  text-align: center;
-  padding: 35px 60px;
-  margin: 25px 0px;
-  border: solid rgb(134, 212, 17) 10px;
-  border-top: 0px;
-  border-left: 0px;
-  background-color: white;
 }
 
 .checkbox-styling {
@@ -149,22 +152,105 @@ button {
   width: 50px;
 }
 
-.search-bar {
-  font-size: 3rem;
+/*/project/users/details*/
+.img-project-view {
+  width: 120px;
+  height: auto;
 }
 
-.search-bar-box {
+.creator-card {
+  width: 350px;
+  border: 5px #9129d5 solid;
+  border-radius: 20px;
+  margin: 25px;
+  padding: 10px;
+}
+
+.creator-box {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.title-projects-view {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.display-flex {
   display: flex;
   justify-content: center;
 }
 
-.search-bar.btn {
-  font-size: 2rem;
+/* Applicants page  */
+
+.applicants-box {
+  border: 5px #9129d5 solid;
 }
 
+/* Main project page  */
+.search-bar-btn {
+  border-radius: 20px;
+  font-size: 1.5rem;
+  padding: 5px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-left: 5px;
+}
+
+.search-bar {
+  font-size: 1.5rem;
+  border-radius: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.search-bar-box {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.see-more-btn {
+  font-size: 1.5em;
+  text-align: center;
+  padding: 35px 60px;
+  margin: 25px 0px;
+  border: solid #9129d5 10px;
+  border-top: 0px;
+  border-left: 0px;
+  border-radius: 20px;
+  background-color: white;
+  text-decoration: none;
+}
+
+.see-more-btn:hover {
+  -webkit-box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
+  -moz-box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
+  box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
+  transition: 0.1s;
+}
+
+/* Project Detail Page */
+.project-detail-page-title {
+  text-align: center;
+}
+
+.project-detail-page-img {
+  max-height: 150px;
+  width: auto;
+}
+
+.project-detail-page-img-div {
+  text-align: center;
+}
+
+.project-detail-page-box {
+  margin-left: 20px;
+  margin-top: 25px;
+}
 
 @media screen and (max-width: 450px) {
-
   body {
     background-color: rgb(135, 206, 250);
   }

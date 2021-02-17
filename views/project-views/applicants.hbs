@@ -1,0 +1,29 @@
+<h1>You have {{this.projects.applicants.length}} new application(s)</h1>
+
+<div class="display-flex">
+
+
+    
+    {{#if this.projects.applicants}}
+            <div class="creator-card">
+                <h3>{{projects.username}} wants to work with you!!</h3>
+                <img src="{{this.projects.applicants.profileImage}}" width="200" height="200">
+                <p>Based in {{this.projects.applicants.location}}</p>
+                <p>Skills:</p>
+                {{#each skills}}
+                <li>{{this}}</li>
+                {{/each}}
+                <h3>Projects</h3>
+                <a href="/users/projects/{{_id}}">See current projects</a>
+                <a href="/users/detail/{{_id}}">See full profile</a>
+                <a href="/users/detail/{{_id}}/accept/{{this.projects._id}}"/>Accept in the Team</a>
+                <a href="/users/detail/{{this.projects.applicants._id}}/decline">Decline application</a>
+                <p>this one{{projects.applicants.username}}</p>
+                <h4>that one{{projectIdArr.projectId}}</h4>
+            </div>
+    {{/if}}
+</div>
+
+        {{!-- <h4>this one{{this.projects._id}}</h4>
+        <h1>Last test</h1>
+        <h4>{{this.projectIdArr.projectId}}</h4> --}}

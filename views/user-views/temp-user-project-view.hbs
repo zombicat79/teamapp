@@ -1,18 +1,11 @@
-<h1>See all of {{selectedUser.username}}'s projects!</h1>
-<form action='/users/projects/{{selectedUser._id}}/:search' method='GET'>
+<h1>See all of {{this.projectInvolved.username}}'s projects!</h1>
 
-  <input type='text' placeholder="Browse for projects" name='search'>
-
-  <button type='submit'>Filter</button>
-</form>
-<div></div>
-{{#each selectedUser.projects}}
-    <h2>{{this}}</h2>
-{{/each}}
+{{#each this.projectInvolved.projects}}
+<div class="project-card-box">
+        <div class="project-card">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <button class="see-more-btn"><a href="/project/details/{{this.id}}">See More</a></button>
+        </div>
 </div>
-<div>
-{{#each matchingProjects}}
-    <h3>{{this.title}}</h3>
 {{/each}}
-</div>
-<p>{{errorMessage}}</p>

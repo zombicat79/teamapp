@@ -1,8 +1,12 @@
 <div>
-    <h2>{{this.project.title}}</h2>
-    <img src="{{this.project.screenshots}}" >
-    <p>{{this.project.description}}</p>
-    <p>To start on: {{this.project.startDate}} and released on: {{this.project.releaseDate}}</p>
+    <h2 class="project-detail-page-title">{{this.project.title}}</h2>
+    <div class="display-flex">
+        <div class="project-detail-page-img-div"><img class="project-detail-page-img" src="{{this.project.screenshots}}" ></div>
+        <section class="project-detail-page-box">    
+            <p>Description: {{this.project.description}}</p>
+            <p>To start on: {{this.project.startDate}} and released on: {{this.project.releaseDate}}</p>
+        </section>
+    </div>
     <p>To work on {{this.project.title}}, the team is looking for talented person working in:</p>
     <ul>
         {{#each this.project.wantedSkills}}
@@ -10,8 +14,7 @@
         {{/each}}
     </ul>
     <p>If you feel like you have what it takes to join this project, click here!</p>
-    
-    <form action="/project/add-member/{{this.project.id}}" method="post"><button>Join this project!</button></form>
+    <form action="/project/apply/{{this.project.id}}" method="post"><button>Apply to this project!</button></form>
 
     <p>The team is based in: {{this.project.location}}</p>
     <h4>The creator of this project is: {{this.project.creator.username}}</h4>

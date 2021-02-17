@@ -2,16 +2,15 @@ const express = require("express");
 const userRouter = express.Router();
 const mongoose = require("mongoose");
 const User = require("./../models/user");
-const {isLoggedIn, isCurrentUser, } = require("./../middleware");
+const { isLoggedIn, isCurrentUser } = require("./../middleware");
 
 const bcrypt = require("bcrypt");
 
-
 userRouter.get("/main", isLoggedIn, function (req, res, next) {
   User.find()
-    .populate('projects')
+    .populate("projects")
     .then((allUsers) => {
-      res.render("user-views/user-main", { allUsers: allUsers});
+      res.render("user-views/user-main", { allUsers: allUsers });
     })
     .catch((err) => next(err));
 });
@@ -55,7 +54,10 @@ userRouter.get("/profile", isLoggedIn, function (req, res, next) {
 
   User.findById(id)
     .then((selectedUser) => {
-      res.render("user-views/profile-view", { userToCheck: selectedUser, isUsersProfile: true });
+      res.render("user-views/profile-view", {
+        userToCheck: selectedUser,
+        isUsersProfile: true,
+      });
     })
     .catch((err) => next(err));
 });
@@ -77,34 +79,67 @@ userRouter.get(
 
 userRouter.post("/edit/:id", isLoggedIn, function (req, res, next) {
   const { id } = req.params;
-  const { username, email, phone, profileImage, password, newPassword, confirmPassword, location, skills } = req.body;
+  const {
+    username,
+    email,
+    phone,
+    profileImage,
+    password,
+    newPassword,
+    confirmPassword,
+    location,
+    skills,
+  } = req.body;
 
-  User.findById(id)
-  .then( (userToCheck) => {
+  User.findById(id).then((userToCheck) => {
     let oldPassword = userToCheck.oldPassword;
-    if (password === "" || newPassword.length === "" || confirmPassword === "") {
-      res.render("user-views/edit-user", {errorMessage: "Something went wrong. Please try again.", userToCheck})
+    if (
+      password === "" ||
+      newPassword.length === "" ||
+      confirmPassword === ""
+    ) {
+      res.render("user-views/edit-user", {
+        errorMessage: "Something went wrong. Please try again.",
+        userToCheck,
+      });
       return;
     }
-    
+
     if (password !== oldPassword) {
-      res.render("user-views/edit-user", {errorMessage: "Something went wrong. Please try again.", userToCheck})
+      res.render("user-views/edit-user", {
+        errorMessage: "Something went wrong. Please try again.",
+        userToCheck,
+      });
       return;
     }
-    
+
     if (newPassword !== confirmPassword) {
-      res.render("user-views/edit-user", {errorMessage: "Something went wrong. Please try again.", userToCheck})
+      res.render("user-views/edit-user", {
+        errorMessage: "Something went wrong. Please try again.",
+        userToCheck,
+      });
       return;
     }
-    
+
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(newPassword, salt);
-    
-  User.findByIdAndUpdate(id, { username, email, phone, profileImage, password: hashedPassword, newPassword: "x", confirmPassword, oldPassword: newPassword, location, skills } )
-    .then((selectedUser) => {
-      res.redirect(`/users/profile/${selectedUser._id}`);
+
+    User.findByIdAndUpdate(id, {
+      username,
+      email,
+      phone,
+      profileImage,
+      password: hashedPassword,
+      newPassword: "x",
+      confirmPassword,
+      oldPassword: newPassword,
+      location,
+      skills,
     })
-    .catch((err) => next(err));
+      .then((selectedUser) => {
+        res.redirect(`/users/profile/${selectedUser._id}`);
+      })
+      .catch((err) => next(err));
   });
 });
 
@@ -112,8 +147,10 @@ userRouter.get("/projects/:id", isLoggedIn, function (req, res, next) {
   const { id } = req.params;
 
   User.findById(id)
-    .then((selectedUser) => {
-      res.render("user-views/temp-user-project-view", { selectedUser }); // hbs file needs to be changed
+    .populate("projects")
+    .then((projectInvolved) => {
+      const data = { projectInvolved: projectInvolved };
+      res.render("user-views/temp-user-project-view", data); // hbs file needs to be changed
     })
     .catch((err) => next(err));
 });
@@ -125,18 +162,18 @@ userRouter.get("/projects/:id/:search", isLoggedIn, function (req, res, next) {
 
   User.findById(id)
     .then((selectedUser) => {
-      User.find({ $and: [{ _id: id }, { projects: search }] })
-    .then((matchingProjects) => {
-      if (matchingProjects.length === 0) {
-        res.render("user-views/temp-user-project-view", {
-          selectedUser,
-          errorMessage: "Nothing was found. Please try again",
-          });
-      } else {
-          res.render("user-views/temp-user-project-view", {
-            selectedUser,
-            matchingProjects,
-          });
+      User.find({ $and: [{ _id: id }, { projects: search }] }).then(
+        (matchingProjects) => {
+          if (matchingProjects.length === 0) {
+            res.render("user-views/temp-user-project-view", {
+              selectedUser,
+              errorMessage: "Nothing was found. Please try again",
+            });
+          } else {
+            res.render("user-views/temp-user-project-view", {
+              selectedUser,
+              matchingProjects,
+            });
           }
         }
       );

@@ -1,23 +1,76 @@
-<h1>All the projects you are involved in</h1>
 
 <p>{{errorMessage}}</p>
 
-{{#each projectsAsCreator}}
-    <div>
-        <img src="{{this.screenshots}}">
-        <h2>{{this.title}}</h2>
-        <p>{{this.description}}</p>
-        <a href="/project/edit/{{this.id}}">Edit</a>
-        <a href="/project/delete/{{this.id}}">Delete</a>
-    </div>
-{{/each}}
+{{#if projectsAsCreator}}
+    <h2 class="title-projects-view">Your Projects</h2>
+{{/if}}
 
-{{#each projectsAsMember}}
-    <div>
-        <img src="{{this.screenshots}}">
-        <h2>{{this.title}}</h2>
-        <p>{{this.description}}</p>
-    </div>
-{{/each}}
+<div class="creator-box">
+    {{#each projectsAsCreator}}
+        <div class="creator-card">
+            <img class="img-project-view" src="{{this.screenshots}}">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <a href="/project/edit/{{this.id}}">Edit</a>
+            <a href="/project/delete/{{this.id}}">Delete</a>
+            <a href="/project/details/{{this.id}}">view project</a>
+        </div>
+    {{/each}}
+</div>
+
+
+
+{{#if projectsAsMember}}
+    <h2 class="title-projects-view">Projects you are a part of</h2>
+{{/if}}
+
+<div class="creator-box">
+    {{#each projectsAsMember}}
+        <div class="creator-card">
+            <img class="img-project-view" src="{{this.screenshots}}">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <a href="/project/details/{{this.id}}">See full project</a>
+        </div>
+    {{/each}}
+</div>
+
+
+
+{{#if projectsHaveApplicants}}
+    <h2 class="title-projects-view">Some of your projects have new applicants</h2>
+{{/if}}
+
+<div class="creator-box">
+    {{#each projectsHaveApplicants}}
+        <div class="creator-card">
+            <img class="img-project-view" src="{{this.screenshots}}">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <a href="/project/details/{{this.id}}">See full project</a>
+            <a href="/project/applicants/{{this.id}}">See applications</a>
+
+            
+        </div>
+    {{/each}}
+</div>
+
+
+
+{{#if projectsApplied}}
+    <h2 class="title-projects-view">Projects to which you applied</h2>
+{{/if}}
+
+<div class="creator-box">
+    {{#each projectsApplied}}
+        <div class="creator-card">
+            <img class="img-project-view" src="{{this.screenshots}}">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <a href="/project/details/{{this.id}}">See full project</a>
+        </div>
+    {{/each}}
+</div>
+
 
 <h3><a href="/project/create">NEW</a></h3>
