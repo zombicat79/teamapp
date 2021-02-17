@@ -9,6 +9,9 @@ const users = [
     {
         username: "Mr. Robot",
         password: "neverknow",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "neverknow",
         email: "robot@tech.co.uk",
         phone: "+4414587297",
         profileImage: "https://pyxis.nymag.com/v1/imgs/04b/3cc/bbdfab84f9276e72f626049f9c2c7d7097-12-mr-robot-where.rsquare.w700.jpg",
@@ -19,6 +22,9 @@ const users = [
     {
         username: "Ultranerd",
         password: "noprotection",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "noprotection",
         email: "powernerd@boldgames.com",
         phone: "+4987692345",
         profileImage: "https://media.thetab.com/blogs.dir/5/files/2014/03/nerd.jpg",
@@ -29,6 +35,9 @@ const users = [
     {
         username: "Async_await95",
         password: "12345",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "12345",
         email: "dfsolo@gmail.com",
         phone: "+34678452790",
         profileImage: "https://cdn.vox-cdn.com/thumbor/o2rDUJI9wVLyux6BDBWDxAR06Lg=/0x0:998x749/1400x1400/filters:focal(0x0:998x749):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/47038870/tech-nerd.0.0.jpg",
@@ -39,6 +48,9 @@ const users = [
     {
         username: "Futuregirl",
         password: "easytohack21",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "easytohack21",
         email: "powergirl@labstudio.com",
         phone: "+1384756940",
         profileImage: "https://pbs.twimg.com/profile_images/1084574571318181889/B4juu9g6.jpg",
@@ -49,6 +61,9 @@ const users = [
     {
         username: "Jeanlux",
         password: "vivelafrance",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "vivelafrance",
         email: "jeanlucpetit@yahoo.fr",
         phone: "+333765928",
         profileImage: "http://31.media.tumblr.com/5732cd0aad66afc5ebaed85b6eb194c3/tumblr_n0a8zoZySB1subvnlo1_500.jpg",
@@ -59,6 +74,9 @@ const users = [
     {
         username: "Gandalf89",
         password: "hocuspocus",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "hocuspocus",
         email: "joseportells@hotmail.com",
         phone: "+346823674",
         profileImage: "https://penaltiloungebar.es/wp-content/uploads/2016/10/nerd-buff1.jpg",
@@ -69,6 +87,9 @@ const users = [
     {
         username: "Franxxesca",
         password: "pepperoni",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "pepperoni",
         email: "franmaldini@gemail.com",
         phone: "+3987832094",
         profileImage: "https://www.wikihow.com/images_en/thumb/b/b5/Dress-Like-a-Nerd-Step-1-Version-2.jpg/v4-460px-Dress-Like-a-Nerd-Step-1-Version-2.jpg",
@@ -79,6 +100,9 @@ const users = [
     {
         username: "MagicJoe",
         password: "hahahahaha",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "hahahahaha",
         email: "joethemagician@gmail.com",
         phone: "+44387462847",
         profileImage: "https://www.digopaul.com/wp-content/uploads/related_images/2015/09/09/nerd_3.jpg",
@@ -89,6 +113,9 @@ const users = [
     {
         username: "TheTerminator",
         password: "sayonara_baby",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "sayonara_baby",
         email: "freddiengoma@gmail.com",
         phone: "+13748752092",
         profileImage: "https://pbs.twimg.com/media/Et_54YWVcAEXDmv.jpg",
@@ -99,6 +126,9 @@ const users = [
     {
         username: "Akatsuki98",
         password: "7ywh6",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "7ywh6",
         email: "akatsuki@playfulstudio.com",
         phone: "+817382545",
         profileImage: "https://soranews24.com/wp-content/uploads/sites/3/2018/06/la-1.png",
@@ -204,6 +234,9 @@ const usersB = [
     {
         username: "Mr. Robot",
         password: "neverknow",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "neverknow",
         email: "robot@tech.co.uk",
         phone: "+4414587297",
         profileImage: "https://pyxis.nymag.com/v1/imgs/04b/3cc/bbdfab84f9276e72f626049f9c2c7d7097-12-mr-robot-where.rsquare.w700.jpg",
@@ -213,6 +246,9 @@ const usersB = [
     {
         username: "Ultranerd",
         password: "noprotection",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "noprotection",
         email: "powernerd@boldgames.com",
         phone: "+4987692345",
         profileImage: "https://media.thetab.com/blogs.dir/5/files/2014/03/nerd.jpg",
@@ -222,6 +258,9 @@ const usersB = [
     {
         username: "Async_await95",
         password: "12345",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "12345",
         email: "dfsolo@gmail.com",
         phone: "+34678452790",
         profileImage: "https://cdn.vox-cdn.com/thumbor/o2rDUJI9wVLyux6BDBWDxAR06Lg=/0x0:998x749/1400x1400/filters:focal(0x0:998x749):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/47038870/tech-nerd.0.0.jpg",
@@ -231,6 +270,9 @@ const usersB = [
     {
         username: "Futuregirl",
         password: "easytohack21",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "easytohack21",
         email: "powergirl@labstudio.com",
         phone: "+1384756940",
         profileImage: "https://pbs.twimg.com/profile_images/1084574571318181889/B4juu9g6.jpg",
@@ -240,6 +282,9 @@ const usersB = [
     {
         username: "Jeanlux",
         password: "vivelafrance",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "vivelafrance",
         email: "jeanlucpetit@yahoo.fr",
         phone: "+333765928",
         profileImage: "http://31.media.tumblr.com/5732cd0aad66afc5ebaed85b6eb194c3/tumblr_n0a8zoZySB1subvnlo1_500.jpg",
@@ -249,6 +294,9 @@ const usersB = [
     {
         username: "Gandalf89",
         password: "hocuspocus",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "hocuspocus",
         email: "joseportells@hotmail.com",
         phone: "+346823674",
         profileImage: "https://penaltiloungebar.es/wp-content/uploads/2016/10/nerd-buff1.jpg",
@@ -258,6 +306,9 @@ const usersB = [
     {
         username: "Franxxesca",
         password: "pepperoni",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "pepperoni",
         email: "franmaldini@gemail.com",
         phone: "+3987832094",
         profileImage: "https://www.wikihow.com/images_en/thumb/b/b5/Dress-Like-a-Nerd-Step-1-Version-2.jpg/v4-460px-Dress-Like-a-Nerd-Step-1-Version-2.jpg",
@@ -267,6 +318,9 @@ const usersB = [
     {
         username: "MagicJoe",
         password: "hahahahaha",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "hahahahaha",
         email: "joethemagician@gmail.com",
         phone: "+44387462847",
         profileImage: "https://www.digopaul.com/wp-content/uploads/related_images/2015/09/09/nerd_3.jpg",
@@ -276,6 +330,9 @@ const usersB = [
     {
         username: "TheTerminator",
         password: "sayonara_baby",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "sayonara_baby",
         email: "freddiengoma@gmail.com",
         phone: "+13748752092",
         profileImage: "https://pbs.twimg.com/media/Et_54YWVcAEXDmv.jpg",
@@ -285,6 +342,9 @@ const usersB = [
     {
         username: "Akatsuki98",
         password: "7ywh6",
+        confirmPassword: "",
+        newPassword: "",
+        oldPassword: "7ywh6",
         email: "akatsuki@playfulstudio.com",
         phone: "+817382545",
         profileImage: "https://soranews24.com/wp-content/uploads/sites/3/2018/06/la-1.png",

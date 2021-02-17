@@ -6,7 +6,6 @@ const User = require("./../models/user");
 const fileUploader = require("./../configs/cloudinary")
 
 const bcrypt = require("bcrypt");
-//const saltRounds = 10;
 
 //LOGIN ROUTE
 authRouter.post("/login", (req, res, next) => {
@@ -28,6 +27,8 @@ authRouter.post("/login", (req, res, next) => {
       }
 
       const passwordCorrect = bcrypt.compareSync(password, user.password);
+      console.log(password)
+      console.log(user.password)
       if (passwordCorrect) {
         req.session.currentUser = user;
         res.redirect(`/main/`);
@@ -51,6 +52,9 @@ authRouter.post("/signup", fileUploader.single('image'), (req, res, next) => {
   const {
     username,
     password,
+    newPassword,
+    OldPassword,
+    confirmPassword,
     email,
     phone,
     profileImage,
@@ -58,16 +62,7 @@ authRouter.post("/signup", fileUploader.single('image'), (req, res, next) => {
     skills,
     projects,
   } = req.body;
-  console.log({
-    username,
-    password,
-    email,
-    phone,
-    profileImage,
-    location,
-    skills,
-    projects,
-  });
+  
   User.findOne({ username }).then((user) => {
     if (user !== null) {
       res.render("index", {
@@ -76,19 +71,28 @@ authRouter.post("/signup", fileUploader.single('image'), (req, res, next) => {
       return;
     }
 
+    if (confirmPassword !== password) {
+      res.render("user-views/create-user", {
+        errorMessage: "Something went wrong. Please try again", username, email, phone, profileImage, location, skills, layout: false});
+      return;
+    }
+
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
 
     let imageUrl;
-      if (req.file) {
-        imageUrl = req.file.path;
-      } else {
-        imageUrl = "";
-      }
+    if (req.file) {
+      imageUrl = req.file.path;
+    } else {
+      imageUrl = "https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg";
+    }
 
     User.create({
       username,
       password: hashedPassword,
+      confirmPassword: hashedPassword,
+      newPassword: "x",
+      oldPassword: password,
       email,
       phone,
       profileImage: imageUrl,

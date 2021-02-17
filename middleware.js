@@ -1,4 +1,4 @@
-const Project = require("./../../models/project");
+const Project = require('./models/project');
 
 // console.log("JS FILE WORKING MOFO");
 
@@ -23,17 +23,15 @@ function isLoggedIn(req, res, next) {
 }
 
 function isCurrentUser(req, res, next) {
-  const { id } = req.params;
-
-  console.log("req.path :>> ", req.path);
-
-  if (req.session.currentUser._id !== id) {
-    res.render("user-views/user-main", {
-      errorMessage: "You cannot access this page - MW",
-    });
-  } else {
-    next();
-  }
+    const { id } = req.params;
+  
+    if (req.session.currentUser._id !== id) {
+      res.render("user-views/user-main", {
+        errorMessage: "You cannot access this page",
+      });
+    } else {
+       next()
+    }
 }
 
 function projectAllowedIn(req, res, next) {
@@ -50,7 +48,7 @@ function projectAllowedIn(req, res, next) {
         next();
       }
     })
-    .catch((err) => console.log("there's a problem", err));
+    .catch((err) => next(err));
 }
 
 function allowedToDelete(req, res, next) {

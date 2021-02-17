@@ -4,6 +4,9 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema ({
     username: {type: String, unique: true, required: true},
     password: {type: String, unique: true, required: true},
+    newPassword: {type: String, unique: true, required: true},
+    oldPassword: {type: String, unique: true, required: true},
+    confirmPassword: {type: String, unique: true, required: true},
     email: {type: String, unique: true, required: true},
     phone: String,
     profileImage: {type: String, default: "https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg'"}, //needs correction --- try using Cloudinary

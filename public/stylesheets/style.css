@@ -1,5 +1,4 @@
-* {
-}
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap');
 
 body {
   padding: 50px;
@@ -68,6 +67,16 @@ nav {
   margin-top: -50px;
   height: 200px;
   width: 102vw;
+  background: rgb(34, 102, 157);
+  background: linear-gradient(
+    166deg,
+    rgba(34, 102, 157, 1) 11%,
+    rgba(6, 54, 95, 1) 71%
+  );
+  color: white;
+}
+
+footer {
   background: rgb(34, 102, 157);
   background: linear-gradient(
     166deg,
@@ -151,4 +160,44 @@ button {
 
 .search-bar.btn {
   font-size: 2rem;
+}
+
+
+@media screen and (max-width: 450px) {
+
+  body {
+    background-color: rgb(135, 206, 250);
+  }
+
+  main {
+    background-color: rgb(135, 206, 250);
+    width: 100%;
+  }
+
+  nav {
+    position: fixed;
+    top: 11vw;
+    height: 80px;
+  }
+
+  #header1 {
+    position: fixed;
+    width: 30%;
+    top: 0.5vw;
+  }
+
+  #header2 {
+    position: fixed;
+    width: 50%;
+    left: 40vw;
+    top: 5vw;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0vw;
+    left: 0vw;
+    height: 80px;
+    width: 100%;
+  }
 }

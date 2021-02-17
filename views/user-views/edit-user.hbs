@@ -1,23 +1,50 @@
 <h1>EDIT USER</h1>
-<form action='/users/edit/{{selectedUser._id}}' method='POST'>
+<form action='/users/edit/{{userToCheck._id}}' method='POST'>
 
   <label for=''>Username</label>
-  <input type='text' value="{{selectedUser.username}}" name='username'>
+  <input type='text' value="{{userToCheck.username}}" name='username'>
 
   <label for=''>Email</label>
-  <input type='email' value="{{selectedUser.email}}" name='email'>
+  <input type='email' value="{{userToCheck.email}}" name='email'>
 
   <label for=''>Phone</label>
-  <input type='text' value="{{selectedUser.phone}}" name='phone'>
+  <input type='text' value="{{userToCheck.phone}}" name='phone'>
 
   <label for=''>Image</label>
-  <input type='file' name='image'>
+  <input type='file' value="{{userToCheck.phone}}" name='image'>
 
   <label for=''>Location</label>
-  <input type='text' value="{{selectedUser.location}}" name='location'>
+  <input type='text' value="{{userToCheck.location}}" name='location'>
 
-  <label for=''>Skills</label>
-  <input type='checkbox' name='skills'>
+  <div class="form-entry">
+    <label for='' class="form-title">Skills</label>
+    </br>
+    <div class="checkbox-styling">
+      <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="2D Graphics"><span>2D Graphics</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="3D Graphics"><span>3D Graphics</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Unity"><span>Unity</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Scriptwriting"><span>Scriptwriting</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Pixel Art"><span>Pixel Art</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Music Composition"><span>Music Composition</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Sound Engineering"><span>Sound Engineering</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="C++"><span>C++</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Javascript"><span>Javascript</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="HTML & CSS"><span>HTML and CSS</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Project Management"><span>Project Management</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Conceptual Design"><span>Conceptual Design</span></div>
+      <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Beta Testing"><span>Beta Testing</span></div>
+    </div>
+  </div>
+
+  <label for=''>Old password</label>
+  <input type='password' name='password'>
+
+  <label for=''>New password</label>
+  <input type='password' name='newPassword'>
+
+  <label for=''>Confirm password</label>
+  <input type='password' name='confirmPassword'>
 
   <button type='submit'>Change</button>
 </form>
+<p>{{errorMessage}}</p>

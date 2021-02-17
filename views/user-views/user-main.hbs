@@ -11,7 +11,9 @@
         <li>{{this.username}}</li>
         <li>{{this.location}}</li>
         <li>SKILLS: {{this.skills}}</li>
-        <li>PROJECTS: {{this.projects}}</li>
+        {{#each this.projects}}
+        <li>PROJECTS: {{this.title}}</li>
+        {{/each}}
     </ul>
     <button><a href="/users/detail/{{this._id}}">See full details</a></button>
 {{/each}}
