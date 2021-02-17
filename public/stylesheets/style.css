@@ -169,11 +169,11 @@
 @media screen and (max-width: 450px) {
 
   body {
-    background-color: rgb(135, 206, 250);
+    background-color: white;
   }
 
   main {
-    background-color: rgb(135, 206, 250);
+    background-color: white;
     width: 100%;
     margin-top: 120px;
     margin-bottom: 120px;
@@ -202,20 +202,37 @@
     top: 5vw;
   }
 
-  .box {
-    border: solid rgb(255, 0, 0, 0.5) 5px;
-    margin: 25px;
-    padding: 25px;
-    max-width: 300px;
-    height: 120px;
-    background-color: rgb(169, 169, 169, 0.7);
+  h1 {
+    color: red;
+    font-family: 'Jura', sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 50px;
   }
 
-  .box:hover {
-    -webkit-box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
-    -moz-box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
-    box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
-    transition: 0.1s;
+  .box {
+    border: solid rgb(255, 0, 0, 0.6) 5px;
+    background-image: url("./../images/landing_background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: bottom;
+    margin: 30px auto 30px auto;
+    padding: 25px;
+    width: 80%;
+    height: 150px;
+    background-color: rgb(169, 169, 169, 0.7);
+    display: block;
+    border-radius: 20px;
+  }
+
+  a {
+    color: white;
+    font-family: 'Jura', sans-serif;
+    text-decoration: none;
+    font-size: 25px;
+    text-align: right;
+    font-weight: 700;
   }
 
   footer {
@@ -229,6 +246,24 @@
   }
 
   footer img {
-    width: 5%;
+    position: fixed;
+  }
+
+  #menu-icon1 {
+    width: 15%;
+    left: 10vw;
+    bottom: 1.5vw;
+  }
+
+  #menu-icon2 {
+    width: 12%;
+    left: 45vw;
+    bottom: 3vw;
+  }
+
+  #menu-icon3 {
+    width: 15%;
+    left: 75vw;
+    bottom: 1.5vw;
   }
 }

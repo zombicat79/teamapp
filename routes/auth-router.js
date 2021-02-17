@@ -12,8 +12,7 @@ authRouter.post("/login", (req, res, next) => {
   const { username, password } = req.body;
   if (username === "" || password === "") {
     res.render("index", {
-      errorMessage: "Please enter a valid username and password",
-    });
+      errorMessage: "Please enter a valid username and password", layout: false });
     return;
   }
 
@@ -21,25 +20,23 @@ authRouter.post("/login", (req, res, next) => {
     .then((user) => {
       if (user === null) {
         res.render("index", {
-          errorMessage: "Something went wrong. Please try again",
-        });
+          errorMessage: "Something went wrong. Please try again", layout: false });
         return;
       }
 
       const passwordCorrect = bcrypt.compareSync(password, user.password);
-      console.log(password)
-      console.log(user.password)
+    
       if (passwordCorrect) {
         req.session.currentUser = user;
         res.redirect(`/main/`);
       } else {
-        res.redirect("/");
+        res.render("index", {
+          errorMessage: "Something went wrong. Please try again", layout: false });;
       }
     })
     .catch((err) => {
       res.render("index", {
-        errorMessage: "Something went wrong. Please try again",
-      });
+        errorMessage: "Something went wrong. Please try again", layout: false});
     });
 });
 
