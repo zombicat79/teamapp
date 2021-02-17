@@ -11,7 +11,7 @@ const users = [
         password: "neverknow",
         confirmPassword: "",
         newPassword: "",
-        oldPassword: "neverknow"
+        oldPassword: "neverknow",
         email: "robot@tech.co.uk",
         phone: "+4414587297",
         profileImage: "https://pyxis.nymag.com/v1/imgs/04b/3cc/bbdfab84f9276e72f626049f9c2c7d7097-12-mr-robot-where.rsquare.w700.jpg",
