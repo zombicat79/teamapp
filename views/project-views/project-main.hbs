@@ -1,21 +1,27 @@
 <h1>This is the project main view</h1>
 <form action='/project/main/:search' method='GET'>
+<div class="search-bar-box">
   <input type='text' name='search' placeholder="Search for a project" class="search-bar">
   <button type='submit' class="search-bar-btn">Submit</button>
+</div>
 </form>
-{{#each project}}
-    <div class="project-card">
-        <h2>{{this.title}}</h2>
-        <h3>{{this.description}}</h3>
-        <button class="see-more-btn"><a href="/project/details/{{this.id}}">See More</a></button>
-    </div>
-{{/each}}
-{{#each matchingProjects}}
-    <button><a href="/project/main">Remove filters</a></button>
-    <div class="project-card">
-        <h2>{{this.title}}</h2>
-        <h3>{{this.description}}</h3>
-        <button class="see-more-btn"><a href="/project/details/{{this.id}}">See More</a></button>
-    </div>
-{{/each}}
+<div class="project-card-box">
+    {{#each project}}
+        <div class="project-card">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <button class="see-more-btn"><a href="/project/details/{{this.id}}">See More</a></button>
+        </div>
+    {{/each}}
+</div>
+<div class="project-card-box">
+    {{#each matchingProjects}}
+        <button><a href="/project/main">Remove filters</a></button>
+        <div class="project-card">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <button class="see-more-btn"><a href="/project/details/{{this.id}}">See More</a></button>
+        </div>
+    {{/each}}
+</div>
 <p>{{errorMessage}}</p>

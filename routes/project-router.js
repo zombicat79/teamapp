@@ -50,8 +50,8 @@ projectRouter.post(
       location,
     })
       .then((data) => {
-        res.redirect("/project/main");
-        console.log(startDate, startDateUpdated);
+        res.redirect(`/project/details/${data._id}`);
+        console.log(data._id);
       })
       .catch((err) => console.log(err));
   }
@@ -152,13 +152,27 @@ projectRouter.get("/users/details", isLoggedIn, (req, res, next) => {
   const userId = req.session.currentUser._id;
   Project.find({ $or: [{ team: userId }, { creator: userId }] })
     .then((usersProject) => {
-    //   const showDelete = usersProject.creator === userId;
-    //   usersProject.push(showDelete);
+      //   const showDelete = usersProject.creator === userId;
+      //   usersProject.push(showDelete);
 
-    //   console.log("usersproject", usersProject);
+      //   console.log("usersproject", usersProject);
 
-      const data = { usersProject: usersProject };
-      //   console.log(showDelete);
+      const projectsAsCreator = [];
+      const projectsAsMember = [];
+
+      usersProject.forEach((el) => {
+        if (String(el.creator) === userId) {
+          projectsAsCreator.push(el);
+        } else {
+          projectsAsMember.push(el);
+        }
+      });
+
+      const data = {
+        projectsAsCreator: projectsAsCreator,
+        projectsAsMember: projectsAsMember,
+      };
+      console.log(data);
 
       res.render("project-views/user-project-view", data);
     })

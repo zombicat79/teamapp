@@ -79,9 +79,22 @@ nav {
 
 .project-card {
   border: solid rgb(134, 212, 17) 10px;
-  border-top: 0px;
-  border-left: 0px;
-  margin-top: 250px;
+  margin: 25px;
+  padding: 25px;
+  max-width: 300px;
+}
+
+.project-card-box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.project-card:hover {
+  -webkit-box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
+  -moz-box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
+  box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
+  transition: 0.1s;
 }
 
 h2 {
@@ -129,6 +142,11 @@ button {
 
 .search-bar {
   font-size: 3rem;
+}
+
+.search-bar-box {
+  display: flex;
+  justify-content: center;
 }
 
 .search-bar.btn {

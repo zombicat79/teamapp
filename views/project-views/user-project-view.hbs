@@ -2,18 +2,21 @@
 
 <p>{{errorMessage}}</p>
 
-{{#each usersProject}}
-
-        {{#if usersProject.test}}
-                <h2>Dance of Joy</h2>
-        {{/if}}
-
+{{#each projectsAsCreator}}
     <div>
         <img src="{{this.screenshots}}">
         <h2>{{this.title}}</h2>
         <p>{{this.description}}</p>
         <a href="/project/edit/{{this.id}}">Edit</a>
         <a href="/project/delete/{{this.id}}">Delete</a>
+    </div>
+{{/each}}
+
+{{#each projectsAsMember}}
+    <div>
+        <img src="{{this.screenshots}}">
+        <h2>{{this.title}}</h2>
+        <p>{{this.description}}</p>
     </div>
 {{/each}}
 

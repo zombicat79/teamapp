@@ -5,7 +5,9 @@
     <p>To start on: {{this.project.startDate}} and released on: {{this.project.releaseDate}}</p>
     <p>To work on {{this.project.title}}, the team is looking for talented person working in:</p>
     <ul>
-        <li>{{this.project.wantedSkills}}</li>
+        {{#each this.project.wantedSkills}}
+        <li>{{this}}</li>
+        {{/each}}
     </ul>
     <p>If you feel like you have what it takes to join this project, click here!</p>
     
