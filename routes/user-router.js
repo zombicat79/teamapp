@@ -39,13 +39,14 @@ userRouter.get("/main/:search", isLoggedIn, function (req, res, next) {
       // { projects: search },
     ],
   })
+    .populate('projects')
     .then((matchingUsers) => {
       if (matchingUsers.length === 0) {
         res.render("user-views/user-main", {
           errorMessage: "Nothing was found. Please try again",
         });
       } else {
-        res.render("user-views/user-main", { matchingUsers });
+        res.render("user-views/user-main", { matchingUsers: matchingUsers });
       }
     })
     .catch((err) => next(err));
@@ -75,12 +76,23 @@ userRouter.post("/detail/:id", isLoggedIn, function (req, res, next) {
   const { id } = req.params;
   const currentUser = req.session.currentUser._id;
 
-  User.findByIdAndUpdate(currentUser, { $push: { favoriteCreators: id } })
-    .then((updatedUser) => {
-      res.redirect(`/users/detail/${id}`);
-    })
-    .catch((err) => next(err));
-});
+  User.findByIdAndUpdate(currentUser, {$push: {favoriteCreators: id }})
+  .then( (currentUser) => {
+    res.redirect(`/users/favorites/${currentUser._id}`)
+  })
+  .catch( (err) => next(err));
+})
+
+userRouter.post("/favorites/:id", isLoggedIn, function (req, res, next) {
+  const { id } = req.params;
+  const currentUser = req.session.currentUser._id;
+
+  User.findByIdAndUpdate(currentUser, {$pull: {favoriteCreators: id}})
+  .then( (currentUser) => {
+    res.redirect(`/users/favorites/${currentUser._id}`)
+  })
+  .catch( (err) => next(err));
+})
 
 userRouter.get("/profile", isLoggedIn, function (req, res, next) {
   const id = req.session.currentUser._id;

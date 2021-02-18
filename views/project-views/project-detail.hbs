@@ -4,7 +4,9 @@
         <div class="project-detail-page-img-div"><img class="project-detail-page-img" src="{{project.screenshots}}" ></div>
         <section class="project-detail-page-box">    
             <p>Description: {{project.description}}</p>
-
+            {{#if this.project.playableDemo}}
+                <a href="{{this.project.playableDemo}}">Playable demo</a>
+            {{/if}}
 
             {{#if project.startDate}}<p>To start on: {{project.startDate}}</p>
                 {{else}}
@@ -22,7 +24,9 @@
             <li class="skills-list">{{this}}</li>
             {{/each}}
         </ul>
-
+            <form action="/project/details/{{this.project.id}}" method="post">
+             <button>Add to favorites</button>
+            </form>
             {{#if alreadyApplied}} 
                     <p>You already applied to this project!</p>
                     <a href="/project/application/remove/{{project._id}}">Remove Application</a>
