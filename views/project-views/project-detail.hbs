@@ -1,4 +1,4 @@
-<div>
+<div class="project-detail-page-main" >
     <h2 class="project-detail-page-title">{{this.project.title}}</h2>
     <div class="display-flex">
         <div class="project-detail-page-img-div"><img class="project-detail-page-img" src="{{this.project.screenshots}}" ></div>
@@ -8,21 +8,21 @@
         </section>
     </div>
     <p>To work on {{this.project.title}}, the team is looking for talented person working in:</p>
-    <ul>
+    <ul class="skills-list-ul">
         {{#each this.project.wantedSkills}}
-        <li>{{this}}</li>
+        <li class="skills-list">{{this}}</li>
         {{/each}}
     </ul>
     <p>If you feel like you have what it takes to join this project, click here!</p>
-    <form action="/project/apply/{{this.project.id}}" method="post"><button>Apply to this project!</button></form>
-
+   <div class="project-detail-btn"><form action="/project/apply/{{this.project.id}}" method="post"><button>Apply to this project!</button></form></div>
     <p>The team is based in: {{this.project.location}}</p>
-    <h4>The creator of this project is: {{this.project.creator.username}}</h4>
-    <h5>List of collaborators involved in this project:</h5>
+    <p>The creator of this project is: {{this.project.creator.username}}</p>
+    <p>List of collaborators involved in this project:</p>
         <div class="team-members">
             {{#each this.project.team}}
-            <a href="/users/detail/{{this._id}}"><p><img src="{{this.profileImage}}" alt="" width="150" height="150">{{this.username}}</p></a>
+            <a class="team-members-id" href="/users/detail/{{this._id}}"><img class="team-members-img" src="{{this.profileImage}}" alt=""><p>{{this.username}}</p></a>
             {{/each}}
         </div>
+    <div class="project-detail-btn"><button><a href="/project/main">go back to all the projects</a></button></div>
 </div>
-<button><a href="/project/main">go back to all the projects</a></button>
+

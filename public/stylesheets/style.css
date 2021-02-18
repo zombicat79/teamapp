@@ -247,8 +247,58 @@ h3 {
 
 .project-detail-page-box {
   margin-left: 20px;
-  margin-top: 25px;
 }
+
+.project-detail-page-main {
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.skills-list-ul {
+  margin: 0px;
+  font-size: 1rem;
+  list-style: circle;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.skills-list {
+  margin-top: 5px; 
+}
+
+.team-members {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.team-members-img {
+  max-width: 125px;
+  max-height: 125px;
+  margin: 25px;
+  margin-bottom: 0px;
+  border-radius: 50%;
+  justify-content: center; 
+
+}
+
+.team-members-id {
+  margin-right: 75px;
+}
+
+.project-detail-btn {
+  margin-top: 40px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Users view page */
+
 
 @media screen and (max-width: 450px) {
   body {
