@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap");
 
-@media screen and (min-width: 451px) {
+/* desktop view */
+body {
+  padding: 50px;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: rgb(77, 71, 71);
+}
 
 .form {
   display: flex;
@@ -263,7 +268,7 @@ footer {
 }
 
 .skills-list {
-  margin-top: 5px; 
+  margin-top: 5px;
 }
 
 .team-members {
@@ -279,8 +284,7 @@ footer {
   margin: 25px;
   margin-bottom: 0px;
   border-radius: 50%;
-  justify-content: center; 
-
+  justify-content: center;
 }
 
 .team-members-id {
@@ -294,7 +298,6 @@ footer {
 }
 
 /* Users view page */
-
 
 @media screen and (max-width: 450px) {
   body {
