@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap");
 
+* {
+  font-family: "Jura", sans-serif;
+}
+
 @media screen and (min-width: 451px) {
   body {
     padding: 50px;
-    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
     color: rgb(77, 71, 71);
   }
 
@@ -59,13 +62,40 @@
     margin-top: -50px;
     height: 75px;
     width: 100vw;
-    background: rgb(34, 102, 157);
+    background: rgb(2, 0, 36);
     background: linear-gradient(
-      166deg,
-      rgba(34, 102, 157, 1) 11%,
-      rgba(6, 54, 95, 1) 71%
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(62, 9, 121, 1) 35%,
+      rgba(0, 212, 255, 1) 100%
     );
     color: white;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0vw;
+    left: 0vw;
+    height: 60px;
+    width: 100%;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(62, 9, 121, 1) 35%,
+      rgba(0, 212, 255, 1) 100%
+    );
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  #menu-icon1,
+  #menu-icon2,
+  #menu-icon3 {
+    max-height: 50px;
+    width: auto;
+    margin-top: 5px;
   }
 
   .header-img {
@@ -83,17 +113,7 @@
   .header2 {
     max-height: 55px;
     width: auto;
-    margin: 10px 130px 10px 0px;
-  }
-
-  footer {
-    background: rgb(34, 102, 157);
-    background: linear-gradient(
-      166deg,
-      rgba(34, 102, 157, 1) 11%,
-      rgba(6, 54, 95, 1) 71%
-    );
-    color: white;
+    margin: 10px 100px 10px 0px;
   }
 
   .project-card {
@@ -118,9 +138,9 @@
   }
 
   .project-card:hover {
-    -webkit-box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
-    -moz-box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
-    box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
+    -webkit-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    -moz-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
     transition: 0.1s;
   }
 
@@ -154,23 +174,70 @@
   }
 
   /*/project/users/details*/
+
+  .project-users-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .new-project-btn:hover {
+    -webkit-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    -moz-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    transition: 0.4s;
+  }
+
+  .new-project-btn {
+    border: solid 5px rgba(62, 9, 121, 1);
+    border-radius: 20px;
+    padding: 10px 25px;
+    background-color: white;
+    max-width: 600px;
+    text-align: center;
+  }
+
+  .new-project-btn > a {
+    font-size: 1.7rem;
+    text-decoration: none;
+  }
+
   .img-project-view {
-    width: 120px;
+    width: 100px;
     height: auto;
   }
 
-  .creator-card {
-    width: 350px;
-    border: 5px #9129d5 solid;
-    border-radius: 20px;
-    margin: 25px;
-    padding: 10px;
+  .title-project-view {
+    font-size: 2rem;
+  }
+
+  .main-titles-projects-view {
+    width: 600px;
+    text-align: center;
   }
 
   .creator-box {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+  }
+
+  .creator-card {
+    max-width: 300px;
+    border: 10px rgba(62, 9, 121, 1) solid;
+    border-radius: 20px;
+    margin: 25px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .creator-card:hover {
+    -webkit-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    -moz-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    transition: 0.1s;
   }
 
   .title-projects-view {
@@ -181,6 +248,40 @@
   .display-flex {
     display: flex;
     justify-content: center;
+  }
+
+  .edit-delete-btn {
+    border: solid 5px rgba(62, 9, 121, 1);
+    border-radius: 20px;
+    padding: 10px 25px;
+    background-color: white;
+  }
+  .edit-delete-btn > a,
+  .project-full-btn > a {
+    font-size: 1.1rem;
+    text-decoration: none;
+  }
+
+  .project-full-btn:hover {
+    -webkit-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    -moz-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    transition: 0.1s;
+  }
+
+  .edit-delete-btn:hover {
+    -webkit-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    -moz-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    transition: 0.1s;
+  }
+
+  .project-full-btn {
+    margin-top: 10px;
+    border: solid 5px rgba(62, 9, 121, 1);
+    border-radius: 20px;
+    padding: 10px 45px;
+    background-color: white;
   }
 
   /* Applicants page  */
@@ -226,9 +327,9 @@
   }
 
   .see-more-btn:hover {
-    -webkit-box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
-    -moz-box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
-    box-shadow: 13px 10px 46px 9px rgba(73, 43, 171, 1);
+    -webkit-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    -moz-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
     transition: 0.1s;
   }
 
@@ -323,7 +424,38 @@
   }
 }
 
-/* Users view page */
+/* profile view page */
+.profile-view-div {
+  max-width: 600px;
+}
+
+.profile-view-img {
+  max-height: 200px;
+  width: auto;
+  border-radius: 50%;
+}
+
+.profile-view-info {
+  max-width: 400px;
+}
+
+.profile-view-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profile-view-btn {
+  border: solid 5px rgba(62, 9, 121, 1);
+  border-radius: 20px;
+  padding: 15px 35px;
+  background-color: white;
+}
+
+.profile-view-btn > a {
+  text-decoration: none;
+  font-size: 1.5rem;
+}
 
 @media screen and (max-width: 450px) {
   body {
@@ -391,7 +523,7 @@
 
   a {
     color: blue;
-    font-family: 'Jura', sans-serif;
+    font-family: "Jura", sans-serif;
     text-decoration: none;
     font-size: 25px;
     text-align: right;
