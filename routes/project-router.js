@@ -141,8 +141,6 @@ projectRouter.get("/details/:id", isLoggedIn, (req, res, next) => {
     .populate("team")
     .then((project) => {
       const data = { project };
-      //   console.log("project.team :>> ", project.team[0].username);
-      //   allTeamMembers(project); // cannot modify DOM from here?
       res.render("project-views/project-detail", data);
     })
     .catch((err) => console.log(err));
@@ -165,28 +163,41 @@ projectRouter.post("/details/:id", isLoggedIn, (req, res, next) => {
 // Logged in user's projects view
 projectRouter.get("/users/details", isLoggedIn, (req, res, next) => {
   const userId = req.session.currentUser._id;
-  Project.find({ $or: [{ team: userId }, { creator: userId }] })
+  Project.find({
+    $or: [{ team: userId }, { creator: userId }, { applicants: userId }],
+  })
     .then((usersProject) => {
-      //   const showDelete = usersProject.creator === userId;
-      //   usersProject.push(showDelete);
-
-      //   console.log("usersproject", usersProject);
-
       const projectsAsCreator = [];
       const projectsAsMember = [];
+      const projectsApplied = [];
+      const projectsHaveApplicants = [];
 
       usersProject.forEach((el) => {
-        if (String(el.creator) === userId) {
+        const userIsCreator = String(el.creator) === userId;
+        const userIsApplicant = el.applicants.includes(userId);
+        const userIsTeamMember = el.team.includes(userId);
+
+        if (userIsCreator) {
           projectsAsCreator.push(el);
-        } else {
-          projectsAsMember.push(el);
+          if (el.applicants.length > 0) {
+            projectsHaveApplicants.push(el);
+          }
+        } else if (!userIsCreator) {
+          if (userIsTeamMember) {
+            projectsAsMember.push(el);
+          } else if (userIsApplicant) {
+            projectsApplied.push(el);
+          }
         }
       });
 
       const data = {
         projectsAsCreator: projectsAsCreator,
         projectsAsMember: projectsAsMember,
+        projectsApplied: projectsApplied,
+        projectsHaveApplicants: projectsHaveApplicants,
       };
+
       console.log(data);
 
       res.render("project-views/user-project-view", data);
@@ -229,20 +240,47 @@ projectRouter.get(
   }
 );
 
-// Project / add member to a team
-// projectRouter.post("/add-member/:id", isLoggedIn, (req, res, next) => {
-//   const userIdAdd = req.session.currentUser._id;
-//   const { id } = req.params;
-//   console.log("getting here");
+// Project / applying to a team
+projectRouter.post("/apply/:id", isLoggedIn, (req, res, next) => {
+  const userIdAdd = req.session.currentUser._id;
+  const { id } = req.params;
 
-//   Project.findByIdAndUpdate(id, { team: userIdAdd }) // expected this to add new user to the team object: team.push(`${userIdAdd}`)
-//     .then((data) => {
-//       console.log("typeof", typeof name);
+  Project.findByIdAndUpdate(id, { $push: { applicants: userIdAdd } })
+    .then((data) => {
+      res.redirect(`/project/users/details`);
+    })
+    .catch((err) => console.log(err, "not added to the team"));
+});
 
-//       console.log("added to the team!");
-//       res.redirect(`/project/details/${id}`);
-//     })
-//     .catch((err) => console.log(err, "not added to the team"));
-// });
+// Seeing applications to a project
+projectRouter.get("/applicants/:id", isLoggedIn, (req, res, next) => {
+  const { id } = req.params;
+
+  Project.findById(id)
+    .populate("applicants")
+    .then((projects) => {
+      const projectId = projects._id;
+      const projectIdArr = {projectId: projectId};
+
+      const data = { projects: projects, projectIdArr}
+      console.log("data", data);
+ 
+
+      res.render("project-views/applicants", data);
+    })
+    .catch((err) => console.log(err));
+});
+
+// Accept application to a project
+projectRouter.get(
+  "/users/detail/:idApplicant/accept/:idProject",
+  (req, res, next) => {
+    const { id } = req.params;
+
+    Project.findByIdAndUpdate(id)
+      .then((projToUpdate) => {})
+      .catch((err) => console.log(err));
+  }
+);
 
 module.exports = projectRouter;
