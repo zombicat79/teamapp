@@ -1,5 +1,5 @@
 <h1>EDIT USER</h1>
-<form action='/users/edit/{{userToCheck._id}}' method='POST'>
+<form action='/users/edit/{{userToCheck._id}}' enctype="multipart/form-data" method='POST'>
 
   <label for=''>Username</label>
   <input type='text' value="{{userToCheck.username}}" name='username'>

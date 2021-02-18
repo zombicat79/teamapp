@@ -1,11 +1,13 @@
 <img src="{{selectedUser.profileImage}}" width="80" height="80">
+<p>{{successMessage}}</p>
 <h1>{{selectedUser.username}}</h1>
 <h2>{{selectedUser.location}}</h2>
 <h3>Skills</h3>
 <p>{{selectedUser.skills}}</p>
 <h3>Projects</h3>
-<button><a href="/users/projects/{{selectedUser._id}}">See current projects</a></button>
+<button><a href="/project/users/details">See current projects</a></button>
 <p>{{selectedUser.email}}</p>
 <p>{{selectedUser.phone}}</p>
 
 <button><a href="/users/edit/{{selectedUser._id}}">Edit</a></button>
+<button><a href="/auth/logout">Log out</a></button>

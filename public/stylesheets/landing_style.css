@@ -28,24 +28,8 @@
         margin-right: 10px; 
     }
 
-    /* form {
-        position: fixed;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        right: 17vw;
-        left: 17vw;
-    } */
-
-    form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-    }
-
     form input {
-        margin: 20px;
+        margin: 10px;
     }
 
     #login-form {
