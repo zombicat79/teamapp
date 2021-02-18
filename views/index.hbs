@@ -19,15 +19,13 @@
 
     <button type='submit'>Log in</button>
   </form>
+  <div id="error">
+    {{errorMessage}}
+  </div>
 
   <div id="icon-block">
     <img src="/images/gamer_icon.png">
     <a href="/auth/signup">Don't have an account yet? Create one here!</a>
   </div>
-  {{#if errorMessage}}
-    <div>
-      {{errorMessage}}
-    </div>
-  {{/if}}
 </body>
 
