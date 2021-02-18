@@ -4,6 +4,9 @@
         <div class="project-detail-page-img-div"><img class="project-detail-page-img" src="{{this.project.screenshots}}" ></div>
         <section class="project-detail-page-box">    
             <p>Description: {{this.project.description}}</p>
+            {{#if this.project.playableDemo}}
+            <a href="{{this.project.playableDemo}}">Playable demo</a>
+            {{/if}}
             <p>To start on: {{this.project.startDate}} and released on: {{this.project.releaseDate}}</p>
         </section>
     </div>
@@ -14,7 +17,14 @@
         {{/each}}
     </ul>
     <p>If you feel like you have what it takes to join this project, click here!</p>
-   <div class="project-detail-btn"><form action="/project/apply/{{this.project.id}}" method="post"><button>Apply to this project!</button></form></div>
+   <div class="project-detail-btn">
+       <form action="/project/details/{{this.project.id}}" method="post">
+        <button>Add to favorites</button>
+       </form>
+       <form action="/project/apply/{{this.project.id}}" method="post">
+        <button>Apply to this project!</button>
+       </form>
+    </div>
     <p>The team is based in: {{this.project.location}}</p>
     <p>The creator of this project is: {{this.project.creator.username}}</p>
     <p>List of collaborators involved in this project:</p>

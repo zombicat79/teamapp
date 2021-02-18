@@ -119,7 +119,7 @@ projectRouter.get("/main/:search", isLoggedIn, function (req, res, next) {
   const { search } = req.query;
   console.log(req.query);
 
-  Project.find({ $or: [{ title: search }, { description: search }] })
+  Project.find({ $or: [{ title: search }, { location: search }] })
     .then((matchingProjects) => {
       if (matchingProjects.length === 0) {
         res.render("project-views/project-main", {
@@ -149,16 +149,24 @@ projectRouter.get("/details/:id", isLoggedIn, (req, res, next) => {
 projectRouter.post("/details/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   const currentUser = req.session.currentUser._id;
-  console.log(id)
-  console.log(currentUser)
 
   User.findByIdAndUpdate(currentUser, {$push: {favoriteProjects: id }})
-  .then((updatedUser) => {
-    res.redirect(`/project/details/${id}`)
+  .then((currentUser) => {
+    res.redirect(`/project/favorites/${currentUser._id}`)
   })
   .catch( (err) => console.log(err));
-
 });
+
+projectRouter.post("/favorites/:id", isLoggedIn, function (req, res, next) {
+  const { id } = req.params;
+  const currentUser = req.session.currentUser._id;
+
+  User.findByIdAndUpdate(currentUser, {$pull: {favoriteProjects: id}})
+  .then( (currentUser) => {
+    res.redirect(`/project/favorites/${currentUser._id}`)
+  })
+  .catch( (err) => next(err));
+})
 
 // Logged in user's projects view
 projectRouter.get("/users/details", isLoggedIn, (req, res, next) => {
