@@ -75,36 +75,38 @@ projectRouter.get(
       .catch((err) => console.log("there's a problem", err));
   }
 );
+projectRouter.post(
+  "/edit/:id",
+  fileUploader.single("screenshots"),
+  (req, res, next) => {
+    const { id } = req.params;
+    const {
+      title,
+      description,
+      category,
+      wantedSkills,
+      startDate,
+      releaseDate,
+    } = req.body;
 
-projectRouter.post("/edit/:id", (req, res, next) => {
-  const { id } = req.params;
-  const {
-    title,
-    description,
-    category,
-    wantedSkills,
-    startDate,
-    releaseDate,
-    screenshots,
-  } = req.body;
+    let projectImageUrl = req.file.path;
 
-  console.log(id);
-
-  Project.findByIdAndUpdate(id, {
-    title,
-    description,
-    category,
-    wantedSkills,
-    startDate,
-    releaseDate,
-    screenshots,
-  })
-    .then((project) => {
-      const data = { project: project };
-      res.redirect(`/project/details/${id}`);
+    Project.findByIdAndUpdate(id, {
+      title,
+      description,
+      category,
+      wantedSkills,
+      startDate,
+      releaseDate,
+      screenshots: projectImageUrl,
     })
-    .catch((err) => console.log("err"));
-});
+      .then((project) => {
+        const data = { project: project };
+        res.redirect(`/project/details/${id}`);
+      })
+      .catch((err) => console.log("err"));
+  }
+);
 
 // project / main see all the projects on the platform
 projectRouter.get("/main", isLoggedIn, (req, res, next) => {
@@ -140,12 +142,16 @@ projectRouter.get("/details/:id", isLoggedIn, (req, res, next) => {
     .populate("creator")
     .populate("team")
     .then((project) => {
-      const data = { project };
+      let alreadyApplied= false; 
+      if (project.applicants.includes(req.session.currentUser._id)) {
+        alreadyApplied = true;
+      };
+
+      const data = { project, alreadyApplied };
       res.render("project-views/project-detail", data);
     })
     .catch((err) => console.log(err));
 });
-
 projectRouter.post("/details/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   const currentUser = req.session.currentUser._id;
@@ -266,11 +272,11 @@ projectRouter.get("/applicants/:id", isLoggedIn, (req, res, next) => {
       const data = { project: project, projectId: projectId };
       // res.render("project-views/applicants", data);
 
-            if (project.applicants.length > 0) {
+      if (project.applicants.length > 0) {
         res.render("project-views/applicants", data);
       } else {
         res.render("project-views/applicants", {
-          errorMessage: "No more application"
+          errorMessage: "No more application",
         });
       }
     })
@@ -302,20 +308,17 @@ projectRouter.get("/:idProject/accept/:idApplicant", (req, res, next) => {
 });
 
 // Decline application to a project
-projectRouter.get(
-  "/:idProject/decline/:idApplicant",
-  (req, res, next) => {
-    const { idProject } = req.params;
-    const { idApplicant } = req.params;
+projectRouter.get("/:idProject/decline/:idApplicant", (req, res, next) => {
+  const { idProject } = req.params;
+  const { idApplicant } = req.params;
 
-    // update project model - remove from applicants
-    Project.findByIdAndUpdate(idProject, { $pull: { applicants: idApplicant } })
-      .then((projToUpdate) => {
-        console.log("working");
-        res.redirect(`/project/applicants/${idProject}`);
-      })
-      .catch((err) => console.log("error here1", err));
-  }
-);
+  // update project model - remove from applicants
+  Project.findByIdAndUpdate(idProject, { $pull: { applicants: idApplicant } })
+    .then((projToUpdate) => {
+      console.log("working");
+      res.redirect(`/project/applicants/${idProject}`);
+    })
+    .catch((err) => console.log("error here1", err));
+});
 
 module.exports = projectRouter;
