@@ -149,15 +149,14 @@ projectRouter.get("/details/:id", isLoggedIn, (req, res, next) => {
 projectRouter.post("/details/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   const currentUser = req.session.currentUser._id;
-  console.log(id)
-  console.log(currentUser)
+  console.log(id);
+  console.log(currentUser);
 
-  User.findByIdAndUpdate(currentUser, {$push: {favoriteProjects: id }})
-  .then((updatedUser) => {
-    res.redirect(`/project/details/${id}`)
-  })
-  .catch( (err) => console.log(err));
-
+  User.findByIdAndUpdate(currentUser, { $push: { favoriteProjects: id } })
+    .then((updatedUser) => {
+      res.redirect(`/project/details/${id}`);
+    })
+    .catch((err) => console.log(err));
 });
 
 // Logged in user's projects view
@@ -197,9 +196,6 @@ projectRouter.get("/users/details", isLoggedIn, (req, res, next) => {
         projectsApplied: projectsApplied,
         projectsHaveApplicants: projectsHaveApplicants,
       };
-
-      console.log(data);
-
       res.render("project-views/user-project-view", data);
     })
     .catch((err) => {
@@ -210,16 +206,16 @@ projectRouter.get("/users/details", isLoggedIn, (req, res, next) => {
     });
 });
 
+// Project favorite
 projectRouter.get("/favorites/:id", isLoggedIn, function (req, res, next) {
   const { id } = req.params;
-
   User.findById(id)
-  .populate('favoriteProjects')
-  .then((currentUser) => {
-    res.render("project-views/project-favorites", {currentUser} )
-  })
-  .catch( (err) => next(err))
-})
+    .populate("favoriteProjects")
+    .then((currentUser) => {
+      res.render("project-views/project-favorites", { currentUser });
+    })
+    .catch((err) => next(err));
+});
 
 // Delete a project
 projectRouter.get(
@@ -245,6 +241,13 @@ projectRouter.post("/apply/:id", isLoggedIn, (req, res, next) => {
   const userIdAdd = req.session.currentUser._id;
   const { id } = req.params;
 
+  console.log("project id", id);
+  console.log("user id", userIdAdd);
+
+  User.findByIdAndUpdate(userIdAdd, { $push: { projectsApplied: id } })
+    .then((data) => console.log("data", data))
+    .catch((err) => console.log(err));
+
   Project.findByIdAndUpdate(id, { $push: { applicants: userIdAdd } })
     .then((data) => {
       res.redirect(`/project/users/details`);
@@ -258,28 +261,60 @@ projectRouter.get("/applicants/:id", isLoggedIn, (req, res, next) => {
 
   Project.findById(id)
     .populate("applicants")
-    .then((projects) => {
-      const projectId = projects._id;
-      const projectIdArr = {projectId: projectId};
+    .then((project) => {
+      const projectId = project._id;
+      const data = { project: project, projectId: projectId };
+      // res.render("project-views/applicants", data);
 
-      const data = { projects: projects, projectIdArr}
-      console.log("data", data);
- 
-
-      res.render("project-views/applicants", data);
+            if (project.applicants.length > 0) {
+        res.render("project-views/applicants", data);
+      } else {
+        res.render("project-views/applicants", {
+          errorMessage: "No more application"
+        });
+      }
     })
     .catch((err) => console.log(err));
 });
 
 // Accept application to a project
-projectRouter.get(
-  "/users/detail/:idApplicant/accept/:idProject",
-  (req, res, next) => {
-    const { id } = req.params;
+projectRouter.get("/:idProject/accept/:idApplicant", (req, res, next) => {
+  const { idProject } = req.params;
+  const { idApplicant } = req.params;
 
-    Project.findByIdAndUpdate(id)
-      .then((projToUpdate) => {})
-      .catch((err) => console.log(err));
+  // update project model - remove from applicants
+  Project.findByIdAndUpdate(idProject, { $pull: { applicants: idApplicant } })
+    .then((projToUpdate) => console.log("working"))
+    .catch((err) => console.log("error here1", err));
+
+  // update project model - add to team
+  Project.findByIdAndUpdate(idProject, { $push: { team: idApplicant } })
+    .then((projToUpdate) => console.log("remove from applicants working"))
+    .catch((err) => console.log("error here2", err));
+
+  // update user model - add to projects
+  User.findByIdAndUpdate(idApplicant, { $push: { projects: idProject } })
+    .then((projToUpdate) => {
+      console.log("remove from applicants working");
+      res.redirect(`/project/applicants/${idProject}`);
+    })
+    .catch((err) => console.log("error here3", err));
+});
+
+// Decline application to a project
+projectRouter.get(
+  "/:idProject/decline/:idApplicant",
+  (req, res, next) => {
+    const { idProject } = req.params;
+    const { idApplicant } = req.params;
+
+    // update project model - remove from applicants
+    Project.findByIdAndUpdate(idProject, { $pull: { applicants: idApplicant } })
+      .then((projToUpdate) => {
+        console.log("working");
+        res.redirect(`/project/applicants/${idProject}`);
+      })
+      .catch((err) => console.log("error here1", err));
   }
 );
 

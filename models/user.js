@@ -16,7 +16,7 @@ const userSchema = new Schema ({
   }],
     projects: [{type: Schema.Types.ObjectId, ref: 'Project'}],
     favoriteCreators: [{type: Schema.Types.ObjectId, ref: 'User'}],
-    favoriteProjects: [{type: Schema.Types.ObjectId, ref: 'Project'}]
+    favoriteProjects: [{type: Schema.Types.ObjectId, ref: 'Project'}],
 });
 
 const User = mongoose.model('User', userSchema);
