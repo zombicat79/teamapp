@@ -24,7 +24,8 @@ const projectSchema = new Schema({
     default:
       "https://i.pinimg.com/originals/26/89/90/268990fc1a05a52d8882b28db29e6789.png",
   },
-  applicants: [{ type: Schema.Types.ObjectId, ref: "User" }]
+  applicants: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  playableDemo: String
 });
 
 const Project = mongoose.model("Project", projectSchema);
