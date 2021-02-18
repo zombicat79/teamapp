@@ -3,6 +3,8 @@ const userRouter = express.Router();
 const mongoose = require("mongoose");
 const User = require("./../models/user");
 const { isLoggedIn, isCurrentUser } = require("./../middleware");
+const fileUploader = require("./../configs/cloudinary")
+const path = require("path");
 
 const bcrypt = require("bcrypt");
 
@@ -86,7 +88,7 @@ userRouter.get("/profile", isLoggedIn, function (req, res, next) {
   User.findById(id)
     .then((selectedUser) => {
       res.render("user-views/profile-view", {
-        userToCheck: selectedUser,
+        selectedUser: selectedUser,
         isUsersProfile: true,
       });
     })
@@ -108,7 +110,7 @@ userRouter.get(
   }
 );
 
-userRouter.post("/edit/:id", isLoggedIn, function (req, res, next) {
+userRouter.post("/edit/:id", isLoggedIn, fileUploader.single('image'), function (req, res, next) {
   const { id } = req.params;
   const {
     username,
@@ -124,11 +126,7 @@ userRouter.post("/edit/:id", isLoggedIn, function (req, res, next) {
 
   User.findById(id).then((userToCheck) => {
     let oldPassword = userToCheck.oldPassword;
-    if (
-      password === "" ||
-      newPassword.length === "" ||
-      confirmPassword === ""
-    ) {
+    if (password !== "" && (newPassword.length === "" || confirmPassword === "")) {
       res.render("user-views/edit-user", {
         errorMessage: "Something went wrong. Please try again.",
         userToCheck,
@@ -136,7 +134,7 @@ userRouter.post("/edit/:id", isLoggedIn, function (req, res, next) {
       return;
     }
 
-    if (password !== oldPassword) {
+    if (password !== "" && password !== oldPassword) {
       res.render("user-views/edit-user", {
         errorMessage: "Something went wrong. Please try again.",
         userToCheck,
@@ -155,22 +153,47 @@ userRouter.post("/edit/:id", isLoggedIn, function (req, res, next) {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(newPassword, salt);
 
-    User.findByIdAndUpdate(id, {
-      username,
-      email,
-      phone,
-      profileImage,
-      password: hashedPassword,
-      newPassword: "x",
-      confirmPassword,
-      oldPassword: newPassword,
-      location,
-      skills,
-    })
-      .then((selectedUser) => {
-        res.redirect(`/users/profile/${selectedUser._id}`);
+    const imageUrl = req.file.path;
+
+    if (password === "" && newPassword === "" && confirmPassword === "") {
+      User.findByIdAndUpdate(id, {
+        username,
+        email,
+        phone,
+        profileImage: imageUrl,
+        location,
+        skills,
       })
-      .catch((err) => next(err));
+        .then((selectedUser) => {
+          res.redirect(`/users/profile/`)
+        })
+        .catch((err) => next(err));
+    }
+    else if (password !== "" && newPassword === confirmPassword) {
+      User.findByIdAndUpdate(id, {
+        username,
+        email,
+        phone,
+        profileImage: imageUrl,
+        password: hashedPassword,
+        newPassword: "x",
+        confirmPassword,
+        oldPassword: newPassword,
+        location,
+        skills,
+      })
+        .then((selectedUser) => {
+          res.redirect(`/users/profile/`)
+        })
+        .catch((err) => next(err));
+    }
+    else {
+      res.render("user-views/edit-user", {
+        errorMessage: "Something went wrong. Please try again.",
+        userToCheck,
+      });
+      return;
+    }
   });
 });
 
