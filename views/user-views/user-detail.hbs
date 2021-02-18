@@ -9,5 +9,11 @@
 <p>{{selectedUser.phone}}</p>
 
 <form action='/users/detail/{{selectedUser._id}}' method='POST'>
+
+  {{#if alreadyFav}}
+      <p>{{selectedUser.username}} is part of your favorites. </p>
+  {{else}}
   <button id="favorite-button" type='submit'>Add to favorites</button>
+  {{/if}}
+
 </form>

@@ -19,12 +19,12 @@ userRouter.get("/favorites/:id", isLoggedIn, function (req, res, next) {
   const { id } = req.params;
 
   User.findById(id)
-  .populate('favoriteCreators')
-  .then((currentUser) => {
-    res.render("user-views/user-favorites", {currentUser} )
-  })
-  .catch( (err) => next(err))
-})
+    .populate("favoriteCreators")
+    .then((currentUser) => {
+      res.render("user-views/user-favorites", { currentUser });
+    })
+    .catch((err) => next(err));
+});
 
 userRouter.get("/main/:search", isLoggedIn, function (req, res, next) {
   const { search } = req.query;
@@ -51,10 +51,20 @@ userRouter.get("/main/:search", isLoggedIn, function (req, res, next) {
 
 userRouter.get("/detail/:id", isLoggedIn, function (req, res, next) {
   const { id } = req.params;
+  let alreadyFav =false; 
+
+  User.findById(req.session.currentUser._id)
+    .then((data) => {
+      if(data.favoriteCreators.includes(id)){
+        alreadyFav = true; 
+      }
+
+    })
+    .catch((err) => console.log(err));
 
   User.findById(id)
     .then((selectedUser) => {
-      res.render("user-views/user-detail", { selectedUser });
+      res.render("user-views/user-detail", { selectedUser, alreadyFav });
     })
     .catch((err) => next(err));
 });
@@ -63,12 +73,12 @@ userRouter.post("/detail/:id", isLoggedIn, function (req, res, next) {
   const { id } = req.params;
   const currentUser = req.session.currentUser._id;
 
-  User.findByIdAndUpdate(currentUser, {$push: {favoriteCreators: id }})
-  .then( (updatedUser) => {
-    res.redirect(`/users/detail/${id}`)
-  })
-  .catch( (err) => next(err));
-})
+  User.findByIdAndUpdate(currentUser, { $push: { favoriteCreators: id } })
+    .then((updatedUser) => {
+      res.redirect(`/users/detail/${id}`);
+    })
+    .catch((err) => next(err));
+});
 
 userRouter.get("/profile", isLoggedIn, function (req, res, next) {
   const id = req.session.currentUser._id;
