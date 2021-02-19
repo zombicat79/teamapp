@@ -1,3 +1,4 @@
+
 <form action='/project/main/:search' method='GET'>
 <div class="search-bar-box">
   <input type='text' name='search' placeholder="Search for a project" class="search-bar">
@@ -6,17 +7,18 @@
 </form>
 <div class="project-card-box">
     {{#each project}}
-        <div class="project-card">
+        <div class="creator-card">
             <h2>{{this.title}}</h2>
             <p>{{this.description}}</p>
             <button class="see-more-btn"><a href="/project/details/{{this.id}}">See More</a></button>
         </div>
     {{/each}}
 </div>
+
+<div class="remove-filters-div"><button class="remove-filters"><a href="/project/main">Remove filters</a></button></div>
 <div class="project-card-box">
     {{#each matchingProjects}}
-        <button><a href="/project/main">Remove filters</a></button>
-        <div class="project-card">
+        <div class="creator-card">
             <h2>{{this.title}}</h2>
             <p>{{this.description}}</p>
             <button class="see-more-btn"><a href="/project/details/{{this.id}}">See More</a></button>

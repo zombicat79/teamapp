@@ -1,34 +1,41 @@
 <form action='/users/main/:search' method='GET'>
-  <label for=''>Look for amazing collaborators</label>
-  <input type='text' name='search'>
+<div class="search-bar-box">
+  <input type='text' name='search' placeholder="Look for collaborators" class="search-bar">
+  <button type='submit' class="search-bar-btn">Search</button>
+</div>
 
-  <button type='submit'>Search</button>
 </form>
-<div>
+<div class="user-main-main">
 {{#each allUsers}}
-    <img src="{{this.profileImage}}" width="80" height="80">
-    <ul>
-        <li>{{this.username}}</li>
-        <li>{{this.location}}</li>
-        <li>SKILLS: {{this.skills}}</li>
-        {{#each this.projects}}
-        <li>PROJECTS: {{this.title}}</li>
-        {{/each}}
-    </ul>
-    <button><a href="/users/detail/{{this._id}}">See full details</a></button>
+    <div class="user-card">
+        <img src="{{this.profileImage}}" class="team-members-img">
+        <ul>
+            <li>{{this.username}}</li>
+            <li>{{this.location}}</li>
+            <li><strong>Skills: </strong>{{#each this.skills}}{{this}}, {{/each}}</li>
+            <li><strong>Projects: </strong>{{#each this.projects}}{{this.title}},  {{/each}}</li>
+        </ul>
+        <button class="full-details-btn"><a href="/users/detail/{{this._id}}">See full details</a></button>
+    </div>
 {{/each}}
 </div>
-<div>
-<button type="button"><a href="/users/main">Remove filters</a></button>
-{{#each matchingUsers}}
-    <img src="{{this.profileImage}}" width="80" height="80">
-    <ul>
-        <li>{{this.username}}</li>
-        <li>{{this.location}}</li>
-        <li>SKILLS: {{ this.skills}}</li>
-        <li>PROJECTS: {{this.projects}}</li>
-    </ul>
-    <button><a href="/users/detail/{{this._id}}">See full details</a></button>
-{{/each}}
+
+
+<div class="user-main-main">
+   <div class="remove-filters-div remove-filters-div2"><button type="button" class="remove-filters"><a href="/users/main">Remove filters</a></button></div>
+
+    {{#each matchingUsers}}
+        <div class="user-card">
+            <img src="{{this.profileImage}}" class="team-members-img">
+            <ul>
+                <li>{{this.username}}</li>
+                <li>{{this.location}}</li>
+                <li><strong>Skills: </strong>{{#each this.skills}}{{this}}, {{/each}}</li>
+                <li><strong>Projects: </strong>{{#each this.projects}}{{this.title}},  {{/each}}</li>
+            </ul>
+            <button class="full-details-btn"><a href="/users/detail/{{this._id}}">See full details</a></button>
+        </div>
+    {{/each}}
 </div>
+
 <p>{{errorMessage}}</p>

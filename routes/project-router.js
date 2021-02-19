@@ -14,7 +14,6 @@ const fileUploader = require("./../configs/cloudinary");
 // create project views
 projectRouter.get("/create", isLoggedIn, (req, res, next) => {
   res.render("project-views/create-project");
-  console.log("req.session.currentUser._id :>> ", req.session.currentUser._id);
 });
 projectRouter.post(
   "/create/",
@@ -142,10 +141,10 @@ projectRouter.get("/details/:id", isLoggedIn, (req, res, next) => {
     .populate("creator")
     .populate("team")
     .then((project) => {
-      let alreadyApplied= false; 
+      let alreadyApplied = false;
       if (project.applicants.includes(req.session.currentUser._id)) {
         alreadyApplied = true;
-      };
+      }
 
       const data = { project, alreadyApplied };
       res.render("project-views/project-detail", data);
@@ -156,23 +155,23 @@ projectRouter.post("/details/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   const currentUser = req.session.currentUser._id;
 
-  User.findByIdAndUpdate(currentUser, {$push: {favoriteProjects: id }})
-  .then((currentUser) => {
-    res.redirect(`/project/favorites/${currentUser._id}`)
-  })
-  .catch( (err) => console.log(err));
+  User.findByIdAndUpdate(currentUser, { $push: { favoriteProjects: id } })
+    .then((currentUser) => {
+      res.redirect(`/project/favorites/${currentUser._id}`);
+    })
+    .catch((err) => console.log(err));
 });
 
 projectRouter.post("/favorites/:id", isLoggedIn, function (req, res, next) {
   const { id } = req.params;
   const currentUser = req.session.currentUser._id;
 
-  User.findByIdAndUpdate(currentUser, {$pull: {favoriteProjects: id}})
-  .then( (currentUser) => {
-    res.redirect(`/project/favorites/${currentUser._id}`)
-  })
-  .catch( (err) => next(err));
-})
+  User.findByIdAndUpdate(currentUser, { $pull: { favoriteProjects: id } })
+    .then((currentUser) => {
+      res.redirect(`/project/favorites/${currentUser._id}`);
+    })
+    .catch((err) => next(err));
+});
 
 // Logged in user's projects view
 projectRouter.get("/users/details", isLoggedIn, (req, res, next) => {
@@ -328,6 +327,20 @@ projectRouter.get("/:idProject/decline/:idApplicant", (req, res, next) => {
       res.redirect(`/project/applicants/${idProject}`);
     })
     .catch((err) => console.log("error here1", err));
+});
+
+// Remove application to a project
+projectRouter.get("/application/remove/:id", (req, res, next) => {
+  const { id } = req.params;
+
+  Project.findByIdAndUpdate(id, {
+    $pull: { applicants: req.session.currentUser._id },
+  })
+    .then((data) => {
+      res.redirect(`/project/details/${id}`);
+      console.log(data);
+    })
+    .catch((err) => console.log(err));
 });
 
 module.exports = projectRouter;

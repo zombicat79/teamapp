@@ -1,20 +1,34 @@
-<img src="{{selectedUser.profileImage}}" width="200" height="200">
-<h1>{{selectedUser.username}}</h1>
-<h2>{{selectedUser.location}}</h2>
-<h3>Skills</h3>
-<p>{{selectedUser.skills}}</p>
-<h3>Projects</h3>
-<button><a href="/users/projects/{{selectedUser._id}}">See current projects</a></button>
-<p>{{selectedUser.email}}</p>
-<p>{{selectedUser.phone}}</p>
 
-<form action='/users/detail/{{selectedUser._id}}' method='POST'>
+<div class="user-profile-main">
 
-  {{#if alreadyFav}}
-      <p>{{selectedUser.username}} is part of your favorites. </p>
-  {{else}}
-  <button id="favorite-button" type='submit'>Add to favorites</button>
-  {{/if}}
+  <div class="user-profile-div">
+    <img src="{{selectedUser.profileImage}}" class="profile-view-img">
+    <div class="user-profile-div-info">
+      <h1>{{selectedUser.username}}</h1>
+      <p>{{selectedUser.location}}</p>
+      <h3>Skills</h3>
+      {{#each selectedUser.skills}}
+      <ul>
+        <li>{{this}}</li>
+      </ul>
+      <p>{{/each}}</p>
+    </div>
 
-</form>
-<button><a href="/users/main">Back to all creators</a></button>
+  </div>
+
+  <div class="display-flex"><button class="see-current-projects"><a href="/users/projects/{{selectedUser._id}}">See current projects</a></button></div>
+  <p><strong>Email: </strong>{{selectedUser.email}}</p>
+  <p><strong>Phone: </strong>{{selectedUser.phone}}</p>
+
+  <form action='/users/detail/{{selectedUser._id}}' method='POST'>
+
+    {{#if alreadyFav}}
+        <p>{{selectedUser.username}} is part of your favorites. </p>
+    {{else}}
+    <div class="display-flex"><button id="favorite-button" type='submit'>Add to favorites</button></div>
+    {{/if}}
+
+  </form>
+  <div class="display-flex"><button class="back-to-creators-btn"><a href="/users/main">Back to all creators</a></button></div>
+
+</div>

@@ -22,13 +22,6 @@
     justify-content: center;
   }
 
-  .form-entry {
-    margin-top: 75px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
   .form-title {
     font-size: 4em;
     text-align: center;
@@ -125,7 +118,7 @@
   }
 
   .project-card {
-    border: solid rgb(134, 212, 17) 10px;
+    border: solid rgba(62, 9, 121, 1) 10px;
     margin: 25px;
     padding: 25px;
     max-width: 300px;
@@ -137,40 +130,23 @@
     flex-wrap: wrap;
   }
 
-  .project-card:hover {
-    -webkit-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
-    -moz-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
-    box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+  .project-card:hover,
+  .box {
+    -webkit-box-shadow: 6px 17px 33px -8px rgba(62, 9, 121, 1);
+    -moz-box-shadow: 6px 17px 33px -8px rgba(62, 9, 121, 1);
+    box-shadow: 6px 17px 33px -8px rgba(62, 9, 121, 1);
+    transition: 0.1s;
+  }
+
+  .box:hover {
+    -webkit-box-shadow: 15px 11px 33px -5px rgba(62, 9, 121, 1);
+    -moz-box-shadow: 15px 11px 33px -5px rgba(62, 9, 121, 1);
+    box-shadow: 15px 11px 33px -5px rgba(62, 9, 121, 1);
     transition: 0.1s;
   }
 
   h2 {
     font-size: 4rem;
-  }
-
-  .checkbox-styling {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    font-size: 2.5rem;
-    justify-content: space-between;
-  }
-
-  .checkbox-styling {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    font-size: 2.5rem;
-    justify-content: space-between;
-  }
-
-  .checkbox-and-title {
-    border: 1px grey dashed;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5px;
   }
 
   /*/project/users/details*/
@@ -245,24 +221,40 @@
     margin-top: 100px;
   }
 
-  .display-flex {
+  .display-flex,
+  .btn-centered {
     display: flex;
     justify-content: center;
   }
 
-  .edit-delete-btn {
+  .edit-delete-btn,
+  .see-more-btn,
+  .remove-filters,
+  .full-details-btn, 
+  .change-btn {
+    margin-top: 10px;
     border: solid 5px rgba(62, 9, 121, 1);
     border-radius: 20px;
     padding: 10px 25px;
     background-color: white;
   }
+
+  .project-view-btns-second {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .edit-delete-btn > a,
-  .project-full-btn > a {
+  .project-full-btn > a,
+  .full-details-btn > a {
     font-size: 1.1rem;
     text-decoration: none;
   }
 
-  .project-full-btn:hover {
+  .project-full-btn:hover,
+  .full-details-btn:hover, 
+  .change-btn:hover {
     -webkit-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
     -moz-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
     box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
@@ -292,12 +284,24 @@
 
   /* Main project page  */
   .search-bar-btn {
+    transition: 0.3s;
     border-radius: 20px;
     font-size: 1.5rem;
     padding: 5px;
     padding-left: 25px;
     padding-right: 25px;
     margin-left: 5px;
+    border: solid 5px rgba(62, 9, 121, 1);
+    border-radius: 20px;
+    padding: 10px 25px;
+    background-color: rgba(62, 9, 121, 1);
+    color: white;
+  }
+
+  .search-bar-btn:hover {
+    background-color: white;
+    color: rgba(62, 9, 121, 1);
+    transition: 0.2s;
   }
 
   .search-bar {
@@ -305,6 +309,10 @@
     border-radius: 20px;
     padding-left: 25px;
     padding-right: 25px;
+    border: solid 5px rgba(62, 9, 121, 1);
+    border-radius: 20px;
+    padding: 10px 25px;
+    background-color: white;
   }
 
   .search-bar-box {
@@ -314,23 +322,34 @@
   }
 
   .see-more-btn {
-    font-size: 1.5em;
-    text-align: center;
-    padding: 35px 60px;
-    margin: 25px 0px;
-    border: solid #9129d5 10px;
-    border-top: 0px;
-    border-left: 0px;
-    border-radius: 20px;
-    background-color: white;
+    font-size: 1.5rem;
+  }
+
+  .see-more-btn > a {
     text-decoration: none;
   }
 
-  .see-more-btn:hover {
+  .see-more-btn:hover,
+  .remove-filters-div > button:hover {
     -webkit-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
     -moz-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
     box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
     transition: 0.1s;
+  }
+
+  .project-card-box > .creator-card > h2 {
+    font-size: 3rem;
+  }
+
+  .remove-filters > a {
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .remove-filters-div {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
   }
 
   /* Project Detail Page */
@@ -338,9 +357,16 @@
     text-align: center;
   }
 
+  .display-flex-project-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .project-detail-page-img {
-    max-height: 150px;
+    max-height: 200px;
     width: auto;
+    border-radius: 5px;
   }
 
   .project-detail-page-img-div {
@@ -392,22 +418,62 @@
     margin-right: 75px;
   }
 
-  .project-detail-btn {
-    margin-top: 40px;
-    margin-bottom: 25px;
+  .project-detail-div {
     text-align: center;
   }
 
+  .project-detail-div > button {
+    margin-bottom: 25px;
+    text-align: center;
+    margin-top: 10px;
+    border: solid 5px rgba(62, 9, 121, 1);
+    border-radius: 20px;
+    padding: 10px 25px;
+    background-color: white;
+    font-size: 1.2rem;
+  }
+
+  .project-detail-div > form > button,
+  .see-current-projects,
+  .back-to-creators-btn,
+  #favorite-button {
+    margin-bottom: 25px;
+    text-align: center;
+    margin-top: 10px;
+    border: solid 5px rgba(62, 9, 121, 1);
+    border-radius: 20px;
+    padding: 10px 25px;
+    background-color: white;
+    font-size: 1.2rem;
+  }
+
+  .project-detail-div > button > a,
+  .see-current-projects > a {
+    text-decoration: none;
+  }
+
+  .project-detail-div > button:hover,
+  .project-detail-div > form > button:hover,
+  .see-current-projects:hover,
+  .back-to-creators-btn:hover,
+  #favorite-button:hover {
+    -webkit-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    -moz-box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    box-shadow: 6px 11px 33px -8px rgba(62, 9, 121, 1);
+    transition: 0.4s;
+  }
+
   .project-creator-box {
+    background-color: white;
     display: flex;
     flex-direction: row;
-    max-height: 150px;
-    width: 150px;
-    justify-content: center;
     align-items: center;
-    border: solid lightgray 5px;
-    border-radius: 50px;
-    padding-bottom: 10px;
+  }
+  .project-creator-box > a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0px 25px 0px 15px;
   }
 
   .project-creator-sect {
@@ -455,6 +521,120 @@
 .profile-view-btn > a {
   text-decoration: none;
   font-size: 1.5rem;
+}
+
+/* other user profile view */
+.user-profile-main {
+  max-width: 600px;
+}
+
+.user-profile-div {
+  display: flex;
+  align-items: center;
+}
+
+.user-profile-main {
+}
+
+.user-profile-div-info {
+  margin-left: 25px;
+}
+
+/* User main view  */
+.user-card {
+  border: solid rgba(62, 9, 121, 1) 10px;
+  margin: 25px;
+  padding: 25px;
+  width: 250px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-main-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.remove-filters-div2 {
+  margin-right: 300px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Favorite users */
+.favorite-main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* main */
+.box {
+  height: 250px;
+  width: 300px;
+  margin: 25px;
+  border-radius: 25px;
+  background-image: url("/images/landing_background.jpg");
+}
+
+.box > a {
+  font-size: 4rem;
+  color: white;
+  text-decoration: none;
+}
+
+/* edit profile */
+.field-input-div {
+  margin: 15px;
+}
+
+.field-input {
+  font-size: 1.5rem;
+  border-radius: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border: solid 5px rgba(62, 9, 121, 1);
+  border-radius: 20px;
+  padding: 10px 25px;
+  background-color: white;
+  font-size: 1rem;
+  margin-left: 20px;
+}
+
+.checkbox-and-title {
+  border: solid 5px rgba(62, 9, 121, 1);
+  border-radius: 20px;
+  width: 100px;
+  height: 80px;
+  margin: 10px;
+  padding: 5px;
+  font-size: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.checkbox-styling {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-entry {
+  margin-top: 75px;
+  margin-bottom: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 @media screen and (max-width: 450px) {

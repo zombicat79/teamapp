@@ -1,17 +1,23 @@
 <div>
-  <h1>FAVORITE CREATORS</h1>
-  <button type="button"><a href="/users/main">Go back</a></button>
+  <h1>Your favorite creators</h1>
+  <div class="btn-centered"><button type="button" class="full-details-btn"><a href="/users/main">Go back</a></button></div>
+  <div class="user-main-main">
     {{#each currentUser.favoriteCreators}}
-      <img src="{{this.profileImage}}" width="80" height="80">
-      <ul>
-          <li>{{this.username}}</li>
-          <li>{{this.location}}</li>
-          <li>SKILLS: {{ this.skills}}</li>
-          <li>PROJECTS: {{this.projects}}</li>
-      </ul>
-      <button><a href="/users/detail/{{this._id}}">See full details</a></button>
-      <form action="/users/favorites/{{this._id}}" method="post">
-        <button type="submit">Remove</button>
-      </form>
+      <div class="user-card">
+        <img src="{{this.profileImage}}" class="team-members-img">
+        <ul>
+            <li>{{this.username}}</li>
+            <li>{{this.location}}</li>
+            <li><strong>Skills: </strong>{{#each this.skills}}{{this}}, {{/each}}</li>
+            <li><strong>Projects: </strong>{{#each this.projects}}{{this.title}},  {{/each}}</li>
+        </ul>
+        <button class="full-details-btn"><a href="/users/detail/{{this._id}}">See full details</a></button>
+        <form action="/users/favorites/{{this._id}}" method="post">
+          <button type="submit" class="full-details-btn">Remove</button>
+        </form>
+      </div>
     {{/each}}
+  </div>
 </div>
+
+

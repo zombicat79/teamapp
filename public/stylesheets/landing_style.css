@@ -1,113 +1,257 @@
-@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap");
 
-@media screen and (max-width: 450px) { 
+* {
+  font-family: "Jura", sans-serif;
+}
 
-    body {
-        background-image: url("./../images/landing_background.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
+@media screen and (min-width: 451px) {
+  body {
+    background-image: url("/images/landing_background.jpg");
+    background-size: cover;
+    color: white;
+  }
+
+  .form-signup {
+    max-width: 900px;
+  }
+
+  .create-user,
+  .btn-centered {
+    display: flex;
+    justify-content: center;
+    font-size: large;
+  }
+
+  .field-input-div {
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .field-input {
+    font-size: 1.5rem;
+    border-radius: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border: solid 5px rgba(62, 9, 121, 1);
+    border-radius: 20px;
+    padding: 10px 25px;
+    background-color: white;
+    font-size: 1rem;
+    margin-left: 20px;
+  }
+
+  .checkbox-and-title {
+    border: solid 5px white;
+    border-radius: 20px;
+    width: 100px;
+    height: 80px;
+    margin: 10px;
+    padding: 5px;
+    font-size: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  #checkbox-styling {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .form-entry {
+    margin-top: 75px;
+    margin-bottom: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .change-btn {
+    margin-top: 10px;
+    border: solid 5px rgba(62, 9, 121, 1);
+    border-radius: 20px;
+    padding: 10px 25px;
+    background-color: white;
+    font-size: 3rem;
+  }
+
+  button {
+    color: white;
+    background-color: red;
+    font-family: "Jura", sans-serif;
+    border: 5px solid purple;
+    margin-top: 5px;
+    height: 50px;
+  }
+
+  /* Login page */
+
+  #title {
+  }
+
+  h1 {
+    color: white;
+    font-size: 4rem;
+  }
+
+  #motto {
+    text-align: center;
+  }
+
+  form input {
+    margin: 10px;
+  }
+
+  .img-gamer-centered,
+  .login-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+  }
+
+  .login-btn-div {
+    border-radius: 20px;
+    padding: 15px 35px;
+  }
+
+  #login-form input {
+    border-radius: 20px;
+    background-color: rgb(169, 169, 169, 0.5);
+    border: 1px solid purple;
+    height: 50px;
+  }
+
+  .input-fields-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  body {
+    background-image: url("./../images/landing_background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  #title {
+    position: fixed;
+    width: 80%;
+    left: 10vw;
+    top: 10vw;
+  }
+
+  h1 {
+    color: white;
+    font-size: 15px;
+    font-family: "Jura", sans-serif;
+  }
+
+  #motto {
+    position: fixed;
+    top: 20vw;
+    text-align: center;
+    margin-right: 10px;
+  }
+
+  form input {
+    margin: 10px;
+  }
+
+  #login-form {
+    position: fixed;
+    top: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    right: 17vw;
+    left: 17vw;
+  }
+
+  #login-form label {
+    color: white;
+    font-family: "Jura", sans-serif;
+    text-align: center;
+  }
+
+  #login-form input {
+    border-radius: 20px;
+    background-color: rgb(169, 169, 169, 0.5);
+    border: 1px solid purple;
+    height: 50px;
+  }
+
+  button {
+    color: white;
+    background-color: red;
+    font-family: "Jura", sans-serif;
+    border: 5px solid purple;
+    margin-top: 5px;
+    height: 50px;
+  }
+
+  #error {
+    font-family: "Jura", sans-serif;
+    text-align: center;
+    position: fixed;
+    top: 40vw;
+    left: 9vw;
+    color: red;
+    font-weight: 800;
+  }
+
+  #icon-block {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 20vw;
+    top: 110vw;
+  }
+
+  @keyframes opening {
+    0% {
+      height: 0px;
     }
-
-    #title {
-        position: fixed;
-        width: 80%;
-        left: 10vw;
-        top: 10vw;
+    50% {
+      height: 180px;
     }
-
-    h1 {
-        color: white;
-        font-size: 15px;
-        font-family: 'Jura', sans-serif;
+    100% {
+      height: 150px;
     }
+  }
 
-    #motto {
-        position: fixed;
-        top: 20vw;
-        text-align: center;
-        margin-right: 10px; 
-    }
+  #icon-block img {
+    width: 80%;
+    animation-name: opening;
+    animation-duration: 2s;
+  }
 
-    form input {
-        margin: 10px;
-    }
+  #icon-block a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    margin-right: 60px;
+    font-family: "Jura", sans-serif;
+    background-color: rgb(169, 169, 169, 0.3);
+  }
 
-    #login-form {
-        position: fixed;
-        top: 50vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        right: 17vw;
-        left: 17vw;
-    }
+  /* --- --- */
 
-    #login-form label {
-        color: white;
-        font-family: 'Jura', sans-serif;
-        text-align: center;
-    }
-
-    #login-form input {
-        border-radius: 20px;
-        background-color: rgb(169, 169, 169, 0.5);
-        border: 1px solid purple;
-        height: 50px;
-    }
-
-    button {
-        color: white;
-        background-color: red;
-        font-family: 'Jura', sans-serif;
-        border: 5px solid purple;
-        margin-top: 5px;
-        height: 50px;
-    }
-
-    #error {
-        font-family: 'Jura', sans-serif;
-        text-align: center;
-        position: fixed;
-        top: 40vw;
-        left: 9vw;
-        color: red;
-        font-weight: 800;
-    }
-
-    #icon-block {
-        position: fixed;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        left: 20vw;
-        top: 110vw;
-    }
-
-    @keyframes opening {
-        0% {height: 0px;}
-        50% {height: 180px;}
-        100% {height: 150px;}
-    }
-
-    #icon-block img {
-        width: 80%;
-        animation-name: opening;
-        animation-duration: 2s;
-    }
-
-    #icon-block a {
-        color: white;
-        text-decoration: none;
-        text-align: center;
-        margin-right: 60px;
-        font-family: 'Jura', sans-serif;
-        background-color: rgb(169, 169, 169, 0.3);
-    }
-
-    /* --- --- */
-
-    #checkbox-styling {
-        display: flex;
-        flex-wrap: wrap;
-    }
+  #checkbox-styling {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }

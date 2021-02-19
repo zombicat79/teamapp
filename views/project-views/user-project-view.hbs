@@ -53,11 +53,11 @@
                 <img class="img-project-view" src="{{this.screenshots}}">
                 <h2 class="title-project-view">{{this.title}}</h2>
                 <p>{{this.description}}</p>
-                <div class="project-view-btns">
+                <div class="project-view-btns-second">
                     <button class="edit-delete-btn"><a href="/project/details/{{this.id}}">See full project</a></button>
                     <button class="edit-delete-btn"><a href="/project/applicants/{{this.id}}">See applications</a></button>
+                    <button class="project-full-btn"><a href="/project/details/{{this.id}}">view project</a></button>
                 </div>
-                <button class="project-full-btn"><a href="/project/details/{{this.id}}">view project</a></button>
                 
             </div>
         {{/each}}
