@@ -8,59 +8,59 @@
 </head>
 <body>
   <form action='/auth/signup' class="form-signup" enctype="multipart/form-data" method='POST'>
-  <div class="create-user"><h1>CREATE USER</h1></div>
+  <div class="create-user"><h1>SIGN UP</h1></div>
     <div class="field-input-div">
-        <label class="create-field-input" for=''>Username</label>
-        <input class="field-input" type='text' name='username' value="{{username}}">
+        <label class="create-field-input form-label" for=''>Username</label>
+        <input class="field-input form-input" type='text' name='username' value="{{username}}">
     </div>
     <div class="field-input-div">
-        <label class="create-field-input" for=''>Email</label>
-        <input class="field-input" type='email' name='email' value="{{email}}">
+        <label class="create-field-input form-label" for=''>Email</label>
+        <input class="field-input form-input" type='email' name='email' value="{{email}}">
     </div>
     <div class="field-input-div">
-        <label class="create-field-input" for=''>Phone</label>
-        <input class="field-input" type='text' name='phone' value="{{phone}}">
+        <label class="create-field-input form-label" for=''>Phone</label>
+        <input class="field-input form-input" type='text' name='phone' value="{{phone}}">
     </div>
     <div class="field-input-div">
-        <label class="create-field-input" for=''>Image</label>
-        <input class="field-input" type='file' name='image' value="{{image}}">
+        <label class="create-field-input form-label" for=''>Image</label>
+        <input class="field-input form-input" type='file' name='image' value="{{image}}">
     </div>
     <div class="field-input-div">
-        <label class="create-field-input" for=''>Location</label>
-        <input class="field-input" type='text' name='location' value="{{location}}">
+        <label class="create-field-input form-label" for=''>Location</label>
+        <input class="field-input form-input" type='text' name='location' value="{{location}}">
     </div>
 
     <div class="form-entry">
-        <label class="create-field-input" for='' class="form-title">Skills</label>
+        <label id="skills-label" class="create-field-input form-label" for='' class="form-title">Skills</label>
         </br>
         <div id="checkbox-styling">
-          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="2D Graphics"><span>2D Graphics</span></div>
-          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="3D Graphics"><span>3D Graphics</span></div>
-          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Unity"><span>Unity</span></div>
-          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Scriptwriting"><span>Scriptwriting</span></div>
-          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Pixel Art"><span>Pixel Art</span></div>
-          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Music Composition"><span>Music Composition</span></div>
-          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Sound Engineering"><span>Sound Engineering</span></div>
-          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="C++"><span>C++</span></div>
-          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Javascript"><span>Javascript</span></div>
-          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="HTML & CSS"><span>HTML and CSS</span></div>
-          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Project Management"><span>Project Management</span></div>
-          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Conceptual Design"><span>Conceptual Design</span></div>
-          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Beta Testing"><span>Beta Testing</span></div>
+          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="2D Graphics"><span class="span-style">2D Graphics</span></div>
+          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="3D Graphics"><span class="span-style">3D Graphics</span></div>
+          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Unity"><span class="span-style">Unity</span></div>
+          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Scriptwriting"><span class="span-style">Scriptwriting</span></div>
+          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Pixel Art"><span class="span-style">Pixel Art</span></div>
+          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Music Composition"><span class="span-style">Music Composition</span></div>
+          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Sound Engineering"><span class="span-style">Sound Engineering</span></div>
+          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="C++"><span class="span-style">C++</span></div>
+          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Javascript"><span class="span-style">Javascript</span></div>
+          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="HTML & CSS"><span class="span-style">HTML and CSS</span></div>
+          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Project Management"><span class="span-style">Project Management</span></div>
+          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Conceptual Design"><span class="span-style">Conceptual Design</span></div>
+          <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Beta Testing"><span class="span-style">Beta Testing</span></div>
         </div>
     </div>
 
     <div class="field-input-div">
-        <label class="create-field-input" for=''>Password</label>
-        <input class="field-input" type='password' name='password'>
+        <label class="create-field-input form-label" for=''>Password</label>
+        <input class="field-input form-input" type='password' name='password'>
     </div>
 
     <div class="field-input-div">
-        <label class="create-field-input" for=''>Confirm password</label>
-        <input class="field-input" type='password' name='confirmPassword'>
+        <label class="create-field-input form-label" for=''>Confirm password</label>
+        <input class="field-input form-input" type='password' name='confirmPassword'>
     </div>
 
-    <div class="btn-centered-2"><button class="change-btn-2" type='submit'>Create Account</button></div>
+    <div class="btn-centered-2"><button class="change-btn-2" type='submit'>CREATE ACCOUNT</button></div>
   
   </form>
   <p>{{errorMessage}}</p>

@@ -638,6 +638,9 @@
 }
 
 @media screen and (max-width: 450px) {
+  
+  /* --- main view --- */
+  
   body {
     background-color: white;
   }
@@ -646,7 +649,7 @@
     background-color: white;
     width: 100%;
     margin-top: 120px;
-    margin-bottom: 120px;
+    margin-bottom: 160px;
   }
 
   .header-img {
@@ -701,8 +704,8 @@
     border-radius: 20px;
   }
 
-  a {
-    color: blue;
+  .box a {
+    color: white;
     font-family: "Jura", sans-serif;
     text-decoration: none;
     font-size: 25px;
@@ -745,5 +748,30 @@
     width: 15%;
     left: 75vw;
     bottom: 1.5vw;
+  }
+
+  /* --- profile view --- */
+
+  .profile-view-box {
+    position: relative;
+    left: 28vw;
+    top: 20vw;
+  }
+
+  .profile-view-info h1 {
+    position: relative;
+    right: 15vw;
+    top: -20vw;
+  }
+
+  #profile-img {
+    position: absolute;
+    right: 15vw;
+    left: 10vw;
+    top: -3vw;
+  }
+
+  .profile-view-btn {
+
   }
 }
