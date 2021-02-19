@@ -7,16 +7,19 @@
                 <p>Based in {{this.location}}</p>
 
                 <p>Skills:</p>
+                
                 {{#each this.skills}}
-                <li>{{this}}</li>
+                <li class="list-skills-applicants">{{this}}</li>
                 {{/each}}
 
-                <a href="/users/projects/{{this._id}}">See current projects</a>
-                <a href="/users/detail/{{this._id}}">See full profile</a>
-                <a href="/project/{{../projectId}}/accept/{{this._id}}"/>Accept in the Team</a>
-                <a href="/project/{{../projectId}}/decline/{{this._id}}">Decline application</a>
+                <div class="btn-applicants-view-div">
+                    <button class="btn-applicants-view"><a  href="/users/projects/{{this._id}}">See current projects</a></button>
+                    <button class="btn-applicants-view"><a  href="/users/detail/{{this._id}}">See full profile</a></button>
+                    <button class="btn-applicants-view"><a  href="/project/{{../projectId}}/accept/{{this._id}}"/>Accept in the Team</a></button>
+                    <button class="btn-applicants-view"><a  href="/project/{{../projectId}}/decline/{{this._id}}">Decline application</a></button>
+                </div>
             </div>
     {{/each}}
 </div>
 <h2>{{errorMessage}}</h2>
-<a href="/project/users/details">Go back to your projects</a>
+<div class="search-bar-box"><button class="btn-applicants-view"><a href="/project/users/details">Go back to your projects</a></button></div>

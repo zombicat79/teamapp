@@ -51,7 +51,6 @@ projectRouter.post(
     })
       .then((data) => {
         res.redirect(`/project/details/${data._id}`);
-        console.log(data._id);
       })
       .catch((err) => console.log(err));
   }
@@ -118,7 +117,6 @@ projectRouter.get("/main", isLoggedIn, (req, res, next) => {
 });
 projectRouter.get("/main/:search", isLoggedIn, function (req, res, next) {
   const { search } = req.query;
-  console.log(req.query);
 
   Project.find({ $or: [{ title: search }, { location: search }] })
     .then((matchingProjects) => {
@@ -136,6 +134,15 @@ projectRouter.get("/main/:search", isLoggedIn, function (req, res, next) {
 // Project / detailed view
 projectRouter.get("/details/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
+  let alreadyFavProj = false;
+
+  User.findById(req.session.currentUser._id)
+    .then((data) => {
+      if (data.favoriteProjects.includes(id)) {
+        alreadyFavProj = true;
+      }
+    })
+    .catch((err) => console.log(err));
 
   Project.findById(id)
     .populate("creator")
@@ -146,7 +153,7 @@ projectRouter.get("/details/:id", isLoggedIn, (req, res, next) => {
         alreadyApplied = true;
       }
 
-      const data = { project, alreadyApplied };
+      const data = { project, alreadyApplied, alreadyFavProj };
       res.render("project-views/project-detail", data);
     })
     .catch((err) => console.log(err));
@@ -213,7 +220,6 @@ projectRouter.get("/users/details", isLoggedIn, (req, res, next) => {
       res.render("project-views/user-project-view", data);
     })
     .catch((err) => {
-      console.log(err);
       res.render("project-views/user-project-view", {
         errorMessage: "There is a problem",
       });
@@ -244,7 +250,6 @@ projectRouter.get(
         res.redirect("/project/users/details");
       })
       .catch((err) => {
-        console.log(err);
         res.redirect("/project/users/details");
       });
   }
@@ -254,9 +259,6 @@ projectRouter.get(
 projectRouter.post("/apply/:id", isLoggedIn, (req, res, next) => {
   const userIdAdd = req.session.currentUser._id;
   const { id } = req.params;
-
-  console.log("project id", id);
-  console.log("user id", userIdAdd);
 
   User.findByIdAndUpdate(userIdAdd, { $push: { projectsApplied: id } })
     .then((data) => console.log("data", data))
@@ -338,7 +340,18 @@ projectRouter.get("/application/remove/:id", (req, res, next) => {
   })
     .then((data) => {
       res.redirect(`/project/details/${id}`);
-      console.log(data);
+    })
+    .catch((err) => console.log(err));
+});
+
+// Remove project from favorite
+projectRouter.get("/favorite/remove/:id", (req, res, next) => {
+  const { id } = req.params;
+  User.findByIdAndUpdate(req.session.currentUser._id, {
+    $pull: { favoriteProjects: id },
+  })
+    .then((data) => {
+      res.redirect(`/project/details/${id}`);
     })
     .catch((err) => console.log(err));
 });

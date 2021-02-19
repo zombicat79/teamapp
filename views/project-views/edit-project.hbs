@@ -1,45 +1,56 @@
-<h1>Edit your project</h1>
 <form action='/project/edit/{{projectCreatorToCheck._id}}' method='POST' enctype="multipart/form-data">
+  <div>
+    <h1>Edit your project</h1>
 
-  <label for=''>Title</label>
-  <input type='text' name='title' value="{{projectCreatorToCheck.title}}">
+    <div class="form-entry">
+      <label class="form-title" for=''>Title</label>
+      <input class="field-input" type='text' name='title' value="{{projectCreatorToCheck.title}}">
+    </div>
+    <div class="form-entry">
+      <label class="form-title" for=''>Description</label>
+      <input class="field-input" type='text' name='description' value="{{projectCreatorToCheck.description}}">  
+    </div>
+    <div class="form-entry">
+      <label class="form-title" for=''>Category</label>
+      <input class="field-input" type='text' name='category' value="{{projectCreatorToCheck.category}}">
+    </div>
 
-  <label for=''>Description</label>
-  <input type='text' name='description' value="{{projectCreatorToCheck.description}}">  
+    <div class="form-entry">
+      <label class="form-title" for='' class="form-title">Wanted Skills</label></br>
+      <div class="checkbox-styling">
+        <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="2D Graphics"><span>2D Graphics</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="3D Graphics"><span>3D Graphics</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Unity"><span>Unity</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Scriptwriting"><span>Scriptwriting</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Pixel Art"><span>Pixel Art</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Music Composition"><span>Music Composition</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Sound Engineering"><span>Sound Engineering</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="C++"><span>C++</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Javascript"><span>Javascript</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="HTML & CSS"><span>HTML and CSS</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Project Management"><span>Project Management</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Conceptual Design"><span>Conceptual Design</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Beta Testing"><span>Beta Testing</span></div>
+      </div>
+    </div>
 
-  <label for=''>Category</label>
-  <input type='text' name='category' value="{{projectCreatorToCheck.category}}">
+    <div class="form-entry">
+      <label class="form-title" for=''>Start Date</label>
+      <input class="field-input" type='date' name='startDate' value="{{projectCreatorToCheck.startDate}}">
+    </div>
 
-  <div class="form-entry">
-    <label for='' class="form-title">Wanted Skills</label></br>
-    <div class="checkbox-styling">
-      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="2D Graphics"><span>2D Graphics</span></div>
-      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="3D Graphics"><span>3D Graphics</span></div>
-      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Unity"><span>Unity</span></div>
-      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Scriptwriting"><span>Scriptwriting</span></div>
-      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Pixel Art"><span>Pixel Art</span></div>
-      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Music Composition"><span>Music Composition</span></div>
-      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Sound Engineering"><span>Sound Engineering</span></div>
-      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="C++"><span>C++</span></div>
-      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Javascript"><span>Javascript</span></div>
-      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="HTML & CSS"><span>HTML and CSS</span></div>
-      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Project Management"><span>Project Management</span></div>
-      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Conceptual Design"><span>Conceptual Design</span></div>
-      <div class="checkbox-and-title"><input type='checkbox' name='wantedSkills' class="form-field" value="Beta Testing"><span>Beta Testing</span></div>
+    <div class="form-entry">
+      <label class="form-title" for=''>Release Date</label>
+      <input class="field-input" type='date' name='releaseDate' value="{{projectCreatorToCheck.releaseDate}}">
+    </div>
+
+    <div class="form-entry">
+      <label class="form-title" for='' class="form-title">Screenshots</label></br>
+      <input class="field-input" type='file' name='screenshots' class="form-field" value="{{projectCreatorToCheck.screenshots}}">
+    </div>
+
+    <div class="btn-div">
+      <div class="btn-centered"><button class="create-project" type='submit'>Edit</button></div>
     </div>
   </div>
-
-  <label for=''>Start Date</label>
-  <input type='date' name='startDate' value="{{projectCreatorToCheck.startDate}}">
-
-  <label for=''>Release Date</label>
-  <input type='date' name='releaseDate' value="{{projectCreatorToCheck.releaseDate}}">
-
-  <div class="form-entry">
-    <label for='' class="form-title">Screenshots</label></br>
-    <input type='file' name='screenshots' class="form-field" value="{{projectCreatorToCheck.screenshots}}">
-  </div>
-
-
-  <button type='submit'>Edit</button>
 </form>

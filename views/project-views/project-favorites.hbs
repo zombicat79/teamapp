@@ -10,10 +10,12 @@
         <div class="project-card">
             <h2>{{this.title}}</h2>
             <p>{{this.description}}</p>
-            <button class="see-more-btn"><a href="/project/details/{{this.id}}">See More</a></button>
-            <form action="/project/favorites/{{this._id}}" method="post">
-                <button type="submit">Remove</button>
-            </form>
+            <div class="btn-centered-favorite">
+                <button class="see-more-btn"><a href="/project/details/{{this.id}}">See More</a></button>
+                <form action="/project/favorites/{{this._id}}" method="post">
+                    <button type="submit" class="see-more-btn">Remove</button>
+                </form>
+            </div>
         </div>
     {{/each}}
 </div>
