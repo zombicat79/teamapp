@@ -7,51 +7,49 @@
   <title>Team App</title>
 </head>
 <body>
-  <h1>CREATE USER</h1>
-  <form action='/auth/signup' enctype="multipart/form-data" method='POST'>
+  <h1 id="create-heading">SIGN UP</h1>
+  <form id="create-form" action='/auth/signup' enctype="multipart/form-data" method='POST'>
 
-    <label for=''>Username</label>
-    <input type='text' name='username' value="{{username}}">
+    <label class="form-label" for=''>Username</label>
+    <input class="form-input" type='text' name='username' value="{{username}}">
 
-    <label for=''>Email</label>
-    <input type='email' name='email' value="{{email}}">
+    <label class="form-label" for=''>Email</label>
+    <input class="form-input" type='email' name='email' value="{{email}}">
 
-    <label for=''>Phone</label>
-    <input type='text' name='phone' value="{{phone}}">
+    <label class="form-label" for=''>Phone</label>
+    <input class="form-input" type='text' name='phone' value="{{phone}}">
 
-    <label for=''>Image</label>
-    <input type='file' name='image' value="{{image}}">
+    <label class="form-label" for=''>Image</label>
+    <input class="form-input" type='file' name='image' value="{{image}}">
 
-    <label for=''>Location</label>
-    <input type='text' name='location' value="{{location}}">
-
+    <label class="form-label" for=''>Location</label>
+    <input class="form-input" type='text' name='location' value="{{location}}">
   <div class="form-entry">
-      <label for='' class="form-title">Skills</label>
+      <label id="skills-label" for='' class="form-title">SKILLS</label>
       </br>
       <div id="checkbox-styling">
-        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="2D Graphics"><span>2D Graphics</span></div>
-        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="3D Graphics"><span>3D Graphics</span></div>
-        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Unity"><span>Unity</span></div>
-        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Scriptwriting"><span>Scriptwriting</span></div>
-        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Pixel Art"><span>Pixel Art</span></div>
-        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Music Composition"><span>Music Composition</span></div>
-        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Sound Engineering"><span>Sound Engineering</span></div>
-        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="C++"><span>C++</span></div>
-        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Javascript"><span>Javascript</span></div>
-        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="HTML & CSS"><span>HTML and CSS</span></div>
-        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Project Management"><span>Project Management</span></div>
-        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Conceptual Design"><span>Conceptual Design</span></div>
-        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Beta Testing"><span>Beta Testing</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="2D Graphics"><span style="color: white; font-family: 'Jura', sans-serif; font-size: 15px;">2D Graphics</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="3D Graphics"><span style="color: white; font-family: 'Jura', sans-serif; font-size: 15px;">3D Graphics</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Unity"><span style="color: white; font-family: 'Jura', sans-serif; font-size: 15px;">Unity</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Scriptwriting"><span style="color: white; font-family: 'Jura', sans-serif; font-size: 15px;">Scriptwriting</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Pixel Art"><span style="color: white; font-family: 'Jura', sans-serif; font-size: 15px;">Pixel Art</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Music Composition"><span style="color: white; font-family: 'Jura', sans-serif; font-size: 15px;">Music Composition</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Sound Engineering"><span style="color: white; font-family: 'Jura', sans-serif; font-size: 15px;">Sound Engineering</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="C++"><span style="color: white; font-family: 'Jura', sans-serif; font-size: 15px;">C++</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Javascript"><span style="color: white; font-family: 'Jura', sans-serif; font-size: 15px;">Javascript</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="HTML & CSS"><span style="color: white; font-family: 'Jura', sans-serif; font-size: 15px;">HTML and CSS</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Project Management"><span style="color: white; font-family: 'Jura', sans-serif; font-size: 15px;">Project Management</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Conceptual Design"><span style="color: white; font-family: 'Jura', sans-serif; font-size: 15px;">Conceptual Design</span></div>
+        <div class="checkbox-and-title"><input type='checkbox' name='skills' class="form-field" value="Beta Testing"><span style="color: white; font-family: 'Jura', sans-serif; font-size: 15px;">Beta Testing</span></div>
       </div>
   </div>
+    <label class="form-label" for=''>Password</label>
+    <input class="form-input" type='password' name='password'>
 
-    <label for=''>Password</label>
-    <input type='password' name='password'>
+    <label class="form-label" for=''>Confirm password</label>
+    <input class="form-input" type='password' name='confirmPassword'>
 
-    <label for=''>Confirm password</label>
-    <input type='password' name='confirmPassword'>
-
-    <button type='submit'>Log in</button>
+    <button type='submit'>CREATE ACCOUNT</button>
   </form>
   <p>{{errorMessage}}</p>
 </body>

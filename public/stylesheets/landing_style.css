@@ -1,11 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap');
 
+@media screen and (min-width: 451px) {
+
+    body {
+        background-image: url("./../images/landing_background_horizontal.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: rgb(255, 0, 0, 0.6);
+    }    
+
+}
+
 @media screen and (max-width: 450px) { 
 
     body {
         background-image: url("./../images/landing_background.jpg");
         background-repeat: no-repeat;
         background-size: cover;
+        background-color: rgb(255, 0, 0, 0.6);
     }
 
     #title {
@@ -19,6 +31,8 @@
         color: white;
         font-size: 15px;
         font-family: 'Jura', sans-serif;
+        text-align: center;
+        margin-left: 5vw;
     }
 
     #motto {
@@ -29,10 +43,10 @@
     }
 
     form input {
-        margin: 10px;
+        margin: 5px;
     }
 
-    #login-form {
+    #landing-form {
         position: fixed;
         top: 50vw;
         display: flex;
@@ -42,23 +56,32 @@
         left: 17vw;
     }
 
-    #login-form label {
+    .form-label {
         color: white;
         font-family: 'Jura', sans-serif;
         text-align: center;
     }
 
-    #login-form input {
+    .form-input {
         border-radius: 20px;
         background-color: rgb(169, 169, 169, 0.5);
         border: 1px solid purple;
         height: 50px;
     }
 
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        text-align: center;
+        font-family: 'Jura', sans-serif;
+        color: white
+    }
+
     button {
         color: white;
         background-color: red;
         font-family: 'Jura', sans-serif;
+        font-size: 15px;
         border: 5px solid purple;
         margin-top: 5px;
         height: 50px;
@@ -106,8 +129,52 @@
 
     /* --- --- */
 
+    #create-heading {
+        color: white;
+        font-size: 30px;
+        font-family: 'Jura', sans-serif;
+        text-align: center;
+        margin: 40px auto 40px auto;
+    }
+    
+    #create-form {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        margin-left: 15vw;
+        margin-right: 17vw;
+        margin-bottom: 40px;
+    }
+
+    input[type="file"] {
+        padding-left: 30px;
+        padding-top: 12px;
+        font-family: 'Jura', sans-serif;
+        color: white
+    }
+
+    .form-entry {
+        margin-top: 40px;
+    }
+
+    #skills-label {
+        color: white;
+        font-family: 'Jura', sans-serif;
+        text-align: center;
+        margin-top: 40px;
+        margin-left: 29vw;
+    }
+
     #checkbox-styling {
         display: flex;
         flex-wrap: wrap;
+        margin-left: 21vw;
+        margin-right: 16vw;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+    input[type="checkbox"]:checked {
+        box-shadow: 0 0 0 3px hotpink;
     }
 }
