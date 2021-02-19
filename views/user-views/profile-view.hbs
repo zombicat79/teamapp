@@ -2,6 +2,7 @@
 <div class="profile-view-div">
     
     <div class="profile-view-box">
+        <img id="profile-img" src="{{selectedUser.profileImage}}" class="profile-view-img">
         <div class="profile-view-info">
             <h1>Welcome, {{selectedUser.username}}.</h1>
             <p><strong>Hometown:</strong> {{selectedUser.location}}</p>
@@ -11,11 +12,12 @@
                 <li>{{this}}</li>
                 {{/each}}
             </ul>
-            <button class="profile-view-btn"><a href="/project/users/details">See current projects</a></button>
             <p> <strong>Email:</strong>  {{selectedUser.email}}</p>
             <p> <strong>Phone:</strong>  {{selectedUser.phone}}</p>
+            <div class="profile-view-btn-container" >
+                <button class="profile-view-btn"><a href="/project/users/details">See current projects</a></button>
+            </div>
         </div>
-        <img id="profile-img" src="{{selectedUser.profileImage}}" class="profile-view-img">
     </div>
 
 

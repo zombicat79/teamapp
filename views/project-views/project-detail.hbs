@@ -18,7 +18,7 @@
     </div>
 
     {{#if project.wantedSkills}}
-        <p>To work on {{this.project.title}}, the team is looking for talented person working in:</p>
+        <p class="offer">To work on {{this.project.title}}, the team is looking for talented person working in:</p>
         <ul class="skills-list-ul">
             {{#each project.wantedSkills}}
             <li class="skills-list">{{this}}</li>
@@ -28,21 +28,21 @@
              <div class="project-detail-div"><button >Add to favorites</button></div>
             </form>
             {{#if alreadyApplied}} 
-                    <p>You already applied to this project!</p>
-                    <a href="/project/application/remove/{{project._id}}">Remove Application</a>
+                    <p class="offer">You already applied to this project!</p>
+                    <a class="offer" href="/project/application/remove/{{project._id}}">Remove Application</a>
              {{else}}       
-                <div class="project-detail-div"><form action="/project/apply/{{this.project.id}}" method="post"><button>Apply to this project!</button></form></div>
+                <div class="project-detail-div"><form action="/project/apply/{{this.project.id}}" method="post"><button id="apply-button">Apply to this project!</button></form></div>
             {{/if}}
 
     {{else}}
-        <p>Unfortunately, this project doesn't need amazing talents such as you!</p>
+        <p "offer">Unfortunately, this project doesn't need amazing talents such as you!</p>
     {{/if}}
 
-    <p>The team is {{#if project.location}}based in: {{project.location}}{{else}}from all over the world!{{/if}}.</p>
+    <p class="offer">The team is {{#if project.location}}based in: {{project.location}}{{else}}from all over the world!{{/if}}.</p>
 
     <section class="project-creator-sect">
         <div class="project-creator-box">
-            <p>The creator of this project is:</p>
+            <p class="offer">The creator of this project is:</p>
             <a href="/users/detail/{{project.creator._id}}">
             <p>{{project.creator.username}}</p>
             <img class="project-creator-img" src="{{project.creator.profileImage}}" alt="">
@@ -50,7 +50,7 @@
         </div>
     </section>
 
-    <p>List of collaborators involved in this project:</p>
+    <p class="offer">List of collaborators involved in this project:</p>
         <div class="team-members">
             {{#each project.team}}
             <a class="team-members-id" href="/users/detail/{{this._id}}"><img class="team-members-img" src="{{this.profileImage}}" alt=""><p>{{this.username}}</p></a>

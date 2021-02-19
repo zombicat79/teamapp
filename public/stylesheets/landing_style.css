@@ -212,92 +212,107 @@
 }
 
 @media screen and (max-width: 450px) {
-  body {
-    background-image: url("./../images/landing_background.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  #title {
-    position: fixed;
-    width: 80%;
-    left: 10vw;
-    top: 10vw;
-  }
-
-  h1 {
-    color: white;
-    font-size: 15px;
-    font-family: "Jura", sans-serif;
-  }
-
-  #motto {
-    position: fixed;
-    top: 20vw;
-    text-align: center;
-    margin-right: 10px;
-  }
-
-  form input {
-    margin: 10px;
-  }
-
-  #login-form {
-    position: fixed;
-    top: 50vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    right: 17vw;
-    left: 17vw;
-  }
-
-  #login-form label {
-    color: white;
-    font-family: "Jura", sans-serif;
-    text-align: center;
-  }
-
-  #login-form input {
-    border-radius: 20px;
-    background-color: rgb(169, 169, 169, 0.5);
-    border: 1px solid purple;
-    height: 50px;
-  }
-
-  button {
-    color: white;
-    background-color: red;
-    font-family: "Jura", sans-serif;
-    border: 5px solid purple;
-    margin-top: 5px;
-    height: 50px;
-  }
-
-  #error {
-    font-family: "Jura", sans-serif;
-    text-align: center;
-    position: fixed;
-    top: 40vw;
-    left: 9vw;
-    color: red;
-    font-weight: 800;
-  }
-
-  #icon-block {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    left: 20vw;
-    top: 110vw;
-  }
-
-  @keyframes opening {
-    0% {height: 0px;}
-    50% {height: 180px;}
-    100% {height: 150px;}
-  }
+  
+    body {
+        background-image: url("./../images/landing_background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: rgb(255, 0, 0, 0.6);
+    }
+    #title {
+        position: fixed;
+        width: 80%;
+        left: 10vw;
+        top: 10vw;
+    }
+    h1 {
+        color: white;
+        font-size: 15px;
+        font-family: 'Jura', sans-serif;
+        text-align: center;
+        margin-left: 5vw;
+    }
+    #motto {
+        position: fixed;
+        top: 20vw;
+        text-align: center;
+        margin-right: 10px; 
+    }
+    form input {
+        margin: 5px;
+    }
+    #landing-form {
+        position: fixed;
+        top: 50vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        right: 17vw;
+        left: 17vw;
+    }
+    .form-label {
+        color: white;
+        font-family: 'Jura', sans-serif;
+        text-align: center;
+    }
+    .form-input {
+        border-radius: 20px;
+        background-color: rgb(169, 169, 169, 0.5);
+        border: 1px solid purple;
+        height: 50px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        text-align: center;
+        font-family: 'Jura', sans-serif;
+        color: white
+    }
+    button {
+        color: white;
+        background-color: red;
+        font-family: 'Jura', sans-serif;
+        font-size: 15px;
+        border: 5px solid purple;
+        margin-top: 5px;
+        height: 50px;
+    }
+    #error {
+        font-family: 'Jura', sans-serif;
+        text-align: center;
+        position: fixed;
+        top: 40vw;
+        left: 9vw;
+        color: red;
+        font-weight: 800;
+    }
+    #icon-block {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        left: 20vw;
+        top: 110vw;
+    }
+    @keyframes opening {
+        0% {height: 0px;}
+        50% {height: 180px;}
+        100% {height: 150px;}
+    }
+    #icon-block img {
+        width: 80%;
+        animation-name: opening;
+        animation-duration: 2s;
+    }
+    #icon-block a {
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        margin-right: 60px;
+        font-family: 'Jura', sans-serif;
+        background-color: rgb(169, 169, 169, 0.3);
+    }
+    /* --- --- */
     #create-heading {
         color: white;
         font-size: 30px;
@@ -305,7 +320,6 @@
         text-align: center;
         margin: 40px auto 40px auto;
     }
-    
     #create-form {
         display: flex;
         flex-direction: column;
@@ -314,18 +328,15 @@
         margin-right: 17vw;
         margin-bottom: 40px;
     }
-
     input[type="file"] {
         padding-left: 30px;
         padding-top: 12px;
         font-family: 'Jura', sans-serif;
         color: white
     }
-
     .form-entry {
         margin-top: 40px;
     }
-
     #skills-label {
         color: white;
         font-family: 'Jura', sans-serif;
@@ -333,7 +344,6 @@
         margin-top: 40px;
         margin-left: 29vw;
     }
-
     #checkbox-styling {
         display: flex;
         flex-wrap: wrap;
@@ -342,37 +352,7 @@
         margin-top: 20px;
         margin-bottom: 40px;
     }
-
     input[type="checkbox"]:checked {
         box-shadow: 0 0 0 3px hotpink;
     }
-  
-
-  #icon-block img {
-    width: 80%;
-    animation-name: opening;
-    animation-duration: 2s;
-  }
-
-  #icon-block a {
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    margin-right: 60px;
-    font-family: "Jura", sans-serif;
-    background-color: rgb(169, 169, 169, 0.3);
-  }
-
-  /* --- --- */
-
-  #checkbox-styling {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .span-style {
-    color: white;
-    font-family: 'Jura', sans-serif;
-    font-size: 15px;
-  }
 }
