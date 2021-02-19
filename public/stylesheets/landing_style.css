@@ -5,6 +5,12 @@
 }
 
 @media screen and (min-width: 451px) {
+  .img-gamer-centered {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
+
   body {
     background-image: url("/images/landing_background.jpg");
     background-size: cover;
@@ -229,7 +235,7 @@
     color: white;
   }
 
-  .dont-have-account-link > a{
+  .dont-have-account-link > a {
     color: white;
     font-size: 1.5rem;
   }
