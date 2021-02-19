@@ -136,6 +136,34 @@
     justify-content: center;
     text-align: center;
     color: white;
+    font-size: 2rem;
+  }
+  .input-fields-div > label {
+    font-size: 2rem;
+  }
+
+  .change-btn-2 {
+    border: solid 5px rgba(62, 9, 121, 1);
+    border-radius: 20px;
+    background-color: white;
+    font-size: 3rem;
+    color: rgba(62, 9, 121, 1);
+    padding: 0px 30px 70px 30px;
+  }
+
+  .btn-centered-2 {
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    margin-bottom: 55px;
+  }
+  .create-field-input {
+      font-size: 2rem;
+  }
+
+  .field-input {
+    background-color: rgb(169, 169, 169, 0.5);
+    color:white;
   }
 }
 
