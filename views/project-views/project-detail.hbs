@@ -1,21 +1,60 @@
 <div class="project-detail-page-main" >
-    <div>
-        <h2 class="project-detail-page-title">{{project.title}}</h2>
-        <div class="display-flex-project-detail">
-            <div class="project-detail-page-img-div"><img class="project-detail-page-img" src="{{project.screenshots}}" ></div>
-            <section class="project-detail-page-box">    
-                <p> <strong> Description:</strong> {{project.description}}</p>
-                {{#if this.project.playableDemo}}
-                    <a href="{{this.project.playableDemo}}">Playable demo</a>
-                {{/if}}
+    <h2 class="project-detail-page-title">{{project.title}}</h2>
+    <div class="display-flex-project-detail">
+        <div class="project-detail-page-img-div"><img class="project-detail-page-img" src="{{project.screenshots}}" ></div>
+        <section class="project-detail-page-box">    
+            <p> <strong> Description:</strong> {{project.description}}</p>
+            {{#if this.project.playableDemo}}
+                <a href="{{this.project.playableDemo}}">Playable demo</a>
+            {{/if}}
 
-                {{#if project.startDate}}<p> <strong>To start on:</strong>  {{project.startDate}}</p>
-                    {{else}}
-                    <p>There was no dates set for this project</p>
-                {{/if}}
-                {{#if project.releaseDate}}<p> <strong>and released on:</strong> {{project.releaseDate}}</p>
-                {{/if}}
-            </section>
+            {{#if project.startDate}}<p> <strong>To start on:</strong>  {{project.startDate}}</p>
+                {{else}}
+                <p>There was no dates set for this project</p>
+            {{/if}}
+            {{#if project.releaseDate}}<p> <strong>and released on:</strong> {{project.releaseDate}}</p>
+            {{/if}}
+        </section>
+    </div>
+
+    {{#if project.wantedSkills}}
+        <p class="offer">To work on {{this.project.title}}, the team is looking for talented person working in:</p>
+        <ul class="skills-list-ul">
+            {{#each project.wantedSkills}}
+            <li class="skills-list">{{this}}</li>
+            {{/each}}
+        </ul>
+            <form action="/project/details/{{this.project.id}}" method="post">
+             <div class="project-detail-div"><button >Add to favorites</button></div>
+            </form>
+            {{#if alreadyApplied}} 
+                    <p class="offer">You already applied to this project!</p>
+                    <a class="offer" href="/project/application/remove/{{project._id}}">Remove Application</a>
+             {{else}}       
+                <div class="project-detail-div"><form action="/project/apply/{{this.project.id}}" method="post"><button id="apply-button">Apply to this project!</button></form></div>
+            {{/if}}
+
+    {{else}}
+        <p "offer">Unfortunately, this project doesn't need amazing talents such as you!</p>
+    {{/if}}
+
+    <p class="offer">The team is {{#if project.location}}based in: {{project.location}}{{else}}from all over the world!{{/if}}.</p>
+
+    <section class="project-creator-sect">
+        <div class="project-creator-box">
+            <p class="offer">The creator of this project is:</p>
+            <a href="/users/detail/{{project.creator._id}}">
+            <p>{{project.creator.username}}</p>
+            <img class="project-creator-img" src="{{project.creator.profileImage}}" alt="">
+            </a>
+        </div>
+    </section>
+
+    <p class="offer">List of collaborators involved in this project:</p>
+        <div class="team-members">
+            {{#each project.team}}
+            <a class="team-members-id" href="/users/detail/{{this._id}}"><img class="team-members-img" src="{{this.profileImage}}" alt=""><p>{{this.username}}</p></a>
+            {{/each}}
         </div>
 
         {{#if project.wantedSkills}}
